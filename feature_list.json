@@ -1,0 +1,137 @@
+{
+	"features": [
+		{
+			"id": "feat-001",
+			"name": "Project Setup & Agent Harness",
+			"description": "Svelte 5 + SvelteKit library package harness with bun, typescript, svelte-check, prettier, eslint, publint, and .agents workspace configuration.",
+			"dependencies": [],
+			"status": "done",
+			"evidence": "package.json, init.sh, init.ps1, .agents/, AGENTS.md"
+		},
+		{
+			"id": "feat-002",
+			"name": "Core Primitive Utilities & Actions",
+			"description": "Base utilities: typed Svelte 5 context helpers, unique ID generator, event composition utility, Portal component, and click-outside / escape-keydown handlers.",
+			"dependencies": ["feat-001"],
+			"status": "todo",
+			"evidence": "src/lib/internal/"
+		},
+		{
+			"id": "feat-003",
+			"name": "Button & Toggle Primitives",
+			"description": "Unstyled Button and Toggle primitives supporting pressed state, aria-pressed, keyboard space/enter triggers, and element delegation.",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/button/, src/lib/toggle/"
+		},
+		{
+			"id": "feat-004",
+			"name": "Checkbox & Switch Primitives",
+			"description": "Accessible Checkbox (checked, unchecked, indeterminate, hidden input for forms) and Switch (toggle switch with aria-checked and thumb).",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/checkbox/, src/lib/switch/"
+		},
+		{
+			"id": "feat-005",
+			"name": "Radio Group Primitive",
+			"description": "RadioGroup (Root, Item, Indicator) with roving tabindex, arrow navigation (horizontal/vertical), and form validation support.",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/radio-group/"
+		},
+		{
+			"id": "feat-006",
+			"name": "Collapsible & Accordion Primitives",
+			"description": "Collapsible (expand/collapse panel) and Accordion (single or multiple expansion, header, trigger, content, arrow navigation, WAI-ARIA compliant).",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/collapsible/, src/lib/accordion/"
+		},
+		{
+			"id": "feat-007",
+			"name": "Dialog & Alert Dialog Primitives",
+			"description": "Modal Dialog and AlertDialog: Trigger, Portal, Overlay, Content, Title, Description, Close. Includes focus trapping, scroll locking, and Escape dismiss.",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/dialog/, src/lib/alert-dialog/"
+		},
+		{
+			"id": "feat-008",
+			"name": "Popover & Tooltip Primitives",
+			"description": "Popover (anchor, floating positioning, outside click dismiss) and Tooltip (hover/focus triggers, customizable delay, skip delay across items).",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/popover/, src/lib/tooltip/"
+		},
+		{
+			"id": "feat-009",
+			"name": "Dropdown Menu Primitive",
+			"description": "DropdownMenu: Root, Trigger, Portal, Content, Item, CheckboxItem, RadioGroup, RadioItem, Submenu, Separator with roving focus and typeahead.",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/dropdown-menu/"
+		},
+		{
+			"id": "feat-010",
+			"name": "Tabs Primitive",
+			"description": "Tabs: Root, List, Trigger, Content. Supports automatic/manual activation, horizontal/vertical orientation, and roving tabindex.",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/tabs/"
+		},
+		{
+			"id": "feat-011",
+			"name": "Slider & Progress Primitives",
+			"description": "Slider (single and multi-thumb range slider with keyboard step control) and Progress (determinate and indeterminate progress bar with ARIA attributes).",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/slider/, src/lib/progress/"
+		},
+		{
+			"id": "feat-012",
+			"name": "Select Primitive",
+			"description": "Select: Root, Trigger, Value, Portal, Content, Viewport, Item, Group, Label. Full keyboard navigation, typeahead, and form value synchronization.",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/select/"
+		},
+		{
+			"id": "feat-013",
+			"name": "Separator & Scroll Area Primitives",
+			"description": "Separator (semantic/decorative divider) and ScrollArea (custom styled scrollbar thumb and track with native scrolling support).",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/separator/, src/lib/scroll-area/"
+		},
+		{
+			"id": "feat-014",
+			"name": "Toast Primitive",
+			"description": "Toast: Provider, Root, Title, Description, Action, Close, Viewport. Swipe to dismiss, timers, and accessible aria-live region announcements.",
+			"dependencies": ["feat-002"],
+			"status": "todo",
+			"evidence": "src/lib/toast/"
+		},
+		{
+			"id": "feat-015",
+			"name": "Interactive Showcase & Verification Gallery",
+			"description": "Comprehensive interactive demo gallery in routes demonstrating all primitives with zero styling, custom styling, and keyboard testing.",
+			"dependencies": [
+				"feat-003",
+				"feat-004",
+				"feat-005",
+				"feat-006",
+				"feat-007",
+				"feat-008",
+				"feat-009",
+				"feat-010",
+				"feat-011",
+				"feat-012",
+				"feat-013",
+				"feat-014"
+			],
+			"status": "todo",
+			"evidence": "src/routes/+page.svelte"
+		}
+	]
+}
