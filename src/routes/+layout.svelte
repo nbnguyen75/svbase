@@ -16,6 +16,7 @@
 		<a href={resolve('/button')}>Button</a>
 		<a href={resolve('/toggle')}>Toggle</a>
 		<a href={resolve('/checkbox')}>Checkbox</a>
+		<a href={resolve('/radio-group')}>Radio Group</a>
 		<a href={resolve('/switch')}>Switch</a>
 	</nav>
 </header>

@@ -1,0 +1,154 @@
+<script lang="ts" module>
+	import type { RadioOrientation } from './context.js';
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	export interface RootProps extends HTMLAttributes<HTMLDivElement> {
+		/** Fired with the next value whenever selection changes. */
+		onValueChange?: ((value: string) => void) | undefined;
+		/** Delegated access to the group element. */
+		ref?: HTMLDivElement | undefined;
+		/** Reading direction for arrow keys. @default 'horizontal' */
+		orientation?: RadioOrientation;
+		/** Initially selected value for uncontrolled usage. */
+		defaultValue?: string;
+		/** Whether user interaction is ignored. @default false */
+		disabled?: boolean;
+		/** Whether selection is locked (focus still moves). @default false */
+		readOnly?: boolean;
+		/** Whether a selection is required for form submission. @default false */
+		required?: boolean;
+		children?: Snippet;
+		/** Selected item value (controlled). */
+		value?: string;
+		/** Form field name. Omit to exclude from submission. */
+		name?: string;
+		form?: string;
+	}
+</script>
+
+<script lang="ts">
+	import { type RadioItemEntry, setRadioGroupState } from './context.js';
+
+	let {
+		defaultValue = undefined,
+		value = $bindable(defaultValue),
+		disabled = false,
+		readOnly = false,
+		required = false,
+		name = undefined,
+		form = undefined,
+		orientation = 'horizontal',
+		onValueChange = undefined,
+		ref = $bindable<HTMLDivElement | undefined>(undefined),
+		children,
+		...rest
+	}: RootProps = $props();
+
+	let items = $state<Array<RadioItemEntry>>([]);
+
+	function commit(next: string): void {
+		onValueChange?.(next);
+		value = next;
+	}
+
+	function select(itemValue: string): void {
+		if (disabled || readOnly) return;
+		commit(itemValue);
+	}
+
+	function register(entry: RadioItemEntry): void {
+		items = [...items.filter((item) => item.value !== entry.value), entry];
+	}
+
+	function unregister(itemValue: string): void {
+		items = items.filter((item) => item.value !== itemValue);
+	}
+
+	/**
+	 * Roving focus with selection following it (WAI-APG radio pattern).
+	 * All four arrows work in both orientations; Left/Right swap in RTL.
+	 * Wraps around and skips disabled items.
+	 */
+	function move(fromValue: string, key: string, source: HTMLElement): void {
+		const enabled = items.filter((item) => !item.disabled);
+		if (enabled.length === 0) return;
+		const rtl = source.closest('[dir="rtl"]') !== null || document.dir === 'rtl';
+		let delta: number | 'first' | 'last' | undefined;
+		switch (key) {
+			case 'ArrowDown':
+				delta = 1;
+				break;
+			case 'ArrowUp':
+				delta = -1;
+				break;
+			case 'ArrowRight':
+				delta = rtl ? -1 : 1;
+				break;
+			case 'ArrowLeft':
+				delta = rtl ? 1 : -1;
+				break;
+			case 'Home':
+				delta = 'first';
+				break;
+			case 'End':
+				delta = 'last';
+				break;
+			default:
+				return;
+		}
+		const current = enabled.findIndex((item) => item.value === fromValue);
+		const at = current === -1 ? 0 : current;
+		let next: RadioItemEntry | undefined;
+		if (delta === 'first') next = enabled[0];
+		else if (delta === 'last') next = enabled[enabled.length - 1];
+		else next = enabled[(at + delta + enabled.length) % enabled.length];
+		if (!next || next.value === fromValue) return;
+		next.element?.focus();
+		if (!readOnly) commit(next.value);
+	}
+
+	setRadioGroupState({
+		get checkedValue() {
+			return value;
+		},
+		get disabled() {
+			return disabled;
+		},
+		get required() {
+			return required;
+		},
+		get readOnly() {
+			return readOnly;
+		},
+		get orientation() {
+			return orientation;
+		},
+		get name() {
+			return name;
+		},
+		get form() {
+			return form;
+		},
+		get entries() {
+			return items;
+		},
+		select,
+		register,
+		unregister,
+		move
+	});
+</script>
+
+<div
+	{...rest}
+	bind:this={ref}
+	role="radiogroup"
+	aria-orientation={orientation}
+	aria-required={required ? 'true' : rest['aria-required']}
+	aria-disabled={disabled ? 'true' : rest['aria-disabled']}
+	data-disabled={disabled ? '' : undefined}
+	data-orientation={orientation}
+>
+	{@render children?.()}
+</div>

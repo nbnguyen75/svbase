@@ -37,7 +37,7 @@
 			"name": "Radio Group Primitive",
 			"description": "RadioGroup (Root, Item, Indicator) with roving tabindex, arrow navigation (horizontal/vertical), and form validation support.",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/primitives/radio-group/"
 		},
 		{

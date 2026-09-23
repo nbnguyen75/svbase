@@ -3,6 +3,8 @@
 		/** Fired when the input toggles natively (e.g. via an associated label). */
 		onNativeChange?: ((checked: boolean) => void) | undefined;
 		inputRef?: HTMLInputElement | undefined;
+		/** Native input kind: checkbox state or radio-group membership. @default 'checkbox' */
+		type?: 'checkbox' | 'radio';
 		/** Synced onto the input's `indeterminate` DOM property. */
 		indeterminate?: boolean;
 		/** Submitted value when unchecked (nothing submitted when omitted). */
@@ -32,6 +34,7 @@
 <script lang="ts">
 	let {
 		checked,
+		type = 'checkbox',
 		indeterminate = false,
 		disabled = false,
 		readOnly = false,
@@ -65,7 +68,7 @@
 
 <input
 	bind:this={inputRef}
-	type="checkbox"
+	{type}
 	{id}
 	{name}
 	{value}

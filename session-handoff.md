@@ -2,16 +2,14 @@
 
 ## Current State
 
-- `feat-001`–`feat-004` complete and verified. **Uncommitted structural reorg** (single-repo docs site, user-requested — needs review + commit):
-  - `src/lib/` → `primitives/` + `utils/` + `actions/` (history preserved via `git mv`); `internal/` deleted; public API unchanged.
-  - `src/routes/` is now the docs site: `+layout.svelte` nav shell + per-primitive pages (`button|toggle|checkbox|switch`), home keeps overview + utilities playground.
-  - `feature_list.json` evidence paths updated; `bun run build` verified (5 routes) alongside `prepack`.
-- Verification is green: `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0.
+- `feat-001`–`feat-005` complete and verified (harness, utils + `mergeProps`, Button/Toggle, Checkbox/Switch, RadioGroup) plus committed test stack (Vitest unit + Chromium browser + axe, 30/30) and single-repo docs-site layout.
+- `src/lib/primitives/radio-group/` (Root/Item/Indicator): roving tabindex, arrows+Home/End with wrap/RTL/disabled-skip, per-item native inputs, `RadioGroup.*` export.
+- Verification is green: `test` 30/30, `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0.
 
 ## Immediate Next Task
 
-- Pick `feat-005` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
-  - Radio Group primitive (`src/lib/radio-group/` with Root, Item, Indicator): roving tabindex, arrow navigation (horizontal/vertical), form value sync — reuse `HiddenInput`, `$bindable` group value, getter context, veto-by-`preventDefault`.
+- Pick `feat-006` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
+  - Collapsible & Accordion primitives (`src/lib/primitives/collapsible/`, `src/lib/primitives/accordion/`): expand/collapse, single/multiple modes, header/trigger/content parts, arrow navigation — reuse getter context, `$bindable` open state, `data-state`, and the radio-group roving/registration pattern for accordion keyboard nav.
 
 ## How to Resume
 
