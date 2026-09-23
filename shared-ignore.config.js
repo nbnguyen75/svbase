@@ -9,6 +9,13 @@ export const FORMAT_IGNORE_PATTERNS = [
 	// Static assets
 	'/static/',
 
+	// Build output & generated files (mirrors LINT_IGNORE_PATTERNS)
+	'.svelte-kit',
+	'dist',
+	'build',
+	'.vitest',
+	'coverage',
+
 	// Agent & AI tooling
 	'.agents/',
 	'.claude/',

@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import { playwright } from '@vitest/browser-playwright';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
 	plugins: [
@@ -16,5 +17,28 @@ export default defineConfig({
 			// See https://svelte.dev/docs/kit/adapters for more information about adapters.
 			adapter: adapter()
 		})
-	]
+	],
+	test: {
+		projects: [
+			{
+				test: {
+					name: 'unit',
+					include: ['src/**/*.test.ts'],
+					exclude: ['src/**/*.browser.test.ts']
+				}
+			},
+			{
+				test: {
+					name: 'browser',
+					include: ['src/**/*.browser.test.ts'],
+					browser: {
+						enabled: true,
+						headless: true,
+						provider: playwright(),
+						instances: [{ browser: 'chromium' }]
+					}
+				}
+			}
+		]
+	}
 });

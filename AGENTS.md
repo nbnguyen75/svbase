@@ -41,6 +41,7 @@ Always use the standard npm/bun scripts configured in `package.json` for validat
 | `bun run lint`             | Lint codebase for errors       | `oxlint && eslint src --ext .svelte`       |
 | `bun run lint:fix`         | Autofix lint issues            | `oxlint --fix`                             |
 | `bun run prepack`          | Package verification & build   | `svelte-package && publint`                |
+| `bun run test`             | Unit + browser tests           | `vitest` (node + chromium projects)        |
 | `./init.sh` / `.\init.ps1` | Full baseline environment run  | Dependencies, check, format, lint, prepack |
 
 ---

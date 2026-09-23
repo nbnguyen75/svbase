@@ -77,3 +77,13 @@
 - [x] **Roadmap evidence paths** in `feature_list.json` updated to `src/lib/primitives/...` (feat-003..014) and `src/lib/utils|actions` (feat-002).
 - [x] **Both build targets verified from one repo**: `bun run build` (site: `/`, `/button`, `/toggle`, `/checkbox`, `/switch` — adapter-auto notes no production env, expected until a deploy adapter is chosen) and `bun run prepack` (dist mirrors new layout, publint good). Plus `check` 0/0, `format` clean, `lint` exit 0.
 - [ ] **Follow-up**: `feat-015` (showcase gallery) is now mostly structural groundwork done — remaining work is per-new-primitive pages as feats land, plus choosing a deploy adapter (replaces adapter-auto) when `svbase.dev` deployment is wanted.
+
+### 2026-09-23: Test stack — Vitest Browser Mode (user-proposed, co-implemented)
+
+- [x] **Deps** (user installed, committed here): `vitest@5`, `@vitest/browser-playwright@5`, `vitest-browser-svelte@3`, `playwright@1.63`, `axe-core@4` (direct `axe.run`, no page plumbing), `oxlint-tsgolint`; Chromium downloaded via `playwright install`.
+- [x] **Config** (`vite.config.ts`): two `test.projects` — `unit` (node, `src/**/*.test.ts`) and `browser` (headless Chromium, `src/**/*.browser.test.ts`); `bun run test` script; `!dist/**/*.fixture.*` pack exclude; AGENTS.md command row.
+- [x] **Unit tests** (4 files, 15 tests): `composeHandlers` order/cancel/empty, `mergeProps` overwrite/class/style/handlers/undefined-skip, id uniqueness/override, state-attrs mapping.
+- [x] **Browser tests** (2 files, 8 tests): Button native click/type, disabled force-click suppression, div Enter/Space activation with real `document.activeElement` focus, Toggle click flip + aria, axe with zero violations.
+- [x] **API corrections vs proposal**: v5 `Locator` has no `focus()`/`press()` — focus via `findElement()` + real `.focus()`, keyboard via real `KeyboardEvent` dispatch in Chromium; synthetic Space provably does NOT flip native buttons (trusted-event requirement), so that test locks the negative. Axe: 3 harness-owned document rules (`landmark-one-main`, `page-has-heading-one`, `region`) disabled with justification — zero component violations.
+- [x] **Harness fix**: `FORMAT_IGNORE_PATTERNS` was missing build output (`.svelte-kit`, `dist`, `build`, `.vitest`, `coverage`) — first real `vite build` broke the format gate; fixed.
+- [x] **Verification**: `test` 23/23, `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, tarball contains no test/fixture files.
