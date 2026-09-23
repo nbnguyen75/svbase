@@ -1,18 +1,23 @@
 <script lang="ts">
 	import {
+		Button,
 		clickOutside,
 		composeHandlers,
 		createId,
 		escapeKey,
 		generateId,
 		mergeProps,
-		Portal
+		Portal,
+		Toggle
 	} from '$lib/index.js';
 
 	let portalOpen = $state(false);
 	let dismissedBy = $state('none');
 	let composedLog = $state<string[]>([]);
 	let mergedLog = $state<string[]>([]);
+	let buttonClicks = $state(0);
+	let toggleChanges = $state<string[]>([]);
+	let controlledPressed = $state(false);
 	let sides: Array<{ note: string; id: string }> = $state([]);
 
 	const demoId = createId('demo');
@@ -52,6 +57,32 @@
 
 <h1>svbase — feat-002: Core Primitive Utilities</h1>
 <p>Demo id: <code>{demoId}</code> / <code>{generated}</code></p>
+
+<section>
+	<h2>Button</h2>
+	<Button onclick={() => (buttonClicks += 1)}>Clicked {buttonClicks}×</Button>
+	<Button disabled>Disabled (not focusable)</Button>
+	<Button disabled focusableWhenDisabled>Disabled but focusable</Button>
+	<Button element="div">Div as button (Tab to it, press Enter/Space)</Button>
+	<p>
+		Inspect: native buttons carry <code>type="button"</code>; disabled ones carry
+		<code>data-disabled</code>.
+	</p>
+</section>
+
+<section>
+	<h2>Toggle</h2>
+	<Toggle
+		onPressedChange={(pressed) => {
+			toggleChanges = [...toggleChanges, pressed ? 'on' : 'off'];
+		}}
+	>
+		Uncontrolled toggle
+	</Toggle>
+	<Toggle bind:pressed={controlledPressed}>Controlled: {controlledPressed ? 'on' : 'off'}</Toggle>
+	<Toggle disabled>Disabled toggle</Toggle>
+	<p>Changes: {toggleChanges.length ? toggleChanges.join(', ') : '—'}</p>
+</section>
 
 <section>
 	<h2>Portal</h2>

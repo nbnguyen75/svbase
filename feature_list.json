@@ -21,7 +21,7 @@
 			"name": "Button & Toggle Primitives",
 			"description": "Unstyled Button and Toggle primitives supporting pressed state, aria-pressed, keyboard space/enter triggers, and element delegation.",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/button/, src/lib/toggle/"
 		},
 		{

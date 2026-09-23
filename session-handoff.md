@@ -2,15 +2,15 @@
 
 ## Current State
 
-- `feat-001` (harness) and `feat-002` (core internal utilities) are complete and verified.
-- `src/lib/internal/` provides: `createPrimitiveContext`, `generateId`/`createId`, `composeHandlers`, `clickOutside`/`escapeKey` attachments, `Portal`.
+- `feat-001` (harness), `feat-002` (core internal utilities + `mergeProps`), and `feat-003` (Button & Toggle) are complete and verified.
+- `src/lib/button/` and `src/lib/toggle/` provide native-button primitives with element delegation, `bind:ref`, and veto-by-`preventDefault` composition. Public exports in `src/lib/index.ts`.
 - Verification is green: `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass.
 
 ## Immediate Next Task
 
-- Pick `feat-003` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
-  - Button & Toggle primitives (`src/lib/button/`, `src/lib/toggle/`) built on feat-002 utils:
-    - `createId` for aria labelling, `composeHandlers` for internal + consumer `onclick`, `createPrimitiveContext` if compound parts are needed.
+- Pick `feat-004` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
+  - Checkbox & Switch primitives (`src/lib/checkbox/`, `src/lib/switch/`) built on feat-002/003 patterns:
+    - Uncontrolled/controlled state via `$bindable` (see Toggle), `aria-checked` + hidden input for forms, `data-state="checked|unchecked|indeterminate"`.
 
 ## How to Resume
 
