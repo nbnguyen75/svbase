@@ -2,19 +2,15 @@
 
 ## Current State
 
-- Repository harness setup is complete.
-- Baseline verification is passing (`bun run check`, `bun run lint`, `bun run prepack`).
-- `.agents/` directory is established with modern AGY conventions.
+- `feat-001` (harness) and `feat-002` (core internal utilities) are complete and verified.
+- `src/lib/internal/` provides: `createPrimitiveContext`, `generateId`/`createId`, `composeHandlers`, `clickOutside`/`escapeKey` attachments, `Portal`.
+- Verification is green: `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass.
 
 ## Immediate Next Task
 
-- Pick `feat-002` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
-  - Implement core internal primitive utilities under `src/lib/internal/`:
-    - Context helpers (`createContext` for typed Svelte 5 context)
-    - ID generation (`useId`)
-    - Event handler composition (`composeEventHandlers`)
-    - Escape key / pointer-down-outside action or listeners
-    - Portal primitive (`Portal.svelte`)
+- Pick `feat-003` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
+  - Button & Toggle primitives (`src/lib/button/`, `src/lib/toggle/`) built on feat-002 utils:
+    - `createId` for aria labelling, `composeHandlers` for internal + consumer `onclick`, `createPrimitiveContext` if compound parts are needed.
 
 ## How to Resume
 

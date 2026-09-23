@@ -13,7 +13,7 @@
 			"name": "Core Primitive Utilities & Actions",
 			"description": "Base utilities: typed Svelte 5 context helpers, unique ID generator, event composition utility, Portal component, and click-outside / escape-keydown handlers.",
 			"dependencies": ["feat-001"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/internal/"
 		},
 		{
