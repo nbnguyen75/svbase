@@ -28,6 +28,23 @@ If baseline verification fails, repair it before adding new scope.
 
 ---
 
+## Standard Package Commands
+
+Always use the standard npm/bun scripts configured in `package.json` for validation and formatting:
+
+| Command                    | Action                         | Underlying Tool                            |
+| -------------------------- | ------------------------------ | ------------------------------------------ |
+| `bun run check`            | Typecheck components & modules | `svelte-check`                             |
+| `bun run check:watch`      | Watch mode typecheck           | `svelte-check --watch`                     |
+| `bun run format`           | Verify formatting compliance   | `oxfmt --check`                            |
+| `bun run format:fix`       | Format codebase automatically  | `oxfmt`                                    |
+| `bun run lint`             | Lint codebase for errors       | `oxlint && eslint src --ext .svelte`       |
+| `bun run lint:fix`         | Autofix lint issues            | `oxlint --fix`                             |
+| `bun run prepack`          | Package verification & build   | `svelte-package && publint`                |
+| `./init.sh` / `.\init.ps1` | Full baseline environment run  | Dependencies, check, format, lint, prepack |
+
+---
+
 ## Working Rules
 
 - **One feature at a time**: Pick exactly one unfinished feature from `feature_list.json`.
@@ -35,7 +52,8 @@ If baseline verification fails, repair it before adding new scope.
 - **Unstyled & Headless**: No embedded CSS or styling opinions. Use `data-*` attributes (`data-state`, `data-disabled`, `data-orientation`) for consumer styling.
 - **WAI-ARIA & Keyboard First**: Every primitive must implement appropriate ARIA roles, states, and keyboard navigation (Enter, Space, Arrows, Escape, Tab focus trapping).
 - **Compound Components**: Export compound parts using namespaces (e.g. `export * as Dialog from './dialog'`).
-- **Verification Required**: Never claim a task is complete without running `./init.sh` (or `bun run check && bun run lint && bun run prepack`).
+- **Formatting & Linting First**: Use `bun run format:fix` and `bun run lint:fix` during editing.
+- **Verification Required**: Never claim a task is complete without running `./init.sh` (or `bun run check && bun run format && bun run lint && bun run prepack`).
 - **Update Artifacts**: Update `feature_list.json` and `progress.md` at each milestone.
 - **Stay in Scope**: Do not touch files unrelated to the active feature.
 
@@ -57,14 +75,17 @@ Load the most specific skill for the task:
 
 | Task / Domain                 | Skill                                                     |
 | ----------------------------- | --------------------------------------------------------- |
+| React/Base UI Logic Analysis  | `react-to-svelte-analyze`                                 |
+| React to Svelte 5 Porting     | `react-to-svelte-port`                                    |
 | Svelte 5 Reactivity & Runes   | `svelte-core-bestpractices`, `svelte-code-writer`         |
 | Primitive UI & Accessibility  | `better-ui`, `frontend-design`                            |
 | Modern JS / TypeScript Types  | `modern-javascript-patterns`, `typescript-advanced-types` |
 | Codebase Modularity & Design  | `codebase-design`                                         |
 | Simplification & Minimal Code | `ponytail` (always active)                                |
+| Quality & Architecture        | `improve` (always active)                                 |
 | Systematic Bug Fixing         | `diagnosing-bugs`                                         |
 | Code Review & Polish          | `code-review-and-quality`                                 |
-| Architecture & Refactoring    | `improve`, `refactor`                                     |
+| Refactoring & Code Smells     | `refactor`                                                |
 | Research & Documentation      | `research`, `writing-for-agents`                          |
 
 ---
@@ -87,6 +108,7 @@ A primitive or feature is done only when:
 - [ ] Keyboard navigation and focus management work correctly
 - [ ] Public types are exported from `src/lib/index.ts`
 - [ ] `bun run check` passes with 0 errors and 0 warnings
+- [ ] `bun run format` passes with 0 errors
 - [ ] `bun run lint` passes with 0 errors
 - [ ] `bun run prepack` builds dist and passes `publint` with 0 errors
 - [ ] Mounted on demo page `src/routes/+page.svelte` for visual & functional verification

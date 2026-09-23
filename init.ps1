@@ -9,7 +9,10 @@ bun install
 Write-Host ">> Running typecheck (svelte-check)..." -ForegroundColor Yellow
 bun run check
 
-Write-Host ">> Running linter and format check..." -ForegroundColor Yellow
+Write-Host ">> Running format check (oxfmt)..." -ForegroundColor Yellow
+bun run format
+
+Write-Host ">> Running linter (oxlint & eslint)..." -ForegroundColor Yellow
 bun run lint
 
 Write-Host ">> Testing library packaging (prepack)..." -ForegroundColor Yellow

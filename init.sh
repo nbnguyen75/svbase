@@ -9,7 +9,10 @@ bun install
 echo ">> Running typecheck (svelte-check)..."
 bun run check
 
-echo ">> Running linter and format check..."
+echo ">> Running format check (oxfmt)..."
+bun run format
+
+echo ">> Running linter (oxlint & eslint)..."
 bun run lint
 
 echo ">> Testing library packaging (prepack)..."
