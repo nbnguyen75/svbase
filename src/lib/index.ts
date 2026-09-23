@@ -6,6 +6,7 @@ export { Button, type ButtonProps } from './primitives/button/index.js';
 export * as Checkbox from './primitives/checkbox/index.js';
 export * as Collapsible from './primitives/collapsible/index.js';
 export * as Dialog from './primitives/dialog/index.js';
+export * as DropdownMenu from './primitives/dropdown-menu/index.js';
 export { HiddenInput, type HiddenInputProps } from './primitives/hidden-input/index.js';
 export { Portal, type PortalProps } from './primitives/portal/index.js';
 export * as Popover from './primitives/popover/index.js';

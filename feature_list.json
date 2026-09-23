@@ -69,7 +69,7 @@
 			"name": "Dropdown Menu Primitive",
 			"description": "DropdownMenu: Root, Trigger, Portal, Content, Item, CheckboxItem, RadioGroup, RadioItem, Submenu, Separator with roving focus and typeahead.",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/primitives/dropdown-menu/"
 		},
 		{

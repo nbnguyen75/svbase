@@ -2,8 +2,8 @@ export interface CheckableState {
 	checked: boolean;
 	indeterminate?: boolean;
 	disabled: boolean;
-	readOnly: boolean;
-	required: boolean;
+	readOnly?: boolean;
+	required?: boolean;
 }
 
 /**

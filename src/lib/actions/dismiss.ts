@@ -25,18 +25,25 @@ export function clickOutside(onOutside: (event: PointerEvent) => void): Attachme
  * Attachment factory that calls `onEscape` when Escape is pressed anywhere in
  * the document. Covers Base UI's escape-key dismissal for overlays.
  *
+ * Pass `{ capture: true }` for nested layers (e.g. submenus) so the innermost
+ * handler runs first and can `stopPropagation()` to keep outer layers open.
+ *
  * Usage: `<div {@attach escapeKey(() => close())}>`
  */
-export function escapeKey(onEscape: (event: KeyboardEvent) => void): Attachment<HTMLElement> {
+export function escapeKey(
+	onEscape: (event: KeyboardEvent) => void,
+	options?: { capture?: boolean }
+): Attachment<HTMLElement> {
+	const capture = options?.capture === true;
 	return (node) => {
 		function handler(event: KeyboardEvent): void {
 			if (!node.isConnected) return;
 			if (event.key === 'Escape') onEscape(event);
 		}
 
-		document.addEventListener('keydown', handler);
+		document.addEventListener('keydown', handler, capture);
 		return () => {
-			document.removeEventListener('keydown', handler);
+			document.removeEventListener('keydown', handler, capture);
 		};
 	};
 }

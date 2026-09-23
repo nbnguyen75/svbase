@@ -130,3 +130,15 @@
 - [x] **Verification**: `test` 69/69 (position unit incl. Node-safety, delay skip unit, popover toggle/outside/Escape/REAL flip via rects, tooltip hover/focus/skip-timing, axe ×2), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/popover` + `/tooltip`.
 - [x] **Tooling notes**: `{@attach}` flows through component prop spreads onto the element (verified by check); constructor-captured props warn (`state_referenced_locally`) — construct with defaults + sync effect instead.
 - [x] **Demo routes** `routes/popover/` (arrow + offset variant) + `routes/tooltip/` linked in layout nav.
+
+### 2026-09-23: Dropdown Menu Primitive (feat-009)
+
+- [x] **Analyzed Base UI** menu root/item/checkbox/radio/submenu: `closeOnClick` true/false/false, submenu hover delays, `data-highlighted`, focus-only arrows (new APG, no roving). Skipped: Arrow/Backdrop/Group/LinkItem/Viewport parts, transitions, field contexts.
+- [x] **`src/lib/primitives/dropdown-menu/`** (14 files): Root/Trigger/Portal/Content/Item/Separator/CheckboxItem+Indicator/RadioGroup/RadioItem+Indicator/SubRoot/SubTrigger.
+- [x] **Per-content item registry** (not root-level): each Content provides its own entries/highlight/typeahead — submenu contents work with zero special-casing via context shadowing. Items register once via `onMount` + live getters (radio-proven, loop-free).
+- [x] **Behaviors**: roving tabindex + focus-follows-highlight, cycling typeahead from current position (1s buffer), hover highlights+focuses, Tab/focusout dismisses without stealing focus, close+refocus on select/Escape, veto-by-`preventDefault`.
+- [x] **Submenus via context layering**: SubRoot provides menu-root context (nested, own position/open) while parent content context shines through — same Item/Content parts reused unchanged. Hover open (150ms) with relatedTarget guards, click toggle, ArrowRight opens + focuses first item (pending-flag), ArrowLeft/Escape close one level (capture + stopPropagation), outside clicks ignore `[role="menu"]` subtrees.
+- [x] **Shared `escapeKey`/`trackOutsidePress` extensions** (backward compatible): `{ capture }` option, `ignoreSelector` option.
+- [x] **Real bug caught by tests**: SubTrigger missed its `position.reference` attach → submenu never positioned. Found via `hidden`-stuck assertion.
+- [x] **Verification**: `test` 77/77 (8 menu tests: open/toggle/linkage, select+close+focus, arrows+highlight+wrap, typeahead, checkbox/radio stay-open, submenu hover + one-level Escape, axe), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/dropdown-menu`.
+- [x] **Demo route** `routes/dropdown-menu/` linked in layout nav.
