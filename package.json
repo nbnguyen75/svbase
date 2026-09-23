@@ -63,5 +63,8 @@
 	},
 	"keywords": [
 		"svelte"
-	]
+	],
+	"dependencies": {
+		"@floating-ui/dom": "^1.8.0"
+	}
 }

@@ -61,7 +61,7 @@
 			"name": "Popover & Tooltip Primitives",
 			"description": "Popover (anchor, floating positioning, outside click dismiss) and Tooltip (hover/focus triggers, customizable delay, skip delay across items).",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/primitives/popover/, src/lib/primitives/tooltip/"
 		},
 		{

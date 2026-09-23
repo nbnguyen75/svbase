@@ -21,6 +21,8 @@
 		<a href={resolve('/accordion')}>Accordion</a>
 		<a href={resolve('/dialog')}>Dialog</a>
 		<a href={resolve('/alert-dialog')}>Alert Dialog</a>
+		<a href={resolve('/popover')}>Popover</a>
+		<a href={resolve('/tooltip')}>Tooltip</a>
 		<a href={resolve('/switch')}>Switch</a>
 	</nav>
 </header>

@@ -119,3 +119,14 @@
 - [x] **Tooling notes**: Svelte comments are `{<!-- -->}` (`{!--` is a parse error); svelte-check and eslint disagree on dialog `tabindex` (kept justified `svelte-ignore` + file-level eslint disable — HTML disables aren't honored for that rule).
 - [x] **Verification**: `test` 54/54 (5 dialog: open/linkage/focus, Escape+return, Tab trap, overlay, axe; 2 alert: role+no-overlay-dismiss, Escape; 2 portal), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/dialog` + `/alert-dialog`, autofixer clean.
 - [x] **Demo routes** `routes/dialog/` + `routes/alert-dialog/` linked in layout nav.
+
+### 2026-09-23: Popover & Tooltip Primitives (feat-008)
+
+- [x] **Decision (user-confirmed)**: `@floating-ui/dom@1.8.0` as a runtime dependency — engine only, no Svelte wrapper lib; all behavior stays native. Ponytail rule amended with the standing exception. Same engine line Base UI uses (via `react-dom`).
+- [x] **Shared `src/lib/utils/position.svelte.ts`**: `FloatingPosition` class — no `$effect` inside (attachments already run in effects; option changes via `update()`); plain fields in, `$state` out (x/y/placement/positioned/arrow), so no loops, SSR-safe, Node-constructible. Applies styles directly; arrow centering with stale-side clearing; stale-flight guard.
+- [x] **Shared `src/lib/utils/outside.ts`**: `trackOutsidePress` for roots owning several nodes (trigger clicks ignored so toggle wins — the naive single-node race, solved architecturally).
+- [x] **`src/lib/primitives/popover/` (Root/Trigger/Content/Arrow)**: click toggle, `aria-expanded/controls`, modeless, Escape + outside-press dismiss, `data-placement` (actual post-flip), hidden-until-positioned, generated content id.
+- [x] **`src/lib/primitives/tooltip/` (Root/Trigger/Content)**: hover/focus triggers, `delay` 600 / `closeDelay` 0 (Base UI parity), `skipDelayDuration` 400 via module-shared timestamp (no provider needed), `role="tooltip"` + `aria-describedby`, Escape + outside dismiss, timer cleanup on destroy.
+- [x] **Verification**: `test` 69/69 (position unit incl. Node-safety, delay skip unit, popover toggle/outside/Escape/REAL flip via rects, tooltip hover/focus/skip-timing, axe ×2), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/popover` + `/tooltip`.
+- [x] **Tooling notes**: `{@attach}` flows through component prop spreads onto the element (verified by check); constructor-captured props warn (`state_referenced_locally`) — construct with defaults + sync effect instead.
+- [x] **Demo routes** `routes/popover/` (arrow + offset variant) + `routes/tooltip/` linked in layout nav.

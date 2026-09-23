@@ -1,0 +1,11 @@
+# Exclude test directories and files
+**/__tests__/
+**/*.test.ts
+**/*.test.js
+**/*.spec.ts
+**/*.spec.js
+
+# Exclude test configuration files
+vitest.config.*
+playwright.config.*
+jest.config.*
