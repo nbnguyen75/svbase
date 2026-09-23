@@ -53,7 +53,7 @@
 			"name": "Dialog & Alert Dialog Primitives",
 			"description": "Modal Dialog and AlertDialog: Trigger, Portal, Overlay, Content, Title, Description, Close. Includes focus trapping, scroll locking, and Escape dismiss.",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/primitives/dialog/, src/lib/primitives/alert-dialog/"
 		},
 		{

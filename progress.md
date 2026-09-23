@@ -108,3 +108,14 @@
 - [x] **Verification**: `test` 45/45 (6 roving unit + 3 collapsible + 6 accordion browser incl. single/multiple/arrows/linkage/axe), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/collapsible` + `/accordion`, autofixer clean.
 - [x] **Known limitation (documented)**: generated `createId` fallbacks are monotonic globals — concurrent SSR requests get unique ids but hydration patches client values (dev warning). Pass explicit `id` props for SSR-critical markup.
 - [x] **Demo routes** `routes/collapsible/` + `routes/accordion/` linked in layout nav.
+
+### 2026-09-23: Dialog & Alert Dialog Primitives (feat-007)
+
+- [x] **Analyzed Base UI** dialog store/floating-ui machinery + alert-dialog mode (forced modal + no pointer dismissal). Skipped: floating-ui positioning, nested dialogs/drawers, transitions, field contexts, non-modal mode (spec is modal-only).
+- [x] **`src/lib/primitives/dialog/`**: renderless Root owning a centralized `$effect` controller (initial focus → first tabbable else popup, Tab trap with wrap, body scroll lock, Escape close, focus return to trigger-or-previous), `open = $bindable()`, generated title/description/content ids with override registration (mounted-only, never dangling), `data-state`.
+- [x] **Parts**: Trigger (toggle, `aria-haspopup/expanded/controls`), Portal (re-exported primitive), Overlay (self-click dismiss unless opted out), Content (`role`, `aria-modal`, labelledby/describedby, `tabindex=-1`), Title (`level` prop), Description, Close.
+- [x] **`src/lib/primitives/alert-dialog/`**: thin Root wrapper forcing `role="alertdialog"` + no pointer dismissal; all other parts re-exported from dialog (shared context shape).
+- [x] **Two real bugs caught by browser tests**: (1) `bind:this` into `$bindable` props flushes after mount — element registration moved from `onMount` to `$effect` (writes to untracked fields, no loop); (2) Portal cleanup moved nodes back and unmount missed them — destroy now removes outright (idempotent). Both proven via probes, then probes deleted; Portal gained permanent teleport/unmount tests.
+- [x] **Tooling notes**: Svelte comments are `{<!-- -->}` (`{!--` is a parse error); svelte-check and eslint disagree on dialog `tabindex` (kept justified `svelte-ignore` + file-level eslint disable — HTML disables aren't honored for that rule).
+- [x] **Verification**: `test` 54/54 (5 dialog: open/linkage/focus, Escape+return, Tab trap, overlay, axe; 2 alert: role+no-overlay-dismiss, Escape; 2 portal), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/dialog` + `/alert-dialog`, autofixer clean.
+- [x] **Demo routes** `routes/dialog/` + `routes/alert-dialog/` linked in layout nav.

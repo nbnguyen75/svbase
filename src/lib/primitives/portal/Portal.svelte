@@ -18,8 +18,7 @@
 		if (disabled || !element) return;
 		const parent = element.parentNode;
 		if (!parent) return;
-		// Marker keeps Svelte's DOM bookkeeping intact: on cleanup the node
-		// is moved back before the marker so Svelte can remove it normally.
+		// Marker remembers the home position for the invalid-target path below.
 		const marker = document.createComment('svbase-portal');
 		parent.insertBefore(marker, element);
 		const destination =
@@ -31,8 +30,11 @@
 		}
 		destination.appendChild(element);
 		return () => {
-			marker.parentNode?.insertBefore(element, marker);
+			// Remove outright instead of moving back: unmount clears the
+			// container's current children, so a moved-back node would be
+			// missed; `remove()` on a detached node is a harmless no-op.
 			marker.remove();
+			element.remove();
 		};
 	});
 </script>

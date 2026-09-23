@@ -19,6 +19,8 @@
 		<a href={resolve('/radio-group')}>Radio Group</a>
 		<a href={resolve('/collapsible')}>Collapsible</a>
 		<a href={resolve('/accordion')}>Accordion</a>
+		<a href={resolve('/dialog')}>Dialog</a>
+		<a href={resolve('/alert-dialog')}>Alert Dialog</a>
 		<a href={resolve('/switch')}>Switch</a>
 	</nav>
 </header>
