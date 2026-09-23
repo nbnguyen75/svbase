@@ -6,24 +6,24 @@
 	export interface RootProps extends HTMLAttributes<HTMLDivElement> {
 		/** Fired with the next value whenever selection changes. */
 		onValueChange?: ((value: string) => void) | undefined;
+		/** Reading direction for arrow keys. @default 'horizontal' */
+		orientation?: RadioOrientation | undefined;
+		/** Initially selected value for uncontrolled usage. */
+		defaultValue?: string | undefined;
 		/** Delegated access to the group element. */
 		ref?: HTMLDivElement | undefined;
-		/** Reading direction for arrow keys. @default 'horizontal' */
-		orientation?: RadioOrientation;
-		/** Initially selected value for uncontrolled usage. */
-		defaultValue?: string;
 		/** Whether user interaction is ignored. @default false */
-		disabled?: boolean;
+		disabled?: boolean | undefined;
 		/** Whether selection is locked (focus still moves). @default false */
-		readOnly?: boolean;
+		readOnly?: boolean | undefined;
 		/** Whether a selection is required for form submission. @default false */
-		required?: boolean;
-		children?: Snippet;
+		required?: boolean | undefined;
 		/** Selected item value (controlled). */
-		value?: string;
+		value?: string | undefined;
 		/** Form field name. Omit to exclude from submission. */
-		name?: string;
-		form?: string;
+		name?: string | undefined;
+		form?: string | undefined;
+		children?: Snippet;
 	}
 </script>
 

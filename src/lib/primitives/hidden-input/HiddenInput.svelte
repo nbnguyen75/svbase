@@ -4,23 +4,23 @@
 		onNativeChange?: ((checked: boolean) => void) | undefined;
 		inputRef?: HTMLInputElement | undefined;
 		/** Native input kind: checkbox state or radio-group membership. @default 'checkbox' */
-		type?: 'checkbox' | 'radio';
+		type?: 'checkbox' | 'radio' | undefined;
 		/** Synced onto the input's `indeterminate` DOM property. */
-		indeterminate?: boolean;
+		indeterminate?: boolean | undefined;
 		/** Submitted value when unchecked (nothing submitted when omitted). */
-		uncheckedValue?: string;
-		disabled?: boolean;
-		readOnly?: boolean;
-		required?: boolean;
+		uncheckedValue?: string | undefined;
+		disabled?: boolean | undefined;
+		readOnly?: boolean | undefined;
+		required?: boolean | undefined;
+		/** Submitted value when checked (native `"on"` when omitted). */
+		value?: string | undefined;
+		/** Form field name. Omit to exclude from submission. */
+		name?: string | undefined;
+		form?: string | undefined;
+		/** Applied to the input for native `<label for>` association. */
+		id?: string | undefined;
 		/** Current ticked state, mirrored onto the native input. */
 		checked: boolean;
-		/** Submitted value when checked (native `"on"` when omitted). */
-		value?: string;
-		/** Form field name. Omit to exclude from submission. */
-		name?: string;
-		form?: string;
-		/** Applied to the input for native `<label for>` association. */
-		id?: string;
 	}
 
 	/**

@@ -1,9 +1,9 @@
 export interface CheckableState {
 	checked: boolean;
-	indeterminate?: boolean;
+	indeterminate?: boolean | undefined;
 	disabled: boolean;
-	readOnly?: boolean;
-	required?: boolean;
+	readOnly?: boolean | undefined;
+	required?: boolean | undefined;
 }
 
 /**
