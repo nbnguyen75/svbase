@@ -2,15 +2,14 @@
 
 ## Current State
 
-- `feat-001` (harness), `feat-002` (core internal utilities + `mergeProps`), and `feat-003` (Button & Toggle) are complete and verified.
-- `src/lib/button/` and `src/lib/toggle/` provide native-button primitives with element delegation, `bind:ref`, and veto-by-`preventDefault` composition. Public exports in `src/lib/index.ts`.
+- `feat-001`–`feat-004` complete and verified (harness, internal utils + `mergeProps`, Button/Toggle, Checkbox/Switch).
+- `src/lib/checkbox/` (Root/Indicator) and `src/lib/switch/` (Root/Thumb) expose namespaced compound APIs over a shared internal `HiddenInput` + checkable data attrs. Public via `Checkbox.*` / `Switch.*` in `src/lib/index.ts`.
 - Verification is green: `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass.
 
 ## Immediate Next Task
 
-- Pick `feat-004` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
-  - Checkbox & Switch primitives (`src/lib/checkbox/`, `src/lib/switch/`) built on feat-002/003 patterns:
-    - Uncontrolled/controlled state via `$bindable` (see Toggle), `aria-checked` + hidden input for forms, `data-state="checked|unchecked|indeterminate"`.
+- Pick `feat-005` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
+  - Radio Group primitive (`src/lib/radio-group/` with Root, Item, Indicator): roving tabindex, arrow navigation (horizontal/vertical), form value sync — reuse `HiddenInput`, `$bindable` group value, getter context, veto-by-`preventDefault`.
 
 ## How to Resume
 

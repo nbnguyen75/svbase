@@ -29,7 +29,7 @@
 			"name": "Checkbox & Switch Primitives",
 			"description": "Accessible Checkbox (checked, unchecked, indeterminate, hidden input for forms) and Switch (toggle switch with aria-checked and thumb).",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/checkbox/, src/lib/switch/"
 		},
 		{

@@ -54,3 +54,17 @@
 - [x] **Typing note**: Svelte `EventHandler` uses contravariant `currentTarget` narrowing, so internal handlers adopt the exact `Parameters<NonNullable<Props['onclick']>>[0]` signatures — zero casts, check-clean. `<svelte:element>` rejects `type`/`disabled` as explicit attrs; they travel via a derived `{...nativeAttrs}` spread.
 - [x] **Verification**: `check` 0/0, `format` clean, `lint` exit 0 (interface member order per `sort-interfaces`), `prepack` + publint pass, autofixer clean on both. SSR-render functional test (10 assertions: types, disabled/focusable states, div delegation + tabindex, aria-pressed/data-pressed) — all passed; scaffold removed afterwards.
 - [x] **Demo page**: Button (click count, disabled, focusable-disabled, div-as-button) + Toggle (uncontrolled with change log, `bind:pressed` controlled, disabled) sections.
+
+### 2026-09-23: Chore — lint tooling (human-authored, committed as `ab7f5fc`)
+
+- Staged changes found in tree (not authored this session): `perfectionist/sort-named-imports|exports|enums` rules, named-import sorting, `lint:fix` extended with `eslint src --fix`. Verified green, committed as-is. (An earlier stray edit commenting out `sort-interfaces` was reverted in favor of complying via member reordering.)
+
+### 2026-09-23: Checkbox & Switch Primitives (feat-004)
+
+- [x] **Analyzed Base UI** `CheckboxRoot` (522 lines), `CheckboxIndicator`, `SwitchRoot`, `SwitchThumb`: span+hidden-input architecture, `aria-checked="mixed"`, Enter-does-not-toggle (form submit instead), label/input change path, `uncheckedValue` hidden input, context-shared state. Skipped: field/form/group/label contexts, transitions/`keepMounted`, composite integration (no such feats in roadmap).
+- [x] **Shared `src/lib/internal/HiddenInput.svelte`**: visually-hidden (functional only) native input, `indeterminate` DOM-property sync via `$effect`, `name/value/uncheckedValue/form/required/id`, `bind:inputRef`, native-change forwarding with readOnly/disabled revert.
+- [x] **Shared `src/lib/internal/state-attrs.ts`**: `getCheckableDataAttributes` — exactly one of `data-checked/data-unchecked/data-indeterminate` + flags.
+- [x] **`src/lib/checkbox/` (Root/Indicator/context)**: Root reuses Button (`span`, `role=checkbox`); `checked = $bindable(defaultChecked)`; veto-by-`preventDefault`; Enter suppressed + `form.requestSubmit()`; label-driven native changes committed; Indicator renders iff checked/indeterminate; state shared via getter-based context (`createPrimitiveContext`).
+- [x] **`src/lib/switch/` (Root/Thumb/context)**: same skeleton minus indeterminate/Enter-suppression (Enter toggles, Base UI parity); Thumb always rendered with mirrored data attrs. Namespaced exports `Checkbox.*` / `Switch.*`.
+- [x] **Verification**: `check` 0/0, `format` clean, `lint` exit 0 (incl. new named-import rules via `lint:fix`), `prepack` + publint pass, autofixer clean. SSR functional test (14 assertions incl. real Root+Indicator/Thumb composition, mixed state, uncheckedValue gating, disabled) — all passed, scaffold removed.
+- [x] **Demo page**: Checkbox variants (uncontrolled/indeterminate/disabled/readOnly), live form-submission proof (`agree`/`newsletter` values), Switch controlled + disabled.
