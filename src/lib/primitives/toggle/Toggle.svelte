@@ -27,8 +27,8 @@
 </script>
 
 <script lang="ts">
+	import { composeHandlers } from '../../utils/compose-handlers.js';
 	import { Button } from '../button/index.js';
-	import { composeHandlers } from '../internal/compose-handlers.js';
 
 	type ToggleMouseEvent = Parameters<NonNullable<ToggleProps['onclick']>>[0];
 

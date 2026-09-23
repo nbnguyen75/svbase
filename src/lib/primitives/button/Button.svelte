@@ -25,7 +25,7 @@
 </script>
 
 <script lang="ts">
-	import { composeHandlers } from '../internal/compose-handlers.js';
+	import { composeHandlers } from '../../utils/compose-handlers.js';
 
 	type ButtonMouseEvent = Parameters<NonNullable<ButtonProps['onclick']>>[0];
 	type ButtonKeyboardEvent = Parameters<NonNullable<ButtonProps['onkeydown']>>[0];

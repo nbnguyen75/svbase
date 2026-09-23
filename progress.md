@@ -68,3 +68,12 @@
 - [x] **`src/lib/switch/` (Root/Thumb/context)**: same skeleton minus indeterminate/Enter-suppression (Enter toggles, Base UI parity); Thumb always rendered with mirrored data attrs. Namespaced exports `Checkbox.*` / `Switch.*`.
 - [x] **Verification**: `check` 0/0, `format` clean, `lint` exit 0 (incl. new named-import rules via `lint:fix`), `prepack` + publint pass, autofixer clean. SSR functional test (14 assertions incl. real Root+Indicator/Thumb composition, mixed state, uncheckedValue gating, disabled) — all passed, scaffold removed.
 - [x] **Demo page**: Checkbox variants (uncontrolled/indeterminate/disabled/readOnly), live form-submission proof (`agree`/`newsletter` values), Switch controlled + disabled.
+
+### 2026-09-23: Structural reorg — single-repo docs site (user-requested)
+
+- [x] **Moved `src/lib/` to `primitives/` + `utils/` + `actions/`** via `git mv` (history preserved): `button|toggle|checkbox|switch` → `primitives/`; `context|id|compose-handlers|merge-props|state-attrs` → `utils/`; `actions.ts` → `actions/dismiss.ts`; `Portal.svelte` → `primitives/portal/`; `HiddenInput.svelte` → `primitives/hidden-input/`; `internal/` deleted. This matches the `perfectionist` import groups already in `eslint.config.js`.
+- [x] **Public API unchanged** (same names from `src/lib/index.ts`); new barrels `utils/index.ts`, `actions/index.ts`, `portal/index.ts`, `hidden-input/index.ts`.
+- [x] **Docs site = `src/routes/`**: new `+layout.svelte` (nav shell, `resolve()`-based links per `svelte/no-navigation-without-resolve`); gallery split into `button|toggle|checkbox|switch/+page.svelte`; home keeps overview + utilities playground.
+- [x] **Roadmap evidence paths** in `feature_list.json` updated to `src/lib/primitives/...` (feat-003..014) and `src/lib/utils|actions` (feat-002).
+- [x] **Both build targets verified from one repo**: `bun run build` (site: `/`, `/button`, `/toggle`, `/checkbox`, `/switch` — adapter-auto notes no production env, expected until a deploy adapter is chosen) and `bun run prepack` (dist mirrors new layout, publint good). Plus `check` 0/0, `format` clean, `lint` exit 0.
+- [ ] **Follow-up**: `feat-015` (showcase gallery) is now mostly structural groundwork done — remaining work is per-new-primitive pages as feats land, plus choosing a deploy adapter (replaces adapter-auto) when `svbase.dev` deployment is wanted.

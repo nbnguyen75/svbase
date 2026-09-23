@@ -3,25 +3,23 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface RootProps extends HTMLAttributes<HTMLElement> {
-		/** Fired with the next state whenever the checkbox is ticked or unticked. */
+		/** Fired with the next state whenever the switch is flipped. */
 		onCheckedChange?: ((checked: boolean) => void) | undefined;
 		inputRef?: HTMLInputElement | undefined;
-		/** Delegated access to the box element. */
+		/** Delegated access to the switch element. */
 		ref?: HTMLElement | undefined;
-		/** Initial ticked state for uncontrolled usage. @default false */
+		/** Initial on state for uncontrolled usage. @default false */
 		defaultChecked?: boolean;
-		/** Mixed state: neither ticked nor unticked. @default false */
-		indeterminate?: boolean;
-		/** Submitted value when unchecked (nothing submitted when omitted). */
+		/** Submitted value when off (nothing submitted when omitted). */
 		uncheckedValue?: string;
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
 		required?: boolean;
 		readOnly?: boolean;
 		children?: Snippet;
-		/** Whether the checkbox is ticked (controlled). */
+		/** Whether the switch is on (controlled). */
 		checked?: boolean;
-		/** Submitted value when checked (native `"on"` when omitted). */
+		/** Submitted value when on (native `"on"` when omitted). */
 		value?: string;
 		/** Form field name. Omit to exclude from submission. */
 		name?: string;
@@ -32,21 +30,19 @@
 </script>
 
 <script lang="ts">
+	import { composeHandlers } from '../../utils/compose-handlers.js';
+	import { getCheckableDataAttributes } from '../../utils/state-attrs.js';
 	import { Button } from '../button/index.js';
-	import { composeHandlers } from '../internal/compose-handlers.js';
-	import HiddenInput from '../internal/HiddenInput.svelte';
-	import { getCheckableDataAttributes } from '../internal/state-attrs.js';
+	import { HiddenInput } from '../hidden-input/index.js';
 
-	import { setCheckboxState } from './context.js';
+	import { setSwitchState } from './context.js';
 
 	type RootMouseEvent = Parameters<NonNullable<RootProps['onclick']>>[0];
-	type RootKeyboardEvent = Parameters<NonNullable<RootProps['onkeydown']>>[0];
 
 	let {
 		defaultChecked = false,
 		checked = $bindable(defaultChecked),
 		disabled = false,
-		indeterminate = false,
 		readOnly = false,
 		required = false,
 		name = undefined,
@@ -61,12 +57,9 @@
 		...rest
 	}: RootProps = $props();
 
-	setCheckboxState({
+	setSwitchState({
 		get checked() {
 			return checked;
-		},
-		get indeterminate() {
-			return indeterminate;
 		},
 		get disabled() {
 			return disabled;
@@ -79,49 +72,37 @@
 		}
 	});
 
-	const dataAttrs = $derived(
-		getCheckableDataAttributes({ checked, indeterminate, disabled, readOnly, required })
-	);
+	const dataAttrs = $derived(getCheckableDataAttributes({ checked, disabled, readOnly, required }));
 
 	function commit(next: boolean): void {
 		onCheckedChange?.(next);
 		checked = next;
 	}
 
-	function activateBox(): void {
+	function activateSwitch(): void {
 		if (readOnly) return;
-		// An indeterminate checkbox always resolves to checked, like native.
 		commit(!checked);
 	}
 
 	function handleNativeChange(next: boolean): void {
 		if (next !== checked) commit(next);
 	}
-
-	function suppressEnter(event: RootKeyboardEvent): void {
-		if (event.key !== 'Enter') return;
-		// Enter never toggles a checkbox; it submits the surrounding form.
-		event.preventDefault();
-		inputRef?.form?.requestSubmit();
-	}
 </script>
 
 <Button
 	{...rest}
 	element="span"
-	role="checkbox"
+	role="switch"
 	{disabled}
 	bind:ref
-	aria-checked={indeterminate ? 'mixed' : checked}
+	aria-checked={checked}
 	{...dataAttrs}
-	onkeydown={composeHandlers(rest.onkeydown, suppressEnter)}
-	onclick={composeHandlers(rest.onclick, activateBox)}
+	onclick={composeHandlers(rest.onclick, activateSwitch)}
 >
 	{@render children?.()}
 </Button>
 <HiddenInput
 	{checked}
-	{indeterminate}
 	{disabled}
 	{readOnly}
 	{name}

@@ -6,24 +6,13 @@
 		mergeProps,
 		escapeKey,
 		createId,
-		Checkbox,
-		Button,
-		Portal,
-		Switch,
-		Toggle
+		Portal
 	} from '$lib/index.js';
 
 	let portalOpen = $state(false);
 	let dismissedBy = $state('none');
 	let composedLog = $state<string[]>([]);
 	let mergedLog = $state<string[]>([]);
-	let buttonClicks = $state(0);
-	let toggleChanges = $state<string[]>([]);
-	let checkboxChecked = $state(false);
-	let switchChecked = $state(false);
-	let switchChanges = $state<string[]>([]);
-	let submitted = $state('—');
-	let controlledPressed = $state(false);
 	let sides: Array<{ note: string; id: string }> = $state([]);
 
 	const demoId = createId('demo');
@@ -61,95 +50,12 @@
 	);
 </script>
 
-<h1>svbase — feat-002: Core Primitive Utilities</h1>
+<h1>svbase</h1>
+<p>
+	Unstyled, headless UI primitives for Svelte 5. Pick a primitive from the navigation above to try
+	it with keyboard and screen reader.
+</p>
 <p>Demo id: <code>{demoId}</code> / <code>{generated}</code></p>
-
-<section>
-	<h2>Button</h2>
-	<Button onclick={() => (buttonClicks += 1)}>Clicked {buttonClicks}×</Button>
-	<Button disabled>Disabled (not focusable)</Button>
-	<Button disabled focusableWhenDisabled>Disabled but focusable</Button>
-	<Button element="div">Div as button (Tab to it, press Enter/Space)</Button>
-	<p>
-		Inspect: native buttons carry <code>type="button"</code>; disabled ones carry
-		<code>data-disabled</code>.
-	</p>
-</section>
-
-<section>
-	<h2>Toggle</h2>
-	<Toggle
-		onPressedChange={(pressed) => {
-			toggleChanges = [...toggleChanges, pressed ? 'on' : 'off'];
-		}}
-	>
-		Uncontrolled toggle
-	</Toggle>
-	<Toggle bind:pressed={controlledPressed}>Controlled: {controlledPressed ? 'on' : 'off'}</Toggle>
-	<Toggle disabled>Disabled toggle</Toggle>
-	<p>Changes: {toggleChanges.length ? toggleChanges.join(', ') : '—'}</p>
-</section>
-
-<section>
-	<h2>Checkbox</h2>
-	<Checkbox.Root
-		onCheckedChange={(checked) => {
-			checkboxChecked = checked;
-		}}
-	>
-		<Checkbox.Indicator>✓</Checkbox.Indicator>
-		Subscribe (uncontrolled)
-	</Checkbox.Root>
-	<Checkbox.Root indeterminate>
-		<Checkbox.Indicator>✓</Checkbox.Indicator>
-		Indeterminate
-	</Checkbox.Root>
-	<Checkbox.Root disabled>
-		<Checkbox.Indicator>✓</Checkbox.Indicator>
-		Disabled
-	</Checkbox.Root>
-	<Checkbox.Root readOnly checked>
-		<Checkbox.Indicator>✓</Checkbox.Indicator>
-		Read-only
-	</Checkbox.Root>
-	<p>Last change: {checkboxChecked ? 'checked' : 'unchecked'}</p>
-	<form
-		onsubmit={(event) => {
-			event.preventDefault();
-			const data = new FormData(event.currentTarget);
-			submitted = `agree=${data.get('agree')} newsletter=${data.get('newsletter')}`;
-		}}
-	>
-		<Checkbox.Root name="agree" value="yes">
-			<Checkbox.Indicator>✓</Checkbox.Indicator>
-			Agree (required)
-		</Checkbox.Root>
-		<Checkbox.Root name="newsletter" value="yes" uncheckedValue="no">
-			<Checkbox.Indicator>✓</Checkbox.Indicator>
-			Newsletter (unchecked submits "no")
-		</Checkbox.Root>
-		<button type="submit">Submit form</button>
-	</form>
-	<p>Submitted: <code>{submitted}</code></p>
-</section>
-
-<section>
-	<h2>Switch</h2>
-	<Switch.Root
-		bind:checked={switchChecked}
-		onCheckedChange={(checked) => {
-			switchChanges = [...switchChanges, checked ? 'on' : 'off'];
-		}}
-	>
-		<Switch.Thumb />
-		Airplane mode ({switchChecked ? 'on' : 'off'})
-	</Switch.Root>
-	<Switch.Root disabled>
-		<Switch.Thumb />
-		Disabled
-	</Switch.Root>
-	<p>Changes: {switchChanges.length ? switchChanges.join(', ') : '—'}</p>
-</section>
 
 <section>
 	<h2>Portal</h2>

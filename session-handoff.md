@@ -2,9 +2,11 @@
 
 ## Current State
 
-- `feat-001`–`feat-004` complete and verified (harness, internal utils + `mergeProps`, Button/Toggle, Checkbox/Switch).
-- `src/lib/checkbox/` (Root/Indicator) and `src/lib/switch/` (Root/Thumb) expose namespaced compound APIs over a shared internal `HiddenInput` + checkable data attrs. Public via `Checkbox.*` / `Switch.*` in `src/lib/index.ts`.
-- Verification is green: `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass.
+- `feat-001`–`feat-004` complete and verified. **Uncommitted structural reorg** (single-repo docs site, user-requested — needs review + commit):
+  - `src/lib/` → `primitives/` + `utils/` + `actions/` (history preserved via `git mv`); `internal/` deleted; public API unchanged.
+  - `src/routes/` is now the docs site: `+layout.svelte` nav shell + per-primitive pages (`button|toggle|checkbox|switch`), home keeps overview + utilities playground.
+  - `feature_list.json` evidence paths updated; `bun run build` verified (5 routes) alongside `prepack`.
+- Verification is green: `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0.
 
 ## Immediate Next Task
 
