@@ -4,7 +4,7 @@ import path from 'node:path';
 
 import perfectionist from 'eslint-plugin-perfectionist';
 import svelte from 'eslint-plugin-svelte';
-import { defineConfig, includeIgnoreFile } from 'eslint/config';
+import { includeIgnoreFile, defineConfig } from 'eslint/config';
 import ts from 'typescript-eslint';
 
 import { LINT_IGNORE_PATTERNS } from './shared-ignore.config.js';
@@ -95,7 +95,10 @@ export default defineConfig(
 					]
 				}
 			],
+			'perfectionist/sort-named-imports': ['warn', { type: 'line-length', order: 'desc' }],
+			'perfectionist/sort-named-exports': ['warn', { type: 'line-length', order: 'desc' }],
 			'perfectionist/sort-exports': ['warn', { type: 'line-length', order: 'desc' }],
+			'perfectionist/sort-enums': ['warn', { type: 'line-length', order: 'desc' }],
 			'perfectionist/sort-interfaces': ['warn', { type: 'line-length', order: 'desc' }],
 			'perfectionist/sort-object-types': ['warn', { type: 'line-length', order: 'desc' }]
 		},

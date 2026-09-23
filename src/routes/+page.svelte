@@ -1,12 +1,12 @@
 <script lang="ts">
 	import {
-		Button,
-		clickOutside,
 		composeHandlers,
-		createId,
-		escapeKey,
+		clickOutside,
 		generateId,
 		mergeProps,
+		escapeKey,
+		createId,
+		Button,
 		Portal,
 		Toggle
 	} from '$lib/index.js';

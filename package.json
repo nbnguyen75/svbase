@@ -10,7 +10,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "oxlint && eslint src --ext .svelte",
-		"lint:fix": "oxlint --fix",
+		"lint:fix": "oxlint --fix && eslint src --fix",
 		"format": "oxfmt --check",
 		"format:fix": "oxfmt"
 	},
