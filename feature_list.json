@@ -45,7 +45,7 @@
 			"name": "Collapsible & Accordion Primitives",
 			"description": "Collapsible (expand/collapse panel) and Accordion (single or multiple expansion, header, trigger, content, arrow navigation, WAI-ARIA compliant).",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/primitives/collapsible/, src/lib/primitives/accordion/"
 		},
 		{

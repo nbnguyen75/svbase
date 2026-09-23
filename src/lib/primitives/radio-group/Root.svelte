@@ -28,6 +28,8 @@
 </script>
 
 <script lang="ts">
+	import { nextRovingTarget } from '../../utils/roving.js';
+
 	import { type RadioItemEntry, setRadioGroupState } from './context.js';
 
 	let {
@@ -67,43 +69,12 @@
 
 	/**
 	 * Roving focus with selection following it (WAI-APG radio pattern).
-	 * All four arrows work in both orientations; Left/Right swap in RTL.
-	 * Wraps around and skips disabled items.
+	 * Target resolution is shared with accordion via `nextRovingTarget`.
 	 */
 	function move(fromValue: string, key: string, source: HTMLElement): void {
-		const enabled = items.filter((item) => !item.disabled);
-		if (enabled.length === 0) return;
 		const rtl = source.closest('[dir="rtl"]') !== null || document.dir === 'rtl';
-		let delta: number | 'first' | 'last' | undefined;
-		switch (key) {
-			case 'ArrowDown':
-				delta = 1;
-				break;
-			case 'ArrowUp':
-				delta = -1;
-				break;
-			case 'ArrowRight':
-				delta = rtl ? -1 : 1;
-				break;
-			case 'ArrowLeft':
-				delta = rtl ? 1 : -1;
-				break;
-			case 'Home':
-				delta = 'first';
-				break;
-			case 'End':
-				delta = 'last';
-				break;
-			default:
-				return;
-		}
-		const current = enabled.findIndex((item) => item.value === fromValue);
-		const at = current === -1 ? 0 : current;
-		let next: RadioItemEntry | undefined;
-		if (delta === 'first') next = enabled[0];
-		else if (delta === 'last') next = enabled[enabled.length - 1];
-		else next = enabled[(at + delta + enabled.length) % enabled.length];
-		if (!next || next.value === fromValue) return;
+		const next = nextRovingTarget(items, fromValue, key, rtl);
+		if (!next) return;
 		next.element?.focus();
 		if (!readOnly) commit(next.value);
 	}
