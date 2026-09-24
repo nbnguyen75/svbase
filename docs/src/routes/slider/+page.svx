@@ -1,0 +1,103 @@
+<script lang="ts">
+	import { Slider } from 'svbase';
+
+	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
+	import CodeBlock from '../CodeBlock.svelte';
+
+	let volume = $state(30);
+	let range = $state([20, 80]);
+
+	const anatomy = `<script>
+  import { Slider } from 'svbase';
+<\/script>
+
+<Slider.Root bind:value={volume}>
+  <Slider.Track>
+    <Slider.Thumb ariaLabel="Volume" />
+  </Slider.Track>
+</Slider.Root>`;
+
+	const rootProps: Array<ApiProp> = [
+		{
+			name: 'value',
+			type: 'number | Array<number>',
+			defaultValue: 'min',
+			description: 'Single value or one per thumb, in order (controlled).'
+		},
+		{ name: 'min', type: 'number', defaultValue: '0', description: 'Range minimum.' },
+		{ name: 'max', type: 'number', defaultValue: '100', description: 'Range maximum.' },
+		{ name: 'step', type: 'number', defaultValue: '1', description: 'Value granularity.' },
+		{
+			name: 'orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: "'horizontal'",
+			description: 'Axis and drag geometry.'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: number | Array<number>) => void',
+			defaultValue: '—',
+			description: 'Fired on every change (drag, keys).'
+		},
+		{
+			name: 'onValueCommitted',
+			type: '(value: number | Array<number>) => void',
+			defaultValue: '—',
+			description: 'Fired when a change commits (key press, drag release).'
+		}
+	];
+</script>
+
+<p class="eyebrow">Svbase · Primitives</p>
+
+# Slider
+
+Single and range sliders with keyboard stepping and pointer drag.
+
+<div class="demo-card">
+	<Slider.Root bind:value={volume}>
+		<Slider.Track style="width: 240px; height: 24px; position: relative;">
+			<Slider.Thumb
+				ariaLabel="Volume"
+				class="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-background shadow"
+			/>
+		</Slider.Track>
+	</Slider.Root>
+	<p class="demo-note">Volume: {volume} (arrows ±1, PageUp/Down ±10, Home/End, or drag)</p>
+</div>
+
+<div class="demo-card">
+	<h3>Range</h3>
+	<Slider.Root bind:value={range} minStepsBetweenValues={5}>
+		<Slider.Track style="width: 240px; height: 24px; position: relative;">
+			<Slider.Thumb index={0} ariaLabel="Min price" />
+			<Slider.Thumb index={1} ariaLabel="Max price" />
+		</Slider.Track>
+	</Slider.Root>
+	<p class="demo-note">Range: {range.join(' – ')} (thumbs push with 5 minimum distance)</p>
+</div>
+
+<div class="demo-card">
+	<h3>Vertical</h3>
+	<Slider.Root orientation="vertical" defaultValue={40}>
+		<Slider.Track style="width: 24px; height: 160px; position: relative;">
+			<Slider.Thumb ariaLabel="Level" />
+		</Slider.Track>
+	</Slider.Root>
+</div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### Slider.Root
+
+<ApiTable props={rootProps} />
+
+## Keyboard interactions
+
+- <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> step by `step`; <kbd>PgUp</kbd> / <kbd>PgDn</kbd> jump by `largeStep`.
+- <kbd>Home</kbd> / <kbd>End</kbd> jump to min/max.
+- Each thumb is tabbable with full `aria-valuenow` contract.

@@ -3,7 +3,6 @@
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';
-	import { btnOutline, demoRow, card, lead, list, note, page, h1, h2, h3 } from '../docs.js';
 
 	let switchChecked = $state(false);
 	let switchChanges = $state<string[]>([]);
@@ -46,38 +45,41 @@
 	];
 </script>
 
-<div class={page}>
-	<h1 class={h1}>Switch</h1>
-	<p class={lead}>Toggle switch with aria-checked and thumb.</p>
+<p class="eyebrow">Svbase · Primitives</p>
 
-	<div class={card}>
-		<div class={demoRow}>
-			<Switch.Root
-				bind:checked={switchChecked}
-				onCheckedChange={(checked) => {
-					switchChanges = [...switchChanges, checked ? 'on' : 'off'];
-				}}
-			>
-				<Switch.Thumb />
-				Airplane mode ({switchChecked ? 'on' : 'off'})
-			</Switch.Root>
-			<Switch.Root disabled>
-				<Switch.Thumb />
-				Disabled
-			</Switch.Root>
-		</div>
-		<p class={note}>Changes: {switchChanges.length ? switchChanges.join(', ') : '—'}</p>
+# Switch
+
+Toggle switch with aria-checked and thumb.
+
+<div class="demo-card">
+	<div class="demo-row">
+		<Switch.Root
+			bind:checked={switchChecked}
+			onCheckedChange={(checked) => {
+				switchChanges = [...switchChanges, checked ? 'on' : 'off'];
+			}}
+		>
+			<Switch.Thumb />
+			Airplane mode ({switchChecked ? 'on' : 'off'})
+		</Switch.Root>
+		<Switch.Root disabled>
+			<Switch.Thumb />
+			Disabled
+		</Switch.Root>
 	</div>
-
-	<h2 class={h2}>Anatomy</h2>
-	<CodeBlock code={anatomy} />
-
-	<h2 class={h2}>API reference</h2>
-	<h3 class={h3}>Switch.Root</h3>
-	<ApiTable props={rootProps} />
-
-	<h2 class={h2}>Keyboard interactions</h2>
-	<ul class={list}>
-		<li>Enter and Space flip the switch; unlike checkbox, Enter toggles.</li>
-	</ul>
+	<p class="demo-note">Changes: {switchChanges.length ? switchChanges.join(', ') : '—'}</p>
 </div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### Switch.Root
+
+<ApiTable props={rootProps} />
+
+## Keyboard interactions
+
+- Enter and Space flip the switch; unlike checkbox, Enter toggles.

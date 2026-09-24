@@ -3,7 +3,6 @@
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';
-	import { btnOutline, demoRow, card, lead, list, note, page, btn, h1, h2, h3 } from '../docs.js';
 
 	let toggleChanges = $state<string[]>([]);
 	let controlledPressed = $state(false);
@@ -54,41 +53,44 @@
 	];
 </script>
 
-<div class={page}>
-	<h1 class={h1}>Toggle</h1>
-	<p class={lead}>Two-state button with aria-pressed.</p>
+<p class="eyebrow">Svbase · Primitives</p>
 
-	<div class={card}>
-		<div class={demoRow}>
-			<Toggle
-				class={btnOutline}
-				onPressedChange={(pressed) => {
-					toggleChanges = [...toggleChanges, pressed ? 'on' : 'off'];
-				}}
-			>
-				Uncontrolled toggle
-			</Toggle>
-			<Toggle class={btnOutline} bind:pressed={controlledPressed}>
-				Controlled: {controlledPressed ? 'on' : 'off'}
-			</Toggle>
-			<Toggle class={btnOutline} disabled>Disabled toggle</Toggle>
-		</div>
-		<p class={note}>Changes: {toggleChanges.length ? toggleChanges.join(', ') : '—'}</p>
-		<p class={note}>
-			State surfaces as <code>aria-pressed</code> plus <code>data-pressed</code> for styling.
-		</p>
+# Toggle
+
+Two-state button with aria-pressed.
+
+<div class="demo-card">
+	<div class="demo-row">
+		<Toggle
+			class="demo-btn-outline"
+			onPressedChange={(pressed) => {
+				toggleChanges = [...toggleChanges, pressed ? 'on' : 'off'];
+			}}
+		>
+			Uncontrolled toggle
+		</Toggle>
+		<Toggle class="demo-btn-outline" bind:pressed={controlledPressed}>
+			Controlled: {controlledPressed ? 'on' : 'off'}
+		</Toggle>
+		<Toggle class="demo-btn-outline" disabled>Disabled toggle</Toggle>
 	</div>
-
-	<h2 class={h2}>Anatomy</h2>
-	<CodeBlock code={anatomy} />
-
-	<h2 class={h2}>API reference</h2>
-	<h3 class={h3}>Toggle</h3>
-	<ApiTable props={rootProps} />
-
-	<h2 class={h2}>Keyboard interactions</h2>
-	<ul class={list}>
-		<li>Enter and Space toggle the pressed state.</li>
-		<li>A consumer onclick calling preventDefault vetoes the flip.</li>
-	</ul>
+	<p class="demo-note">Changes: {toggleChanges.length ? toggleChanges.join(', ') : '—'}</p>
+	<p class="demo-note">
+		State surfaces as <code>aria-pressed</code> plus <code>data-pressed</code> for styling.
+	</p>
 </div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### Toggle
+
+<ApiTable props={rootProps} />
+
+## Keyboard interactions
+
+- Enter and Space toggle the pressed state.
+- A consumer onclick calling preventDefault vetoes the flip.

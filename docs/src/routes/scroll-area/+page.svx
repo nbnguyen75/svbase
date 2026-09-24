@@ -1,0 +1,73 @@
+<script lang="ts">
+	import { ScrollArea } from 'svbase';
+
+	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
+	import CodeBlock from '../CodeBlock.svelte';
+
+	const lines = Array.from({ length: 30 }, (_, index) => `Line ${index + 1}`);
+
+	const anatomy = `<script>
+  import { ScrollArea } from 'svbase';
+<\/script>
+
+<ScrollArea.Root>
+  <ScrollArea.Viewport style="height: 200px;">
+    Long content…
+  </ScrollArea.Viewport>
+  <ScrollArea.Scrollbar>
+    <ScrollArea.Thumb />
+  </ScrollArea.Scrollbar>
+</ScrollArea.Root>`;
+
+	const rootProps: Array<ApiProp> = [
+		{
+			name: 'Viewport',
+			type: 'component',
+			defaultValue: '—',
+			description: 'Scrollable region. Keyboard-focusable; set height via style.'
+		},
+		{
+			name: 'Scrollbar orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: "'vertical'",
+			description: 'Scroll axis. Hidden automatically without overflow.'
+		}
+	];
+</script>
+
+<p class="eyebrow">Svbase · Primitives</p>
+
+# Scroll Area
+
+Native scrolling with a custom thumb and track. Style the parts with CSS.
+
+<div class="demo-card">
+	<ScrollArea.Root>
+		<ScrollArea.Viewport style="height: 200px; border: 1px solid;">
+			{#each lines as line (line)}
+				<p style="margin: 0;">{line}</p>
+			{/each}
+		</ScrollArea.Viewport>
+		<ScrollArea.Scrollbar style="width: 12px;">
+			<ScrollArea.Thumb style="background: gray;" />
+		</ScrollArea.Scrollbar>
+	</ScrollArea.Root>
+	<p class="demo-note">Drag the thumb, click the track, or Tab in and scroll with keys.</p>
+</div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### ScrollArea parts
+
+<ApiTable props={rootProps} />
+
+Thumb geometry (`height/width/top/left` percentages) is set inline as functional positioning — bring your own colors and thickness.
+
+## Keyboard interactions
+
+- The viewport is focusable (<kbd>Tab</kbd>); arrows/PageUp/PageDown scroll natively.
+- The thumb itself is never in the Tab order.

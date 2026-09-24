@@ -1,0 +1,90 @@
+<script lang="ts">
+	import { Collapsible } from 'svbase';
+
+	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
+	import CodeBlock from '../CodeBlock.svelte';
+
+	let controlledOpen = $state(false);
+
+	const anatomy = `<script>
+  import { Collapsible } from 'svbase';
+<\/script>
+
+<Collapsible.Root>
+  <Collapsible.Trigger>Show more</Collapsible.Trigger>
+  <Collapsible.Panel>
+    Hidden details live here.
+  </Collapsible.Panel>
+</Collapsible.Root>`;
+
+	const rootProps: Array<ApiProp> = [
+		{
+			name: 'open',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled open state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'defaultOpen',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Initially open for uncontrolled usage.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction.'
+		},
+		{
+			name: 'onOpenChange',
+			type: '(open: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every toggle.'
+		}
+	];
+</script>
+
+<p class="eyebrow">Svbase · Primitives</p>
+
+# Collapsible
+
+Expandable region with trigger, panel, and generated id linkage.
+
+<div class="demo-card">
+	<div class="demo-row">
+		<Collapsible.Root>
+			<Collapsible.Trigger>Show more</Collapsible.Trigger>
+			<Collapsible.Panel>
+				<p>Hidden details live here.</p>
+			</Collapsible.Panel>
+		</Collapsible.Root>
+		<Collapsible.Root bind:open={controlledOpen}>
+			<Collapsible.Trigger>Controlled ({controlledOpen ? 'open' : 'closed'})</Collapsible.Trigger>
+			<Collapsible.Panel>
+				<p>Controlled panel content.</p>
+			</Collapsible.Panel>
+		</Collapsible.Root>
+		<Collapsible.Root disabled>
+			<Collapsible.Trigger>Disabled</Collapsible.Trigger>
+			<Collapsible.Panel>
+				<p>Never shown.</p>
+			</Collapsible.Panel>
+		</Collapsible.Root>
+	</div>
+</div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### Collapsible.Root
+
+<ApiTable props={rootProps} />
+
+## Keyboard interactions
+
+- The trigger is a button: <kbd>Enter</kbd> and <kbd>Space</kbd> toggle the panel.
+- State surfaces as `data-state="open|closed"` on trigger and panel for styling.

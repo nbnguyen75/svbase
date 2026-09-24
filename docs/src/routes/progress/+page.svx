@@ -1,0 +1,73 @@
+<script lang="ts">
+	import { Progress, Button } from 'svbase';
+
+	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
+	import CodeBlock from '../CodeBlock.svelte';
+
+	let value = $state(30);
+
+	const anatomy = `<script>
+  import { Progress } from 'svbase';
+<\/script>
+
+<Progress.Root value={30} ariaLabel="Upload progress">
+  <Progress.Indicator />
+</Progress.Root>`;
+
+	const rootProps: Array<ApiProp> = [
+		{
+			name: 'value',
+			type: 'number',
+			defaultValue: '—',
+			description: 'Current value. Omit for an indeterminate bar (omits aria-valuenow).'
+		},
+		{ name: 'min', type: 'number', defaultValue: '0', description: 'Range minimum.' },
+		{ name: 'max', type: 'number', defaultValue: '100', description: 'Range maximum.' },
+		{
+			name: 'format',
+			type: '(value: number, max: number) => string',
+			defaultValue: '—',
+			description: 'Human-readable value for aria-valuetext (determinate only).'
+		}
+	];
+</script>
+
+<p class="eyebrow">Svbase · Primitives</p>
+
+# Progress
+
+Determinate and indeterminate progress bars.
+
+<div class="demo-card">
+	<Progress.Root {value} ariaLabel="Upload progress">
+		<Progress.Indicator class="h-2 rounded-full bg-primary" />
+	</Progress.Root>
+	<p class="demo-note">{value}%</p>
+	<div class="demo-row">
+		<Button class="demo-btn-outline" onclick={() => (value = Math.min(100, value + 10))}>+10</Button>
+		<Button class="demo-btn-outline" onclick={() => (value = 0)}>Reset</Button>
+	</div>
+</div>
+
+<div class="demo-card">
+	<h3>Indeterminate</h3>
+	<Progress.Root ariaLabel="Loading">
+		<Progress.Indicator class="h-2 rounded-full bg-primary" />
+	</Progress.Root>
+	<p class="demo-note">No value — animate <code>[data-state='indeterminate']</code> with CSS.</p>
+</div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### Progress.Root
+
+<ApiTable props={rootProps} />
+
+## Keyboard interactions
+
+- None — progress bars are read-only indicators, never focusable.
+- `data-state` is `indeterminate | progressing | complete`.

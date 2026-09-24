@@ -1,6 +1,4 @@
 <script lang="ts">
-	/* eslint-disable svelte/no-navigation-without-resolve -- no base path configured;
-	   grid links use plain hrefs, revisit with the deploy adapter */
 	import {
 		composeHandlers,
 		clickOutside,
@@ -12,7 +10,6 @@
 	} from 'svbase';
 
 	import CodeBlock from './CodeBlock.svelte';
-	import { btnOutline, demoRow, card, code, lead, list, note, page, h1, h2, h3 } from './docs.js';
 
 	let portalOpen = $state(false);
 	let dismissedBy = $state('none');
@@ -113,100 +110,99 @@
 	];
 </script>
 
-<div class={page}>
-	<h1 class={h1}>svbase</h1>
-	<p class={lead}>
-		Unstyled, headless UI primitives for Svelte 5 — the accessibility of Base UI, styled your way.
-		Zero CSS ships with the library; every page below dresses the same primitives in Tailwind.
-	</p>
+<p class="eyebrow">Svbase · Introduction</p>
 
-	<h2 class={h2}>Install</h2>
-	<CodeBlock code={install} lang="bash" />
+# Overview
 
-	<h2 class={h2}>Usage</h2>
-	<CodeBlock code={usage} />
-	<p class={note}>
-		Demo id: <code class={code}>{demoId}</code> / <code class={code}>{generated}</code>
-	</p>
+Unstyled, headless UI primitives for Svelte 5 — the accessibility of Base UI, styled your way. Zero CSS ships with the library; every page below dresses the same primitives in Tailwind.
 
-	<h2 class={h2}>Primitives</h2>
-	<div class="mt-4 grid gap-3 sm:grid-cols-2">
-		{#each primitives as primitive (primitive.href)}
-			<a
-				href={primitive.href}
-				class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
-			>
-				<div class="text-sm font-semibold">{primitive.label}</div>
-				<div class="mt-1 text-sm text-muted-foreground">{primitive.description}</div>
-			</a>
-		{/each}
-	</div>
+## Install
 
-	<h2 class={h2}>Utilities playground</h2>
-	<p class={note}>Shared internals every primitive is built on. Try them live.</p>
+<CodeBlock code={install} lang="bash" filename="Terminal" />
 
-	<div class={card}>
-		<h3 class={h3}>Portal</h3>
-		<div class={demoRow}>
-			<button class={btnOutline} onclick={() => (portalOpen = !portalOpen)}>
-				Toggle portal content
-			</button>
-		</div>
-		{#if portalOpen}
-			<Portal>
-				<p>This paragraph is teleported to <code class={code}>document.body</code>.</p>
-			</Portal>
-		{/if}
-	</div>
+## Usage
 
-	<div class={card}>
-		<h3 class={h3}>clickOutside + escapeKey</h3>
-		<p class={note}>Dismissed by: <strong>{dismissedBy}</strong></p>
-		<div class={demoRow}>
-			<button class={btnOutline} onclick={() => (dismissedBy = 'none')}>Reset</button>
-		</div>
-		<div
-			role="dialog"
-			aria-label="Dismissal demo"
-			tabindex="-1"
-			class="mt-3 rounded-lg border p-4"
-			{@attach clickOutside(() => (dismissedBy = 'outside'))}
-			{@attach escapeKey(() => (dismissedBy = 'escape'))}
+<CodeBlock code={usage} filename="App.svelte" />
+
+Demo id: `{demoId}` / `{generated}`
+
+## Primitives
+
+<div class="mt-4 grid gap-3 sm:grid-cols-2">
+	{#each primitives as primitive (primitive.href)}
+		<a
+			href={primitive.href}
+			class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
 		>
-			<p class={note}>
-				Click outside this box or press Escape. Focus it first for keyboard testing.
-			</p>
-		</div>
-	</div>
+			<div class="text-sm font-semibold">{primitive.label}</div>
+			<div class="mt-1 text-sm text-muted-foreground">{primitive.description}</div>
+		</a>
+	{/each}
+</div>
 
-	<div class={card}>
-		<h3 class={h3}>composeHandlers</h3>
-		<div class={demoRow}>
-			<button class={btnOutline} onclick={composed}>Fire composed handlers</button>
-			<button class={btnOutline} onclick={() => (composedLog = [])}>Clear</button>
-		</div>
-		<p class={note}>Call order: {composedLog.length ? composedLog.join(' → ') : '—'}</p>
-	</div>
+## Utilities playground
 
-	<div class={card}>
-		<h3 class={h3}>mergeProps</h3>
-		<div class={demoRow}>
-			<button class={btnOutline} onclick={mergedDemo.onclick}>Fire merged props</button>
-			<button class={btnOutline} onclick={() => (mergedLog = [])}>Clear</button>
-		</div>
-		<p class={note}>Merged class: <code class={code}>{mergedDemo.class}</code></p>
-		<p class={note}>Call order: {mergedLog.length ? mergedLog.join(' → ') : '—'}</p>
-	</div>
+Shared internals every primitive is built on. Try them live.
 
-	<div class={card}>
-		<h3 class={h3}>generateId</h3>
-		<div class={demoRow}>
-			<button class={btnOutline} onclick={() => addSide('new row')}>Add row</button>
-		</div>
-		<ul class={list}>
-			{#each sides as side (side.id)}
-				<li>{side.id}: {side.note}</li>
-			{/each}
-		</ul>
+<div class="demo-card">
+	<h3>Portal</h3>
+	<div class="demo-row">
+		<button class="demo-btn-outline" onclick={() => (portalOpen = !portalOpen)}>
+			Toggle portal content
+		</button>
 	</div>
+	{#if portalOpen}
+		<Portal>
+			<p>This paragraph is teleported to <code>document.body</code>.</p>
+		</Portal>
+	{/if}
+</div>
+
+<div class="demo-card">
+	<h3>clickOutside + escapeKey</h3>
+	<p class="demo-note">Dismissed by: <strong>{dismissedBy}</strong></p>
+	<div class="demo-row">
+		<button class="demo-btn-outline" onclick={() => (dismissedBy = 'none')}>Reset</button>
+	</div>
+	<div
+		role="dialog"
+		aria-label="Dismissal demo"
+		tabindex="-1"
+		class="mt-3 rounded-lg border p-4"
+		{@attach clickOutside(() => (dismissedBy = 'outside'))}
+		{@attach escapeKey(() => (dismissedBy = 'escape'))}
+	>
+		<p class="demo-note">Click outside this box or press Escape. Focus it first for keyboard testing.</p>
+	</div>
+</div>
+
+<div class="demo-card">
+	<h3>composeHandlers</h3>
+	<div class="demo-row">
+		<button class="demo-btn-outline" onclick={composed}>Fire composed handlers</button>
+		<button class="demo-btn-outline" onclick={() => (composedLog = [])}>Clear</button>
+	</div>
+	<p class="demo-note">Call order: {composedLog.length ? composedLog.join(' → ') : '—'}</p>
+</div>
+
+<div class="demo-card">
+	<h3>mergeProps</h3>
+	<div class="demo-row">
+		<button class="demo-btn-outline" onclick={mergedDemo.onclick}>Fire merged props</button>
+		<button class="demo-btn-outline" onclick={() => (mergedLog = [])}>Clear</button>
+	</div>
+	<p class="demo-note">Merged class: <code>{mergedDemo.class}</code></p>
+	<p class="demo-note">Call order: {mergedLog.length ? mergedLog.join(' → ') : '—'}</p>
+</div>
+
+<div class="demo-card">
+	<h3>generateId</h3>
+	<div class="demo-row">
+		<button class="demo-btn-outline" onclick={() => addSide('new row')}>Add row</button>
+	</div>
+	<ul>
+		{#each sides as side (side.id)}
+			<li>{side.id}: {side.note}</li>
+		{/each}
+	</ul>
 </div>

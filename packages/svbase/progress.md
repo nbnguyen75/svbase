@@ -22,6 +22,13 @@
 - [x] **`ponytail:` dev-DX note**: docs consumes the library from `dist`, so rebuild the package (`bun run prepack`) after lib edits before docs dev/check shows them.
 - [ ] **Parked — `package-lock.json`**: npm cannot generate it on a bun-managed tree (arborist crash on `.bun` store; `workspace:*` unsupported by npm 12). Committed `bun.lock` + `pnpm-lock.yaml` only; regenerate the npm lockfile in a non-bun `node_modules` environment before first publish.
 
+### 2026-09-24: Phase 2 — subpath exports + mdsvex svelte.dev-style docs
+
+- [x] **feat-016 — subpath exports**: root `.` gains `default`; explicit `./<primitive>` entries for all 21 primitives (`types` + `svelte` + `default`); bare `./actions` + `./utils` indexes; `./actions/*` + `./utils/*` wildcards. `prepack` + publint "All good!", dist paths spot-checked.
+- [x] **feat-017 — mdsvex + docs theme**: all 20 routes are `.svx` now (demos/API data kept as components, prose in markdown); dark serif theme (`app.css` tokens + `.docs-article` prose + demo classes); docs shell (`+layout.svelte`) with brand topbar, filterable primitives sidebar, `Toc.svelte` "On this page" rail fed by an inline rehype heading-id plugin (no new deps); `CodeBlock` with filename header + copy button + `github-dark`; `ApiTable` rides the dark tokens unchanged. `docs.ts` chrome deleted.
+- [x] **Build fix**: pinned Vercel `runtime: 'nodejs22.x'` in `docs/vite.config.ts` — adapter 6.3.4 rejects local Node 26 at build time; pinning also fixes the deploy runtime.
+- [x] **Gates**: check 0/0, test 127/127, lint 0, format clean, build OK, prepack + publint pass; dev smoke `:5173` (slug ids, sidebar active state, demo SSR verified in HTML).
+
 ---
 
 ## Session History

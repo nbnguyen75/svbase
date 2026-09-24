@@ -1,7 +1,10 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
+	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
+
+	import Toc from './Toc.svelte';
 
 	import '@/assets/app.css';
 
@@ -11,44 +14,112 @@
 
 	let { children }: LayoutProps = $props();
 
-	const links = [
-		['button', 'Button'],
-		['toggle', 'Toggle'],
-		['checkbox', 'Checkbox'],
-		['radio-group', 'Radio Group'],
-		['collapsible', 'Collapsible'],
+	const primitives = [
 		['accordion', 'Accordion'],
-		['dialog', 'Dialog'],
 		['alert-dialog', 'Alert Dialog'],
-		['popover', 'Popover'],
-		['tooltip', 'Tooltip'],
+		['button', 'Button'],
+		['checkbox', 'Checkbox'],
+		['collapsible', 'Collapsible'],
+		['dialog', 'Dialog'],
 		['dropdown-menu', 'Dropdown Menu'],
-		['tabs', 'Tabs'],
-		['slider', 'Slider'],
+		['popover', 'Popover'],
 		['progress', 'Progress'],
+		['radio-group', 'Radio Group'],
+		['scroll-area', 'Scroll Area'],
 		['select', 'Select'],
 		['separator', 'Separator'],
-		['scroll-area', 'Scroll Area'],
+		['slider', 'Slider'],
+		['switch', 'Switch'],
+		['tabs', 'Tabs'],
 		['toast', 'Toast'],
-		['switch', 'Switch']
+		['toggle', 'Toggle'],
+		['tooltip', 'Tooltip']
 	] as const;
+
+	let query = $state('');
+
+	const filtered = $derived.by(() => {
+		const q = query.trim().toLowerCase();
+		if (q.length === 0) return primitives;
+		return primitives.filter(
+			([href, label]) => label.toLowerCase().includes(q) || href.includes(q)
+		);
+	});
+
+	const isActive = (href: (typeof primitives)[number][0]): boolean =>
+		page.url.pathname === `/${href}`;
+	const isHome = $derived(page.url.pathname === '/');
 </script>
 
-<header class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
-	<div class="mx-auto flex h-14 w-full max-w-5xl items-center gap-6 px-4">
-		<a href={resolve('/')} class="text-sm font-semibold tracking-tight">svbase</a>
-		<nav aria-label="Primitives" class="flex flex-1 items-center gap-1 overflow-x-auto">
-			{#each links as [href, label] (href)}
+<header class="sticky top-0 z-50 border-b border-white/10 bg-[#131316]/95 backdrop-blur">
+	<div class="mx-auto flex h-14 w-full max-w-[1400px] items-center gap-4 px-4">
+		<a href={resolve('/')} class="flex items-center gap-2.5">
+			<span
+				class="flex h-7 w-7 items-center justify-center rounded-md bg-[#ff3e00] text-base font-bold text-white"
+				>S</span
+			>
+			<span class="text-sm font-semibold tracking-[0.2em]">SVBASE</span>
+		</a>
+		<nav aria-label="Sections" class="flex items-center gap-1">
+			<a
+				href={resolve('/')}
+				aria-current={isHome ? 'page' : undefined}
+				class="rounded-md px-2.5 py-1.5 text-sm font-medium text-[#ff3e00]"
+			>
+				Docs
+			</a>
+		</nav>
+		<div class="flex-1"></div>
+		<input
+			bind:value={query}
+			type="search"
+			placeholder="Filter primitives…"
+			aria-label="Filter primitives"
+			class="h-8 w-44 rounded-md border border-white/10 bg-white/5 px-3 text-sm text-zinc-200 placeholder:text-zinc-500 focus:border-[#ff3e00]/60 focus:outline-none sm:w-56"
+		/>
+	</div>
+</header>
+
+<div class="mx-auto flex w-full max-w-[1400px] gap-8 px-4">
+	<aside
+		class="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-60 shrink-0 overflow-y-auto py-8 lg:block"
+	>
+		<nav aria-label="Documentation">
+			<p class="px-3 pb-2 font-serif text-lg text-zinc-100">Introduction</p>
+			<a
+				href={resolve('/')}
+				aria-current={isHome ? 'page' : undefined}
+				class="block rounded-md px-3 py-1.5 font-serif text-[15px] {isHome
+					? 'text-[#ff3e00]'
+					: 'text-zinc-400 hover:text-zinc-100'}"
+			>
+				Overview
+			</a>
+			<p class="px-3 pt-6 pb-2 font-serif text-lg text-zinc-100">Primitives</p>
+			{#each filtered as [href, label] (href)}
 				<a
 					href={resolve(`/${href}`)}
-					class="rounded-md px-2.5 py-1.5 text-[13px] whitespace-nowrap text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+					aria-current={isActive(href) ? 'page' : undefined}
+					class="block rounded-md px-3 py-1.5 font-serif text-[15px] {isActive(href)
+						? 'text-[#ff3e00]'
+						: 'text-zinc-400 hover:text-zinc-100'}"
 				>
 					{label}
 				</a>
 			{/each}
+			{#if filtered.length === 0}
+				<p class="px-3 py-1.5 text-sm text-zinc-500">No primitives match.</p>
+			{/if}
 		</nav>
-	</div>
-</header>
-<main>
-	{@render children()}
-</main>
+	</aside>
+	<main class="min-w-0 flex-1 py-8">
+		<article data-docs-article class="docs-article mx-auto w-full max-w-3xl">
+			{@render children()}
+		</article>
+	</main>
+	<aside
+		class="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-56 shrink-0 overflow-y-auto py-8 xl:block"
+	>
+		<Toc />
+	</aside>
+</div>

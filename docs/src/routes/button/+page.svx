@@ -1,0 +1,91 @@
+<script lang="ts">
+	import { Button } from 'svbase';
+
+	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
+	import CodeBlock from '../CodeBlock.svelte';
+
+	let buttonClicks = $state(0);
+
+	const anatomy = `<script>
+  import { Button } from 'svbase';
+<\/script>
+
+<Button onclick={() => console.log('clicked')}>
+  Save changes
+</Button>`;
+
+	const rootProps: Array<ApiProp> = [
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Whether user interaction is ignored.'
+		},
+		{
+			name: 'focusableWhenDisabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Keep the button focusable when disabled, exposing aria-disabled instead.'
+		},
+		{
+			name: 'element',
+			type: 'string',
+			defaultValue: "'button'",
+			description:
+				'Underlying element tag. Non-button tags get role="button" plus Enter/Space handling.'
+		},
+		{
+			name: 'type',
+			type: "'button' | 'submit' | 'reset'",
+			defaultValue: "'button'",
+			description: 'Native button type. Only applied when rendering a native button.'
+		},
+		{
+			name: 'ref',
+			type: 'HTMLElement',
+			defaultValue: '—',
+			description: 'Two-way bound access to the underlying DOM element.'
+		},
+		{
+			name: 'children',
+			type: 'Snippet',
+			defaultValue: '—',
+			description: 'Button content.'
+		}
+	];
+</script>
+
+<p class="eyebrow">Svbase · Primitives</p>
+
+# Button
+
+Unstyled button with disabled handling and element delegation.
+
+<div class="demo-card">
+	<div class="demo-row">
+		<Button class="demo-btn" onclick={() => (buttonClicks += 1)}>Clicked {buttonClicks}×</Button>
+		<Button class="demo-btn-outline" disabled>Disabled (not focusable)</Button>
+		<Button class="demo-btn-outline" disabled focusableWhenDisabled>Disabled but focusable</Button>
+		<Button class="demo-btn-outline" element="div">Div as button (Tab to it, press Enter/Space)</Button>
+	</div>
+	<p class="demo-note">
+		Inspect: native buttons carry <code>type="button"</code>; disabled ones carry
+		<code>data-disabled</code>.
+	</p>
+</div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### Button
+
+<ApiTable props={rootProps} />
+
+## Keyboard interactions
+
+- Native buttons activate on Enter and Space natively.
+- Non-native elements (`element` other than button) activate on Enter keydown and Space keyup, matching native timing.
+- Disabled buttons ignore interaction; consumer handlers can veto via preventDefault.

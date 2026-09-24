@@ -140,6 +140,22 @@
 			"dependencies": ["feat-015"],
 			"status": "done",
 			"evidence": "add61d7 (Phase 0 pnpm defs), 7324aa1 (Task 1 lib move), 54a7c36 (Task 2 docs + harness move), docs/superpowers/plans/2026-09-24-workspace-split.md"
+		},
+		{
+			"id": "feat-016",
+			"name": "Subpath exports for primitives, actions, and utils",
+			"description": "Package exports map: root plus explicit per-primitive subpaths (all 21), bare ./actions and ./utils indexes, and ./actions/* + ./utils/* wildcards. Verified by svelte-package output + publint.",
+			"dependencies": ["phase-001"],
+			"status": "done",
+			"evidence": "packages/svbase/package.json exports, dist/primitives/*/index.js, dist/actions/*, dist/utils/*"
+		},
+		{
+			"id": "feat-017",
+			"name": "mdsvex docs pages with svelte.dev-style theme",
+			"description": "All 20 docs routes converted to mdsvex (.svx); dark serif docs theme with topbar, filterable sidebar, On-this-page rail (inline rehype heading ids), and filename+copy code blocks. Docs app self-contained with pinned nodejs22.x Vercel runtime.",
+			"dependencies": ["phase-001"],
+			"status": "done",
+			"evidence": "docs/src/routes/**/*.svx, docs/src/routes/+layout.svelte, docs/src/routes/Toc.svelte, docs/src/assets/app.css"
 		}
 	]
 }

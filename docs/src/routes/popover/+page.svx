@@ -1,0 +1,90 @@
+<script lang="ts">
+	import { Popover, Button } from 'svbase';
+
+	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
+	import CodeBlock from '../CodeBlock.svelte';
+
+	const anatomy = `<script>
+  import { Popover } from 'svbase';
+<\/script>
+
+<Popover.Root>
+  <Popover.Trigger>Options</Popover.Trigger>
+  <Popover.Content>
+    Popover body.
+  </Popover.Content>
+</Popover.Root>`;
+
+	const rootProps: Array<ApiProp> = [
+		{
+			name: 'open',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled open state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'placement',
+			type: 'Placement',
+			defaultValue: "'bottom'",
+			description: 'Preferred placement; flips on viewport collision.'
+		},
+		{
+			name: 'sideOffset',
+			type: 'number',
+			defaultValue: '0',
+			description: 'Gap between trigger and content, in pixels.'
+		},
+		{
+			name: 'onOpenChange',
+			type: '(open: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every open or close.'
+		}
+	];
+</script>
+
+<p class="eyebrow">Svbase · Primitives</p>
+
+# Popover
+
+Anchored floating panel with flip-on-collision positioning.
+
+<div class="demo-card">
+	<div class="demo-row">
+		<Popover.Root>
+			<Popover.Trigger class="demo-btn-outline">Options</Popover.Trigger>
+			<Popover.Content class="rounded-lg border bg-popover p-4 text-popover-foreground shadow-md">
+				<p>Popover body. Click outside or press Escape to dismiss.</p>
+				<Button class="demo-btn">Inner action</Button>
+			</Popover.Content>
+		</Popover.Root>
+	</div>
+</div>
+
+<div class="demo-card">
+	<h3>With arrow and offset</h3>
+	<Popover.Root sideOffset={8}>
+		<Popover.Trigger class="demo-btn-outline">With arrow</Popover.Trigger>
+		<Popover.Content class="rounded-lg border bg-popover p-4 text-popover-foreground shadow-md">
+			<Popover.Arrow>◆</Popover.Arrow>
+			<p>Arrow centers on the trigger edge.</p>
+		</Popover.Content>
+	</Popover.Root>
+</div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### Popover.Root
+
+<ApiTable props={rootProps} />
+
+Positioning runs on `@floating-ui/dom` (the sole runtime dependency besides Svelte); actual placement surfaces as `data-placement` for arrow styling.
+
+## Keyboard interactions
+
+- Trigger toggles on <kbd>Enter</kbd> / <kbd>Space</kbd>.
+- <kbd>Esc</kbd> closes; focus stays where it was (modeless).

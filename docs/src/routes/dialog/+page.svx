@@ -1,0 +1,103 @@
+<script lang="ts">
+	import { Button, Dialog } from 'svbase';
+
+	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
+	import CodeBlock from '../CodeBlock.svelte';
+
+	let open = $state(false);
+
+	const anatomy = `<script>
+  import { Dialog } from 'svbase';
+<\/script>
+
+<Dialog.Root>
+  <Dialog.Trigger>Open dialog</Dialog.Trigger>
+  <Dialog.Portal>
+    <Dialog.Overlay />
+    <Dialog.Content>
+      <Dialog.Title>Confirm action</Dialog.Title>
+      <Dialog.Description>This cannot be undone.</Dialog.Description>
+      <Dialog.Close>Close</Dialog.Close>
+    </Dialog.Content>
+  </Dialog.Portal>
+</Dialog.Root>`;
+
+	const rootProps: Array<ApiProp> = [
+		{
+			name: 'open',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled open state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'defaultOpen',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Initially open for uncontrolled usage.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction.'
+		},
+		{
+			name: 'disablePointerDismissal',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Overlay clicks stop dismissing (Escape still closes).'
+		},
+		{
+			name: 'onOpenChange',
+			type: '(open: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every open or close.'
+		}
+	];
+</script>
+
+<p class="eyebrow">Svbase · Primitives</p>
+
+# Dialog
+
+Modal dialog with focus trap, scroll lock, and Escape dismissal.
+
+<div class="demo-card">
+	<Dialog.Root bind:open>
+		<Dialog.Trigger class="demo-btn">
+			Open dialog (currently {open ? 'open' : 'closed'})
+		</Dialog.Trigger>
+		<Dialog.Portal>
+			<Dialog.Overlay class="fixed inset-0 bg-black/50" />
+			<Dialog.Content
+				class="fixed top-1/2 left-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg border bg-card p-6 shadow-lg"
+			>
+				<Dialog.Title class="text-lg font-semibold">Confirm action</Dialog.Title>
+				<Dialog.Description class="text-sm text-muted-foreground">
+					This cannot be undone.
+				</Dialog.Description>
+				<div class="demo-row">
+					<Button class="demo-btn-outline">Extra action</Button>
+					<Dialog.Close class="demo-btn-outline">Close</Dialog.Close>
+				</div>
+			</Dialog.Content>
+		</Dialog.Portal>
+	</Dialog.Root>
+	<p class="demo-note">Tab cycles inside while open; Escape closes and returns focus here.</p>
+</div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### Dialog.Root
+
+<ApiTable props={rootProps} />
+
+## Keyboard interactions
+
+- <kbd>Tab</kbd> cycles focus inside the dialog (focus trap).
+- <kbd>Esc</kbd> closes and returns focus to the trigger.
+- Initial focus lands on the first tabbable element. Style with `data-state="open"`.
