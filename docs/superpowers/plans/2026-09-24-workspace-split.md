@@ -301,8 +301,6 @@ Remove-Item static -Recurse -Force -ErrorAction SilentlyContinue
 
 Verify: `git status` — nothing left under root `src/` or `static/`; `docs/src/routes/` contains the 24 real files (`+layout.svelte`, `+page.svelte`, `ApiTable.svelte`, `CodeBlock.svelte`, `docs.ts`, 19 primitive dirs).
 
-- [ ] **Step 2: Write `docs/package.json`**
-
 - [ ] **Step 2: Nest the svbase project files into `packages/svbase`**
 
 ```powershell
