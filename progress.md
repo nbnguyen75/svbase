@@ -161,3 +161,13 @@
 - [x] **Noted**: user's tsconfig commit enabled `noUncheckedIndexedAccess` — index access now needs `??` guards (applied in slider-math).
 - [x] **Verification**: `test` 106/106 (11 slider-math unit + 5 slider browser incl. real drag geometry + 4 progress + axe ×2), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/slider` + `/progress`.
 - [x] **Demo routes** `routes/slider/` (single + range + vertical) + `routes/progress/` linked in layout nav.
+
+### 2026-09-24: Select Primitive (feat-012)
+
+- [x] **Analyzed Base UI** select root (779 lines with store/multiple/virtualization) + trigger/item/list semantics. Skipped: multiple, virtualization, scroll arrows, modal trap, field contexts, actionsRef, Indicator/ItemText parts (selected mark via `[aria-selected]` CSS).
+- [x] **`src/lib/primitives/select/`** (Root/Trigger/Value/Portal/Content/Viewport/Item/Group/Label): single string value (`$bindable`, null empty), hidden input form sync, shared `findMatch` for open-list + closed-trigger typeahead.
+- [x] **Keyboard model (WAI-APG select-only combobox)**: closed trigger arrows/Home/End select directly, typeahead commits, Enter/Space opens via native click (no double-fire) with pending-focus flag; open list arrows/Home/End move highlight, Enter commits + closes + refocuses, Escape closes + refocuses, Tab dismisses without stealing.
+- [x] **Always-mounted content** (registry must stay live for Value display + closed-trigger nav): `display: none` inline when closed, `data-state` presence-gated, conditional floating attach, guarded Escape/focusout handlers.
+- [x] **Verification**: `test` 113/113 (7 browser: open/linkage, click+form+refocus, arrows/Enter, closed arrows+typeahead, Escape/outside, group linkage, axe), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/select`.
+- [x] **Axe earned its keep again**: `aria-progressbar-name` in progress fixture (fixed with labels) and `button-name` on unlabeled combobox trigger (combobox names must be author-provided — fixture fixed).
+- [x] **Demo route** `routes/select/` linked in layout nav.

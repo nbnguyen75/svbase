@@ -93,7 +93,7 @@
 			"name": "Select Primitive",
 			"description": "Select: Root, Trigger, Value, Portal, Content, Viewport, Item, Group, Label. Full keyboard navigation, typeahead, and form value synchronization.",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/primitives/select/"
 		},
 		{

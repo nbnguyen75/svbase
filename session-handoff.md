@@ -2,14 +2,14 @@
 
 ## Current State
 
-- `feat-001`–`feat-011` complete and verified. Test suite at 106/106 (unit + Chromium browser + axe).
-- `src/lib/primitives/slider/` (Root/Track/Thumb) with drag geometry + push cascades; `src/lib/primitives/progress/` (Root/Indicator). `Slider.*` / `Progress.*` exports.
-- Verification is green: `test` 106/106, `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0.
+- `feat-001`–`feat-012` complete and verified. Test suite at 113/113 (unit + Chromium browser + axe).
+- `src/lib/primitives/select/` (Root/Trigger/Value/Portal/Content/Viewport/Item/Group/Label) with WAI-APG keyboard model. `Select.*` export.
+- Verification is green: `test` 113/113, `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0.
 
 ## Immediate Next Task
 
-- Pick `feat-012` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
-  - Select (`src/lib/primitives/select/`): Root, Trigger, Value, Portal, Content, Viewport, Item, Group, Label — heaviest remaining feat; reuses `FloatingPosition`, roving + typeahead (menu patterns), `HiddenInput`-style form sync, single-select commit-on-activate.
+- Pick `feat-013` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
+  - Separator & Scroll Area (`src/lib/primitives/separator/`, `src/lib/primitives/scroll-area/`): semantic divider (single tiny part) + scroll container with custom thumb/track over native scrolling — smallest remaining feat, good cooldown after select.
 
 ## How to Resume
 
