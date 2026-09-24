@@ -77,7 +77,7 @@
 			"name": "Tabs Primitive",
 			"description": "Tabs: Root, List, Trigger, Content. Supports automatic/manual activation, horizontal/vertical orientation, and roving tabindex.",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/primitives/tabs/"
 		},
 		{

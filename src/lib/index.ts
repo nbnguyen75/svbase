@@ -12,6 +12,7 @@ export { Portal, type PortalProps } from './primitives/portal/index.js';
 export * as Popover from './primitives/popover/index.js';
 export * as RadioGroup from './primitives/radio-group/index.js';
 export * as Switch from './primitives/switch/index.js';
+export * as Tabs from './primitives/tabs/index.js';
 export { Toggle, type ToggleProps } from './primitives/toggle/index.js';
 export * as Tooltip from './primitives/tooltip/index.js';
 export {

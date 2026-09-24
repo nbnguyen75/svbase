@@ -142,3 +142,11 @@
 - [x] **Real bug caught by tests**: SubTrigger missed its `position.reference` attach → submenu never positioned. Found via `hidden`-stuck assertion.
 - [x] **Verification**: `test` 77/77 (8 menu tests: open/toggle/linkage, select+close+focus, arrows+highlight+wrap, typeahead, checkbox/radio stay-open, submenu hover + one-level Escape, axe), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/dropdown-menu`.
 - [x] **Demo route** `routes/dropdown-menu/` linked in layout nav.
+
+### 2026-09-24: Tabs Primitive (feat-010)
+
+- [x] **Analyzed Base UI** tabs root/tab/list/panel: controlled value, `activateOnFocus` (default manual) on List, composite roving, right-click focus suppression, disabled-focusable nuance, panel mount semantics. Skipped: transitions, Indicator part, keepMounted, field contexts.
+- [x] **`src/lib/primitives/tabs/` (Root/List/Trigger/Content)**: `value = $bindable()` with auto-select-first-enabled (`undefined` always resolves), `activation: 'automatic' | 'manual'` on List (manual default, Base UI parity), orientation-gated arrows (Left/Right vs Up/Down + Home/End), focus-tracked roving (focused tab holds the stop, falls back to selected), deterministic value-derived ids (SSR-stable, no registration subsystem).
+- [x] **Right-click suppression**: non-primary pointerdown arms a one-shot flag consumed by the next focus — no document listeners.
+- [x] **Verification**: `test` 88/88 (2 id-helper unit + 8 browser: auto-select/linkage, automatic arrows+wrap+skip, manual focus-only, click select, Home/End, vertical gating, synthetic-Enter negative lock, axe), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/tabs`.
+- [x] **Demo route** `routes/tabs/` (automatic + manual + vertical) linked in layout nav.

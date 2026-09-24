@@ -2,14 +2,14 @@
 
 ## Current State
 
-- `feat-001`–`feat-009` complete and verified. Test suite at 77/77 (unit + Chromium browser + axe).
-- `src/lib/primitives/dropdown-menu/` (14 parts incl. submenu pair, checkbox/radio with indicators). `DropdownMenu.*` export.
-- Verification is green: `test` 77/77, `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0.
+- `feat-001`–`feat-010` complete and verified. Test suite at 88/88 (unit + Chromium browser + axe).
+- `src/lib/primitives/tabs/` (Root/List/Trigger/Content) with automatic/manual activation and deterministic ids. `Tabs.*` export.
+- Verification is green: `test` 88/88, `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0.
 
 ## Immediate Next Task
 
-- Pick `feat-010` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
-  - Tabs (`src/lib/primitives/tabs/`): Root, List, Trigger, Content with automatic/manual activation, horizontal/vertical orientation, roving tabindex — closest existing model is radio-group (selection-follows-focus + `HiddenInput`-less); activation-mode flag is the new bit.
+- Pick `feat-011` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
+  - Slider & Progress (`src/lib/primitives/slider/`, `src/lib/primitives/progress/`): single/multi-thumb with keyboard step control, pointer drag (pointer capture + value-from-geometry), `aria-valuenow/text/min/max`, `data-orientation`; progress is read-only determinate/indeterminate.
 
 ## How to Resume
 
