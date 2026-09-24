@@ -467,15 +467,8 @@ The moved configs (`eslint.config.js`, `oxfmt.config.ts`, `oxlint.config.ts`) ne
 	"version": "0.0.1",
 	"private": false,
 	"type": "module",
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*",
-		"!dist/**/*.fixture.*"
-	],
-	"sideEffects": [
-		"**/*.css"
-	],
+	"files": ["dist", "!dist/**/*.test.*", "!dist/**/*.spec.*", "!dist/**/*.fixture.*"],
+	"sideEffects": ["**/*.css"],
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -523,9 +516,7 @@ The moved configs (`eslint.config.js`, `oxfmt.config.ts`, `oxlint.config.ts`) ne
 		"vitest": "^5.0.1",
 		"vitest-browser-svelte": "^3.1.0"
 	},
-	"keywords": [
-		"svelte"
-	]
+	"keywords": ["svelte"]
 }
 ```
 
@@ -541,10 +532,7 @@ All project work (check, lint, format, test, build) now runs inside the packages
 	"version": "0.0.1",
 	"private": true,
 	"packageManager": "pnpm@12.5.1",
-	"workspaces": [
-		"docs",
-		"packages/*"
-	],
+	"workspaces": ["docs", "packages/*"],
 	"scripts": {
 		"dev": "bun run --cwd docs dev",
 		"build": "bun run prepack && bun run --cwd docs build",

@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+node_modules/.bin/
+
+# Bun specific
+bun.lockb
+.bun/
+*.bun-build
+
+# Build and Outputs
+dist
+build
+.svelte-kit
+out
+
+# Vite and Test specific
+/.vite/
+coverage/
+.vitest
+html/
+
+# Logs
+*.log
+
+# Tooling cache & timestamps
+.eslintcache
+.cache
+vite.config.ts.timestamp-*
+
+# Environment Variables & Secrets
+.env*
+!.env.example
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDEs and Editors
+.idea/
+*.suo
