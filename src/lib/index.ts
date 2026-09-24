@@ -18,6 +18,7 @@ export * as Separator from './primitives/separator/index.js';
 export * as Slider from './primitives/slider/index.js';
 export * as Switch from './primitives/switch/index.js';
 export * as Tabs from './primitives/tabs/index.js';
+export * as Toast from './primitives/toast/index.js';
 export { Toggle, type ToggleProps } from './primitives/toggle/index.js';
 export * as Tooltip from './primitives/tooltip/index.js';
 export {

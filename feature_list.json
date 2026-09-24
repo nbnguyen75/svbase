@@ -109,7 +109,7 @@
 			"name": "Toast Primitive",
 			"description": "Toast: Provider, Root, Title, Description, Action, Close, Viewport. Swipe to dismiss, timers, and accessible aria-live region announcements.",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/primitives/toast/"
 		},
 		{

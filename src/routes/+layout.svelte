@@ -30,6 +30,7 @@
 		<a href={resolve('/select')}>Select</a>
 		<a href={resolve('/separator')}>Separator</a>
 		<a href={resolve('/scroll-area')}>Scroll Area</a>
+		<a href={resolve('/toast')}>Toast</a>
 		<a href={resolve('/switch')}>Switch</a>
 	</nav>
 </header>

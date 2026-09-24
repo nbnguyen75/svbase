@@ -172,6 +172,15 @@
 - [x] **Axe earned its keep again**: `aria-progressbar-name` in progress fixture (fixed with labels) and `button-name` on unlabeled combobox trigger (combobox names must be author-provided — fixture fixed).
 - [x] **Demo route** `routes/select/` linked in layout nav.
 
+### 2026-09-24: Toast Primitive (feat-014)
+
+- [x] **Analyzed Base UI** toast manager/provider/store + swipe thresholds (40px) + provider timeout 5000/limit 3. Skipped: imperative manager API, limit, transitions, field contexts.
+- [x] **`src/lib/primitives/toast/`** (Provider/Viewport/Root/Title/Description/Action/Close): declarative Roots (`defaultOpen` true), provider timeout 5000, per-toast `duration` (non-finite = sticky), pause-with-remaining on hover/focus, swipe past 40px with `touch-action: pan-y` + live transform, `role="status"` per toast (implicit live regions), per-toast close context.
+- [x] **Real bug caught by tests**: `setPointerCapture` on pointerdown retargets the subsequent click off buttons (dead Action/Close). Reworked to window pointermove/up listeners registered per press (scroll-area pattern) — clicks flow normally.
+- [x] **Typing note**: svelte's `HTMLButtonAttributes.disabled` is nullable under `exactOptionalPropertyTypes` — redeclare `disabled?: boolean` in wrapper interfaces (Toggle precedent).
+- [x] **Verification**: `test` 127/127 (7 browser: render, auto-dismiss, hover-pause, swipe, close button, sticky, axe), `check` 0/0, `format` clean, `lint` exit 0.
+- [x] **Demo route** `routes/toast/` linked in layout nav.
+
 ### 2026-09-24: Separator & Scroll Area Primitives (feat-013)
 
 - [x] **`src/lib/primitives/separator/`**: single div, `role="separator"` + `aria-orientation`, `data-orientation`.
