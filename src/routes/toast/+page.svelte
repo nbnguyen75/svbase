@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Toast } from '$lib/index.js';
+	import { Button, Toast } from 'svbase';
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Popover, Button } from '$lib/index.js';
+	import { Popover, Button } from 'svbase';
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';

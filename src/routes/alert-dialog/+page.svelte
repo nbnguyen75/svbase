@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AlertDialog } from '$lib/index.js';
+	import { AlertDialog } from 'svbase';
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';

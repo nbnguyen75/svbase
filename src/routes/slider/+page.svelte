@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Slider } from '$lib/index.js';
+	import { Slider } from 'svbase';
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';

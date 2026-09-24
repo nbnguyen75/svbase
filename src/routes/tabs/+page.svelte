@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Tabs } from '$lib/index.js';
+	import { Tabs } from 'svbase';
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';

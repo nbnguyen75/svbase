@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Dialog } from '$lib/index.js';
+	import { Button, Dialog } from 'svbase';
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';

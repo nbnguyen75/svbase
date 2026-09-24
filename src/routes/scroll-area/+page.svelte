@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ScrollArea } from '$lib/index.js';
+	import { ScrollArea } from 'svbase';
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';

@@ -26,12 +26,14 @@
 ### Task 1: Relocate library into `packages/svbase`, repoint root pages to the package
 
 **Files:**
+
 - Create: `packages/svbase/package.json`, `packages/svbase/tsconfig.json`, `packages/svbase/vite.config.ts`
 - Move: `src/lib/` → `packages/svbase/src/lib/` (whole tree, via `git mv`)
 - Modify: `package.json` (root — rename, private, prune publish/test fields, delegate scripts)
 - Modify: `src/routes/**/*.svelte` (20 files — `$lib/index.js` → `svbase`)
 
 **Interfaces:**
+
 - Consumes: existing `src/lib/index.ts` public exports (unchanged — moved as-is).
 - Produces: `packages/svbase` package whose `exports["."]` → `./dist/index.js` + `./dist/index.d.ts` (built by `svelte-package`); requires `bun run prepack` (root) before any consumer type-check/build.
 
@@ -52,15 +54,8 @@ Verify: `git status` shows `src/lib/*` staged as renames into `packages/svbase/s
 	"version": "0.0.1",
 	"private": false,
 	"type": "module",
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*",
-		"!dist/**/*.fixture.*"
-	],
-	"sideEffects": [
-		"**/*.css"
-	],
+	"files": ["dist", "!dist/**/*.test.*", "!dist/**/*.spec.*", "!dist/**/*.fixture.*"],
+	"sideEffects": ["**/*.css"],
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -96,9 +91,7 @@ Verify: `git status` shows `src/lib/*` staged as renames into `packages/svbase/s
 		"vitest": "^5.0.1",
 		"vitest-browser-svelte": "^3.1.0"
 	},
-	"keywords": [
-		"svelte"
-	]
+	"keywords": ["svelte"]
 }
 ```
 
@@ -128,9 +121,7 @@ Standalone (no `.svelte-kit` extend). Options copied verbatim from the current r
 		"noUnusedParameters": true,
 		"noUnusedLocals": false
 	},
-	"include": [
-		"src"
-	]
+	"include": ["src"]
 }
 ```
 
@@ -189,10 +180,7 @@ Rename root to `svbase-workspace` (required to avoid the duplicate `svbase` name
 	"version": "0.0.1",
 	"private": true,
 	"packageManager": "pnpm@12.5.1",
-	"workspaces": [
-		"docs",
-		"packages/*"
-	],
+	"workspaces": ["docs", "packages/*"],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && bun run prepack",
@@ -276,6 +264,7 @@ Commit must include: `packages/svbase/**`, updated `package.json`, `bun.lock`, `
 ### Task 2: Relocate the showcase into `docs/`, collapse root to orchestrator
 
 **Files:**
+
 - Remove: `docs/src/routes/**` (placeholders), `docs/src/lib/**` (placeholder + favicon), `docs/src/app.html`
 - Move: `src/routes/**` → `docs/src/routes/`, `src/assets/app.css` → `docs/src/assets/app.css`, `src/app.html` → `docs/src/app.html`, `static/favicon.svg` → `docs/static/favicon.svg`
 - Create: `docs/src/assets/` (dir)
@@ -283,6 +272,7 @@ Commit must include: `packages/svbase/**`, updated `package.json`, `bun.lock`, `
 - Delete: root `vite.config.ts`, root `tsconfig.json`, root `.npmignore`; empty `src/`, `static/` dirs
 
 **Interfaces:**
+
 - Consumes: `svbase` package from Task 1 (dist build via `bun run prepack` before docs check/build).
 - Produces: root scripts `dev`/`build`/`preview`/`check`/`test`/`prepack` that orchestrate `docs` + `packages/svbase` via `bun run --cwd <pkg>`.
 
@@ -379,10 +369,7 @@ Prune to tooling-only devDeps (root no longer hosts a SvelteKit app); delegate a
 	"version": "0.0.1",
 	"private": true,
 	"packageManager": "pnpm@12.5.1",
-	"workspaces": [
-		"docs",
-		"packages/*"
-	],
+	"workspaces": ["docs", "packages/*"],
 	"scripts": {
 		"dev": "bun run --cwd docs dev",
 		"build": "bun run prepack && bun run --cwd docs build",
@@ -459,11 +446,13 @@ Commit must include: `docs/**` moved content, `docs/package.json`, `docs/vite.co
 ### Task 3: Update harness artifacts for the monorepo layout
 
 **Files:**
+
 - Modify: `AGENTS.md`, `init.ps1`, `init.sh`, `feature_list.json`, `progress.md`, `session-handoff.md`
 - Modify: `.agents/rules/*.md`, `CLAUDE.md`, `README.md` — only where they reference `src/lib` paths
 - Delete: root `README.md` boilerplate → replace with a short monorepo overview
 
 **Interfaces:**
+
 - Consumes: Task 2 root scripts (`dev`, `check`, `test`, `prepack`, `format`, `lint` orchestrate the packages).
 - Produces: documentation that a fresh agent session can navigate the split without re-deriving it.
 

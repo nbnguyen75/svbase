@@ -9,7 +9,7 @@
 		escapeKey,
 		createId,
 		Portal
-	} from '$lib/index.js';
+	} from 'svbase';
 
 	import CodeBlock from './CodeBlock.svelte';
 	import { btnOutline, demoRow, card, code, lead, list, note, page, h1, h2, h3 } from './docs.js';

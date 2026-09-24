@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { RadioGroup, Button } from '$lib/index.js';
+	import { RadioGroup, Button } from 'svbase';
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';

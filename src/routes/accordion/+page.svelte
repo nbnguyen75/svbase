@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Accordion } from '$lib/index.js';
+	import { Accordion } from 'svbase';
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';

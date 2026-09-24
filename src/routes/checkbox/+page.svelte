@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Checkbox, Button } from '$lib/index.js';
+	import { Checkbox, Button } from 'svbase';
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';
