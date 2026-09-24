@@ -1,4 +1,6 @@
 <script lang="ts">
+	/* eslint-disable svelte/no-navigation-without-resolve -- no base path configured;
+	   grid links use plain hrefs, revisit with the deploy adapter */
 	import {
 		composeHandlers,
 		clickOutside,
@@ -8,6 +10,9 @@
 		createId,
 		Portal
 	} from '$lib/index.js';
+
+	import CodeBlock from './CodeBlock.svelte';
+	import { btnOutline, demoRow, card, code, lead, list, note, page, h1, h2, h3 } from './docs.js';
 
 	let portalOpen = $state(false);
 	let dismissedBy = $state('none');
@@ -48,63 +53,160 @@
 			}
 		}
 	);
+
+	const install = `bun add svbase`;
+	const usage = `<script>
+  import { Dialog } from 'svbase';
+<\/script>
+
+<Dialog.Root>
+  <Dialog.Trigger>Open</Dialog.Trigger>
+  <Dialog.Portal>
+    <Dialog.Content>
+      <Dialog.Title>Hello</Dialog.Title>
+    </Dialog.Content>
+  </Dialog.Portal>
+</Dialog.Root>`;
+
+	interface PrimitiveCard {
+		description: string;
+		label: string;
+		href: string;
+	}
+
+	const primitives: Array<PrimitiveCard> = [
+		{ href: '/button', label: 'Button', description: 'Unstyled button with disabled handling.' },
+		{ href: '/toggle', label: 'Toggle', description: 'Two-state button with aria-pressed.' },
+		{
+			href: '/checkbox',
+			label: 'Checkbox',
+			description: 'Indeterminate state, hidden form input.'
+		},
+		{ href: '/switch', label: 'Switch', description: 'Toggle switch with thumb.' },
+		{
+			href: '/radio-group',
+			label: 'Radio Group',
+			description: 'Roving tabindex, arrow navigation.'
+		},
+		{ href: '/collapsible', label: 'Collapsible', description: 'Expand/collapse panel.' },
+		{ href: '/accordion', label: 'Accordion', description: 'Single/multiple expansion.' },
+		{ href: '/dialog', label: 'Dialog', description: 'Modal with focus trap + scroll lock.' },
+		{
+			href: '/alert-dialog',
+			label: 'Alert Dialog',
+			description: 'Confirmation without overlay dismiss.'
+		},
+		{ href: '/popover', label: 'Popover', description: 'Anchored floating panel.' },
+		{ href: '/tooltip', label: 'Tooltip', description: 'Hover hint with skip-delay.' },
+		{
+			href: '/dropdown-menu',
+			label: 'Dropdown Menu',
+			description: 'Roving focus, typeahead, submenus.'
+		},
+		{ href: '/tabs', label: 'Tabs', description: 'Automatic/manual activation.' },
+		{ href: '/slider', label: 'Slider', description: 'Single + range with drag.' },
+		{ href: '/progress', label: 'Progress', description: 'Determinate + indeterminate bars.' },
+		{ href: '/select', label: 'Select', description: 'Typeahead dropdown with form sync.' },
+		{ href: '/separator', label: 'Separator', description: 'Accessible divider.' },
+		{ href: '/scroll-area', label: 'Scroll Area', description: 'Custom thumb over native scroll.' },
+		{ href: '/toast', label: 'Toast', description: 'Auto-dismiss with swipe + live regions.' }
+	];
 </script>
 
-<h1>svbase</h1>
-<p>
-	Unstyled, headless UI primitives for Svelte 5. Pick a primitive from the navigation above to try
-	it with keyboard and screen reader.
-</p>
-<p>Demo id: <code>{demoId}</code> / <code>{generated}</code></p>
+<div class={page}>
+	<h1 class={h1}>svbase</h1>
+	<p class={lead}>
+		Unstyled, headless UI primitives for Svelte 5 — the accessibility of Base UI, styled your way.
+		Zero CSS ships with the library; every page below dresses the same primitives in Tailwind.
+	</p>
 
-<section>
-	<h2>Portal</h2>
-	<button onclick={() => (portalOpen = !portalOpen)}>Toggle portal content</button>
-	{#if portalOpen}
-		<Portal>
-			<p data-testid="portal-content">
-				This paragraph is teleported to <code>document.body</code>. Toggle it, then inspect the DOM.
-			</p>
-		</Portal>
-	{/if}
-</section>
+	<h2 class={h2}>Install</h2>
+	<CodeBlock code={install} lang="bash" />
 
-<section>
-	<h2>clickOutside + escapeKey</h2>
-	<p>Dismissed by: <strong>{dismissedBy}</strong></p>
-	<button onclick={() => (dismissedBy = 'none')}>Reset</button>
-	<div
-		role="dialog"
-		aria-label="Dismissal demo"
-		tabindex="-1"
-		{@attach clickOutside(() => (dismissedBy = 'outside'))}
-		{@attach escapeKey(() => (dismissedBy = 'escape'))}
-	>
-		<p>Click outside this box or press Escape. Focus it first for keyboard testing.</p>
-	</div>
-</section>
+	<h2 class={h2}>Usage</h2>
+	<CodeBlock code={usage} />
+	<p class={note}>
+		Demo id: <code class={code}>{demoId}</code> / <code class={code}>{generated}</code>
+	</p>
 
-<section>
-	<h2>composeHandlers</h2>
-	<button onclick={composed}>Fire composed handlers</button>
-	<button onclick={() => (composedLog = [])}>Clear</button>
-	<p>Call order: {composedLog.length ? composedLog.join(' → ') : '—'}</p>
-</section>
-
-<section>
-	<h2>mergeProps</h2>
-	<button class={mergedDemo.class} onclick={mergedDemo.onclick}>Fire merged props</button>
-	<button onclick={() => (mergedLog = [])}>Clear</button>
-	<p>Merged class: <code>{mergedDemo.class}</code></p>
-	<p>Call order: {mergedLog.length ? mergedLog.join(' → ') : '—'}</p>
-</section>
-
-<section>
-	<h2>generateId</h2>
-	<button onclick={() => addSide('new row')}>Add row</button>
-	<ul>
-		{#each sides as side (side.id)}
-			<li>{side.id}: {side.note}</li>
+	<h2 class={h2}>Primitives</h2>
+	<div class="mt-4 grid gap-3 sm:grid-cols-2">
+		{#each primitives as primitive (primitive.href)}
+			<a
+				href={primitive.href}
+				class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+			>
+				<div class="text-sm font-semibold">{primitive.label}</div>
+				<div class="mt-1 text-sm text-muted-foreground">{primitive.description}</div>
+			</a>
 		{/each}
-	</ul>
-</section>
+	</div>
+
+	<h2 class={h2}>Utilities playground</h2>
+	<p class={note}>Shared internals every primitive is built on. Try them live.</p>
+
+	<div class={card}>
+		<h3 class={h3}>Portal</h3>
+		<div class={demoRow}>
+			<button class={btnOutline} onclick={() => (portalOpen = !portalOpen)}>
+				Toggle portal content
+			</button>
+		</div>
+		{#if portalOpen}
+			<Portal>
+				<p>This paragraph is teleported to <code class={code}>document.body</code>.</p>
+			</Portal>
+		{/if}
+	</div>
+
+	<div class={card}>
+		<h3 class={h3}>clickOutside + escapeKey</h3>
+		<p class={note}>Dismissed by: <strong>{dismissedBy}</strong></p>
+		<div class={demoRow}>
+			<button class={btnOutline} onclick={() => (dismissedBy = 'none')}>Reset</button>
+		</div>
+		<div
+			role="dialog"
+			aria-label="Dismissal demo"
+			tabindex="-1"
+			class="mt-3 rounded-lg border p-4"
+			{@attach clickOutside(() => (dismissedBy = 'outside'))}
+			{@attach escapeKey(() => (dismissedBy = 'escape'))}
+		>
+			<p class={note}>
+				Click outside this box or press Escape. Focus it first for keyboard testing.
+			</p>
+		</div>
+	</div>
+
+	<div class={card}>
+		<h3 class={h3}>composeHandlers</h3>
+		<div class={demoRow}>
+			<button class={btnOutline} onclick={composed}>Fire composed handlers</button>
+			<button class={btnOutline} onclick={() => (composedLog = [])}>Clear</button>
+		</div>
+		<p class={note}>Call order: {composedLog.length ? composedLog.join(' → ') : '—'}</p>
+	</div>
+
+	<div class={card}>
+		<h3 class={h3}>mergeProps</h3>
+		<div class={demoRow}>
+			<button class={btnOutline} onclick={mergedDemo.onclick}>Fire merged props</button>
+			<button class={btnOutline} onclick={() => (mergedLog = [])}>Clear</button>
+		</div>
+		<p class={note}>Merged class: <code class={code}>{mergedDemo.class}</code></p>
+		<p class={note}>Call order: {mergedLog.length ? mergedLog.join(' → ') : '—'}</p>
+	</div>
+
+	<div class={card}>
+		<h3 class={h3}>generateId</h3>
+		<div class={demoRow}>
+			<button class={btnOutline} onclick={() => addSide('new row')}>Add row</button>
+		</div>
+		<ul class={list}>
+			{#each sides as side (side.id)}
+				<li>{side.id}: {side.note}</li>
+			{/each}
+		</ul>
+	</div>
+</div>

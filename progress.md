@@ -181,6 +181,15 @@
 - [x] **Verification**: `test` 127/127 (7 browser: render, auto-dismiss, hover-pause, swipe, close button, sticky, axe), `check` 0/0, `format` clean, `lint` exit 0.
 - [x] **Demo route** `routes/toast/` linked in layout nav.
 
+### 2026-09-24: Showcase Docs Site (feat-015)
+
+- [x] **Tailwind v4 foundation** (user installed `tailwindcss`, `@tailwindcss/vite`; agent added `tw-animate-css`, `shiki`): Vite plugin order, `src/assets/app.css` with shadcn neutral OKLCH `@theme inline` tokens + base layer, `@custom-variant dark` declared (unused — no dark mode yet).
+- [x] **Docs chrome in routes only** (`cn()`, shared class constants, `ApiTable`, `CodeBlock` with Shiki `github-light` + plain-`<pre>` fallback): proves `src/lib` ships zero CSS — `prepack` + publint clean, no `dist` style leakage.
+- [x] **All 19 routes rewritten** to title + live demo + anatomy + examples + hand-written API tables + keyboard notes, dogfooding svbase primitives for every interactive demo element.
+- [x] **Tooling notes**: Svelte comments are `{<!-- -->}`; `<\/script>` escapes in snippet strings are load-bearing (oxlint `no-useless-escape` scoped off for `.svelte`); HTML `eslint-disable` comments aren't honored (use script-block disables); typed `resolve()` rejects unions (plain hrefs in the grid, documented).
+- [x] **Verification**: `test` 127/127, `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0, visual pass via served screenshots (home/button/dialog confirmed shadcn look).
+- [ ] **Deferred**: dark mode, sidebar/search, multi-example galleries, handbook, `llms.txt`, deploy adapter.
+
 ### 2026-09-24: Separator & Scroll Area Primitives (feat-013)
 
 - [x] **`src/lib/primitives/separator/`**: single div, `role="separator"` + `aria-orientation`, `data-orientation`.

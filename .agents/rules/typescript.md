@@ -29,3 +29,4 @@ Strict mode stays on. Fix the type — never suppress the error.
 - **Zero Missing Types**: All components, types, and utilities exported in `src/lib/index.ts` must have valid `.d.ts` generation via `svelte-package`.
 - **Public API Surface**: Keep internal implementation details unexported; export clean, well-documented interfaces.
 - **Type-only Imports**: Use `import type` for type-only imports.
+- **Relative Imports in `src/lib` (publishing constraint)**: Never use path aliases (`@/*`, `$lib`) inside `src/lib` — `svelte-package` copies files without rewriting aliases, so they would survive verbatim into `dist/` and break consumers. Aliases are fine in `src/routes`, tests, and fixtures.

@@ -209,7 +209,10 @@ export default defineConfig({
 			files: ['*.svelte', '**/*.svelte'],
 			rules: {
 				'no-inner-declarations': 'off',
-				'no-self-assign': 'off'
+				'no-self-assign': 'off',
+				// Docs pages embed `<\/script>` in code-snippet strings — the escape is
+				// load-bearing (Svelte terminates script blocks at the literal).
+				'no-useless-escape': 'off'
 			},
 			jsPlugins: ['eslint-plugin-svelte']
 		}

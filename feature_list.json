@@ -130,7 +130,7 @@
 				"feat-013",
 				"feat-014"
 			],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/routes/+page.svelte"
 		}
 	]
