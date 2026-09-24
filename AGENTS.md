@@ -42,7 +42,10 @@ Always use the standard npm/bun scripts configured in `package.json` for validat
 | `bun run lint:fix`         | Autofix lint issues            | `oxlint --fix`                             |
 | `bun run prepack`          | Package verification & build   | `svelte-package && publint`                |
 | `bun run test`             | Unit + browser tests           | `vitest` (node + chromium projects)        |
+| `bun run sync:lockfiles`   | Regen pnpm + npm lockfiles     | `pnpm` / `npm` lockfile-only installs      |
 | `./init.sh` / `.\init.ps1` | Full baseline environment run  | Dependencies, check, format, lint, prepack |
+
+> Package managers: **bun is primary** for daily dev (all commands above). **pnpm** (`packageManager` pin) serves CI/CD — full `pnpm install` needs Windows Developer Mode (symlink privilege). After any dependency change, run `bun run sync:lockfiles` and commit all lockfiles.
 
 ---
 

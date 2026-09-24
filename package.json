@@ -1,6 +1,12 @@
 {
 	"name": "svbase",
 	"version": "0.0.1",
+	"private": false,
+	"packageManager": "pnpm@12.5.1",
+	"workspaces": [
+		"docs",
+		"packages/*"
+	],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",
@@ -13,7 +19,8 @@
 		"lint:fix": "oxlint --fix && eslint src --fix --cache",
 		"format": "oxfmt --check",
 		"format:fix": "oxfmt",
-		"test": "vitest run"
+		"test": "vitest run",
+		"sync:lockfiles": "pnpm install --lockfile-only && npm install --package-lock-only --ignore-scripts"
 	},
 	"files": [
 		"dist",

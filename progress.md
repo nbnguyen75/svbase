@@ -3,8 +3,16 @@
 ## Status Overview
 
 - **Active Goal**: Porting headless accessible primitives (inspired by Base UI) to Svelte 5 runes.
-- **Current Milestone**: Harness setup and `.gemini` -> `.agents` migration complete.
-- **Next Primitive to Implement**: `feat-002` (Core Primitive Utilities & Actions: context helpers, ID generator, Portal, event composition).
+- **Workspace**: bun primary (dev), pnpm supported (CI/CD) — see Monorepo note below.
+- **Next Primitive to Implement**: all `feat-*` done; see session-handoff for follow-ups.
+
+### 2026-09-24: Monorepo Phase 0 — pnpm-ready workspace defs (bun primary kept)
+
+- [x] **PM policy**: bun primary for daily dev (scripts, AGENTS.md unchanged); pnpm for CI/CD via `packageManager: pnpm@12.5.1` pin. `bun.lock` kept; `pnpm-lock.yaml` regenerated via `pnpm install --lockfile-only`.
+- [x] **Workspace defs**: root `workspaces: ["docs", "packages/*"]` (adopted) + `pnpm-workspace.yaml` `packages:` globs + `sync:lockfiles` script.
+- [x] **Absorbed `docs/` minimally**: removed nested `docs/bun.lock` + `docs/node_modules`; bun workspaces install resolves docs deps (mdsvex, adapter-vercel verified present).
+- [x] **Gates green on bun tree**: test 127/127, check 0/0, format clean, lint 0, prepack + publint pass.
+- [ ] **BLOCKED — needs human**: full `pnpm install` fails with `ERR_PNPM_PACKAGE_MANAGER_SYMLINK_FAILED` (Windows symlink privilege). Fix: enable Developer Mode (Settings → System → For Developers) or run one elevated install. Until then: `pnpm install --lockfile-only` works (no symlinks); pnpm-based gate runs unverified.
 
 ---
 

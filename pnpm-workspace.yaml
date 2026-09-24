@@ -1,2 +1,5 @@
+packages:
+  - docs
+  - packages/*
 minimumReleaseAgeExclude:
   - eslint-plugin-perfectionist@5.12.0
