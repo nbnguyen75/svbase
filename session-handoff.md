@@ -2,14 +2,14 @@
 
 ## Current State
 
-- `feat-001`–`feat-010` complete and verified. Test suite at 88/88 (unit + Chromium browser + axe).
-- `src/lib/primitives/tabs/` (Root/List/Trigger/Content) with automatic/manual activation and deterministic ids. `Tabs.*` export.
-- Verification is green: `test` 88/88, `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0.
+- `feat-001`–`feat-011` complete and verified. Test suite at 106/106 (unit + Chromium browser + axe).
+- `src/lib/primitives/slider/` (Root/Track/Thumb) with drag geometry + push cascades; `src/lib/primitives/progress/` (Root/Indicator). `Slider.*` / `Progress.*` exports.
+- Verification is green: `test` 106/106, `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0.
 
 ## Immediate Next Task
 
-- Pick `feat-011` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
-  - Slider & Progress (`src/lib/primitives/slider/`, `src/lib/primitives/progress/`): single/multi-thumb with keyboard step control, pointer drag (pointer capture + value-from-geometry), `aria-valuenow/text/min/max`, `data-orientation`; progress is read-only determinate/indeterminate.
+- Pick `feat-012` from [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json):
+  - Select (`src/lib/primitives/select/`): Root, Trigger, Value, Portal, Content, Viewport, Item, Group, Label — heaviest remaining feat; reuses `FloatingPosition`, roving + typeahead (menu patterns), `HiddenInput`-style form sync, single-select commit-on-activate.
 
 ## How to Resume
 

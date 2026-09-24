@@ -85,7 +85,7 @@
 			"name": "Slider & Progress Primitives",
 			"description": "Slider (single and multi-thumb range slider with keyboard step control) and Progress (determinate and indeterminate progress bar with ARIA attributes).",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/primitives/slider/, src/lib/primitives/progress/"
 		},
 		{

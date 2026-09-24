@@ -150,3 +150,14 @@
 - [x] **Right-click suppression**: non-primary pointerdown arms a one-shot flag consumed by the next focus — no document listeners.
 - [x] **Verification**: `test` 88/88 (2 id-helper unit + 8 browser: auto-select/linkage, automatic arrows+wrap+skip, manual focus-only, click select, Home/End, vertical gating, synthetic-Enter negative lock, axe), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/tabs`.
 - [x] **Demo route** `routes/tabs/` (automatic + manual + vertical) linked in layout nav.
+
+### 2026-09-24: Slider & Progress Primitives (feat-011)
+
+- [x] **Analyzed Base UI** slider root/thumb (610-line root with form/field/composite machinery) + progress root (indeterminate/progressing/complete states). Skipped: Control/Indicator/Value/Label parts, transitions, field/form contexts, active-thumb tracking.
+- [x] **Shared `src/lib/utils/slider-math.ts`** (pure, unit-tested): clamp, step rounding without float dust, percent/ratio conversions, chained push-apart for `minStepsBetweenValues`.
+- [x] **`src/lib/primitives/slider/` (Root/Track/Thumb)**: single value or array (`$bindable`), keyboard arrows/Home/End/PageUp-Down, track click-to-jump + pointer-capture drag with grab-offset preservation, thumb push cascades, `onValueChange` continuous + `onValueCommitted` on release, hidden form inputs per thumb, inline `inset-inline-start`/`bottom` positioning (auto-RTL), explicit `index` required past the first thumb.
+- [x] **`src/lib/primitives/progress/` (Root/Indicator)**: `value === undefined` indeterminate (omits `aria-valuenow`), `data-state` indeterminate/progressing/complete, width% fill.
+- [x] **Caught by tests**: sync DOM reads after dispatch need `await tick()` (Svelte flushes async); release must commit even when value settled; multi-thumb needs explicit indices (both thumbs defaulted to 0).
+- [x] **Noted**: user's tsconfig commit enabled `noUncheckedIndexedAccess` — index access now needs `??` guards (applied in slider-math).
+- [x] **Verification**: `test` 106/106 (11 slider-math unit + 5 slider browser incl. real drag geometry + 4 progress + axe ×2), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/slider` + `/progress`.
+- [x] **Demo routes** `routes/slider/` (single + range + vertical) + `routes/progress/` linked in layout nav.
