@@ -265,16 +265,26 @@ Commit must include: `packages/svbase/**`, updated `package.json`, `bun.lock`, `
 
 **Files:**
 
-- Remove: `docs/src/routes/**` (placeholders), `docs/src/lib/**` (placeholder + favicon), `docs/src/app.html`
-- Move: `src/routes/**` → `docs/src/routes/`, `src/assets/app.css` → `docs/src/assets/app.css`, `src/app.html` → `docs/src/app.html`, `static/favicon.svg` → `docs/static/favicon.svg`
-- Create: `docs/src/assets/` (dir)
-- Modify: `docs/package.json` (add workspace link + ui deps), `docs/vite.config.ts` (add `@/*` alias), `package.json` (root — final orchestration scripts + pruned deps)
-- Delete: root `vite.config.ts`, root `tsconfig.json`, root `.npmignore`; empty `src/`, `static/` dirs
+**Amendment (user directive — supersedes the original Task 2 plan):** everything that belongs to the svbase project — harness, tooling configs, agent config — moves INTO `packages/svbase`. Docs becomes a self-contained SvelteKit app (own tooling configs). Root becomes a thin delegating orchestrator with zero devDeps.
+
+**Files:**
+
+- Remove: `docs/src/routes/**` (placeholders), `docs/src/lib/**` (placeholder + favicon), `docs/src/app.html`; empty root `src/`, `static/` dirs (after moves)
+- Move (showcase → docs): `src/routes/**` → `docs/src/routes/`, `src/assets/app.css` → `docs/src/assets/app.css`, `src/app.html` → `docs/src/app.html`, `static/favicon.svg` → `docs/static/favicon.svg`
+- Move (svbase project → `packages/svbase/`): `AGENTS.md`, `CLAUDE.md`, `feature_list.json`, `progress.md`, `session-handoff.md`, `init.sh`, `init.ps1`, `eslint.config.js`, `oxfmt.config.ts`, `oxlint.config.ts`, `shared-ignore.config.js`, `.npmrc`, `.npmignore`, `.agents/`, `.claude/`, `.opencode/`
+- Create: `docs/src/assets/` (dir), `packages/svbase/.gitignore` (clean rewrite), `docs/eslint.config.js`, `docs/shared-ignore.config.js`, `docs/oxfmt.config.ts`, `docs/oxlint.config.ts`, root `AGENTS.md` (thin workspace stub)
+- Modify: `docs/package.json`, `docs/vite.config.ts`, `packages/svbase/package.json`, root `package.json`
+- Delete: root `vite.config.ts`, root `tsconfig.json`
 
 **Interfaces:**
 
 - Consumes: `svbase` package from Task 1 (dist build via `bun run prepack` before docs check/build).
-- Produces: root scripts `dev`/`build`/`preview`/`check`/`test`/`prepack` that orchestrate `docs` + `packages/svbase` via `bun run --cwd <pkg>`.
+- Produces: root scripts `dev`/`build`/`preview`/`check`/`test`/`prepack`/`lint`/`format` that delegate to `docs` + `packages/svbase` via `bun run --cwd <pkg>`.
+
+**Hard facts (controller-verified empirically; must not be violated):**
+
+- `node_modules` is NEVER copied or moved between directories — only (re)installed via `bun install`. bun workspace linking requires root `node_modules/.bun` (every package's symlinks point into it), so root `node_modules` must exist after install; it is gitignored and regenerable.
+- Tooling configs resolve from the invoking cwd upward → every package with a `lint`/`format` script carries its own `eslint.config.js`, `oxlint.config.ts`, `oxfmt.config.ts`, `shared-ignore.config.js` in its own directory.
 
 - [ ] **Step 1: Move the showcase content into `docs`**
 
@@ -293,7 +303,73 @@ Verify: `git status` — nothing left under root `src/` or `static/`; `docs/src/
 
 - [ ] **Step 2: Write `docs/package.json`**
 
-Keep existing dev/build/preview/prepare/check scripts; add the workspace link and the ui deps that moved from root:
+- [ ] **Step 2: Nest the svbase project files into `packages/svbase`**
+
+```powershell
+git mv AGENTS.md packages/svbase/AGENTS.md
+git mv CLAUDE.md packages/svbase/CLAUDE.md
+git mv feature_list.json packages/svbase/feature_list.json
+git mv progress.md packages/svbase/progress.md
+git mv session-handoff.md packages/svbase/session-handoff.md
+git mv init.sh packages/svbase/init.sh
+git mv init.ps1 packages/svbase/init.ps1
+git mv eslint.config.js packages/svbase/eslint.config.js
+git mv oxfmt.config.ts packages/svbase/oxfmt.config.ts
+git mv oxlint.config.ts packages/svbase/oxlint.config.ts
+git mv shared-ignore.config.js packages/svbase/shared-ignore.config.js
+git mv .npmrc packages/svbase/.npmrc
+git mv .npmignore packages/svbase/.npmignore
+git mv .agents packages/svbase/.agents
+git mv .claude packages/svbase/.claude
+git mv .opencode packages/svbase/.opencode
+```
+
+Verify each with `Test-Path packages/svbase/<name>`. Then overwrite `packages/svbase/.gitignore` with a clean copy (the existing one has a corrupted `# Logs`/`=== logs ===` block):
+
+```gitignore
+# Dependencies
+node_modules/
+node_modules/.bin/
+
+# Bun specific
+bun.lockb
+.bun/
+*.bun-build
+
+# Build and Outputs
+dist
+build
+.svelte-kit
+out
+
+# Vite and Test specific
+/.vite/
+coverage/
+.vitest
+html/
+
+# Logs
+*.log
+
+# Tooling cache & timestamps
+.eslintcache
+.cache
+vite.config.ts.timestamp-*
+
+# Environment Variables & Secrets
+.env*
+!.env.example
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDEs and Editors
+.idea/
+*.suo
+```
+
+- [ ] **Step 3: Write `docs/package.json`** (self-contained showcase: ui deps that moved from root, `svbase` workspace link, and its own lint/format tooling)
 
 ```json
 {
@@ -307,15 +383,27 @@ Keep existing dev/build/preview/prepare/check scripts; add the workspace link an
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "oxlint && eslint src --ext .svelte --cache",
+		"lint:fix": "oxlint --fix && eslint src --fix --cache",
+		"format": "oxfmt --check",
+		"format:fix": "oxfmt"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^6.3.3",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@tailwindcss/vite": "^4.3.0",
+		"@types/node": "^26",
 		"cn": "^0.4.0",
+		"eslint": "^10.4.1",
+		"eslint-plugin-perfectionist": "^5.12.0",
+		"eslint-plugin-svelte": "^3.19.0",
+		"globals": "^17.6.0",
 		"mdsvex": "^0.12.7",
+		"oxfmt": "^0.70.0",
+		"oxlint": "^1.85.0",
+		"oxlint-tsgolint": "^7.0.2002",
 		"shiki": "^4.4.3",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0",
@@ -323,12 +411,13 @@ Keep existing dev/build/preview/prepare/check scripts; add the workspace link an
 		"tailwindcss": "^4.3.0",
 		"tw-animate-css": "^1.4.0",
 		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.60.1",
 		"vite": "^8.0.16"
 	}
 }
 ```
 
-- [ ] **Step 3: Add the `@/*` alias to `docs/vite.config.ts`**
+- [ ] **Step 4: Add the `@/*` alias to `docs/vite.config.ts`**
 
 Full file (adds `alias: { '@/*': './src/*' }` to the `sveltekit()` call so `+layout.svelte`'s `import '@/assets/app.css'` resolves):
 
@@ -359,33 +448,66 @@ export default defineConfig({
 });
 ```
 
-- [ ] **Step 4: Rewrite root `package.json` to final orchestrator form**
+- [ ] **Step 5: Copy the lint/format configs into `docs`** (each package is self-contained)
 
-Prune to tooling-only devDeps (root no longer hosts a SvelteKit app); delegate all project work to the packages:
+```powershell
+Copy-Item packages/svbase/eslint.config.js docs/eslint.config.js
+Copy-Item packages/svbase/shared-ignore.config.js docs/shared-ignore.config.js
+Copy-Item packages/svbase/oxfmt.config.ts docs/oxfmt.config.ts
+Copy-Item packages/svbase/oxlint.config.ts docs/oxlint.config.ts
+```
+
+The copies reference `./shared-ignore.config.js` and the cwd `.gitignore` (docs/.gitignore already exists); both resolve inside `docs/`. The `perfectionist/sort-imports` `$lib/*` groups simply never match outside the library — harmless.
+
+- [ ] **Step 6: Add tooling deps and scripts to `packages/svbase/package.json`**
+
+The moved configs (`eslint.config.js`, `oxfmt.config.ts`, `oxlint.config.ts`) need their plugins available in the package, and the package needs its own lint/format orchestration:
 
 ```json
 {
-	"name": "svbase-workspace",
+	"name": "svbase",
 	"version": "0.0.1",
-	"private": true,
-	"packageManager": "pnpm@12.5.1",
-	"workspaces": ["docs", "packages/*"],
+	"private": false,
+	"type": "module",
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*",
+		"!dist/**/*.fixture.*"
+	],
+	"sideEffects": [
+		"**/*.css"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		}
+	},
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"scripts": {
-		"dev": "bun run --cwd docs dev",
-		"build": "bun run prepack && bun run --cwd docs build",
-		"preview": "bun run --cwd docs preview",
-		"prepack": "bun run --cwd packages/svbase prepack",
-		"check": "bun run --cwd packages/svbase check && bun run prepack && bun run --cwd docs check",
-		"check:watch": "bun run --cwd packages/svbase check:watch",
-		"lint": "oxlint && eslint packages/svbase/src docs/src --ext .svelte --cache",
-		"lint:fix": "oxlint --fix && eslint packages/svbase/src docs/src --fix --cache",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+		"prepack": "svelte-package && publint",
+		"test": "vitest run",
+		"lint": "oxlint && eslint src --ext .svelte --cache",
+		"lint:fix": "oxlint --fix && eslint src --fix --cache",
 		"format": "oxfmt --check",
-		"format:fix": "oxfmt",
-		"test": "bun run --cwd packages/svbase test",
-		"sync:lockfiles": "pnpm install --lockfile-only && npm install --package-lock-only --ignore-scripts"
+		"format:fix": "oxfmt"
+	},
+	"peerDependencies": {
+		"svelte": "^5.0.0"
+	},
+	"dependencies": {
+		"@floating-ui/dom": "^1.8.0"
 	},
 	"devDependencies": {
+		"@sveltejs/package": "^2.5.8",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@types/node": "^26",
+		"@vitest/browser-playwright": "^5.0.1",
+		"axe-core": "^4.13.0",
 		"eslint": "^10.4.1",
 		"eslint-plugin-perfectionist": "^5.12.0",
 		"eslint-plugin-svelte": "^3.19.0",
@@ -393,23 +515,78 @@ Prune to tooling-only devDeps (root no longer hosts a SvelteKit app); delegate a
 		"oxfmt": "^0.70.0",
 		"oxlint": "^1.85.0",
 		"oxlint-tsgolint": "^7.0.2002",
+		"playwright": "^1.63.0",
+		"publint": "^0.3.21",
+		"svelte": "^5.56.1",
+		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.60.1"
-	}
+		"typescript-eslint": "^8.60.1",
+		"vite": "^8.0.16",
+		"vitest": "^5.0.1",
+		"vitest-browser-svelte": "^3.1.0"
+	},
+	"keywords": [
+		"svelte"
+	]
 }
 ```
 
-Note the ordering inside `check`: lib check, build dist, then docs check (docs resolves `svbase` types from `dist`). `lint` targets both packages' `src`.
+The eslint/oxfmt/oxlint configs' ignore patterns already cover `node_modules`, `dist`, `build`, `.svelte-kit`, `.agents/`, `.claude/`, `.opencode/` — the nested harness dirs are excluded from the package's own lint scan.
 
-- [ ] **Step 5: Delete dead root files**
+- [ ] **Step 7: Rewrite root `package.json` to a thin orchestrator with zero devDeps**
 
-```powershell
-git rm vite.config.ts tsconfig.json .npmignore
+All project work (check, lint, format, test, build) now runs inside the packages; root only delegates and syncs lockfiles:
+
+```json
+{
+	"name": "svbase-workspace",
+	"version": "0.0.1",
+	"private": true,
+	"packageManager": "pnpm@12.5.1",
+	"workspaces": [
+		"docs",
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "bun run --cwd docs dev",
+		"build": "bun run prepack && bun run --cwd docs build",
+		"preview": "bun run --cwd docs preview",
+		"prepack": "bun run --cwd packages/svbase prepack",
+		"check": "bun run --cwd packages/svbase check && bun run prepack && bun run --cwd docs check",
+		"check:watch": "bun run --cwd packages/svbase check:watch",
+		"lint": "bun run --cwd packages/svbase lint && bun run --cwd docs lint",
+		"lint:fix": "bun run --cwd packages/svbase lint:fix && bun run --cwd docs lint:fix",
+		"format": "bun run --cwd packages/svbase format && bun run --cwd docs format",
+		"format:fix": "bun run --cwd packages/svbase format:fix && bun run --cwd docs format:fix",
+		"test": "bun run --cwd packages/svbase test",
+		"sync:lockfiles": "pnpm install --lockfile-only && npm install --package-lock-only --ignore-scripts"
+	},
+	"devDependencies": {}
+}
 ```
 
-Commit removal. Root keeps: `oxfmt.config.ts`, `oxlint.config.ts`, `eslint.config.js`, `shared-ignore.config.js`, `.npmrc`, lockfiles, harness docs.
+`sync:lockfiles` runs at root (pnpm/npm workspace roots); npm's `package-lock.json` may still fail on the `.bun` store (see Plan review ledger Ruling 7) — commit what resolves and report the npm error verbatim. Then add a thin workspace `AGENTS.md` so root-level sessions stay oriented (the full harness now lives in the package):
 
-- [ ] **Step 6: Reinstall and run every gate from the root**
+```markdown
+# svbase (workspace)
+
+Root orchestrator for two packages:
+
+- `packages/svbase/` — the publishable Svelte 5 headless-primitive library. All project harness lives here: read its `AGENTS.md`, then `.agents/rules/`, and run `init.ps1`/`init.sh` from that directory.
+- `docs/` — SvelteKit showcase app consuming the library as the `svbase` workspace package.
+
+Root scripts delegate to the packages (`bun run dev/check/test/lint/format/prepack/build`). bun is the primary package manager; pnpm handles CI/CD lockfiles.
+```
+
+- [ ] **Step 8: Delete dead root files**
+
+```powershell
+git rm vite.config.ts tsconfig.json
+```
+
+Root keeps only: `package.json`, `pnpm-workspace.yaml`, `AGENTS.md` (stub), `.gitignore`, `README.md`, lockfiles. Everything else that belongs to the svbase project now lives in `packages/svbase/`.
+
+- [ ] **Step 9: Reinstall and run every gate from the root**
 
 ```powershell
 bun install
@@ -421,25 +598,25 @@ bun run format
 bun run prepack
 ```
 
-Expected: check 0/0 (lib then docs), test 127/127, docs production build OK, lint 0, format clean, prepack + publint "All good!". If `docs` check reports unresolved `svbase` types, confirm the workspace link was created by re-running `bun install` and that `packages/svbase/dist` exists (from `bun run prepack`).
+Expected: check 0/0 (lib then docs), test 127/127, docs production build OK, lint 0 (both packages), format clean (both packages), prepack + publint "All good!". `node_modules` is installed fresh — never copied or moved. If `docs` check reports unresolved `svbase` types, confirm the workspace link was created by re-running `bun install` and that `packages/svbase/dist` exists (from `bun run prepack`).
 
-- [ ] **Step 7: Smoke-test the docs site**
+- [ ] **Step 10: Smoke-test the docs site**
 
 ```powershell
 bun run --cwd docs dev
 ```
 
-Expected: dev server starts; `/` renders the showcase home and the nav; one primitive page (e.g. `/dialog`) opens a dialog and `/button` renders. `Ctrl+C` to stop.
+Expected: dev server starts; `/` renders the showcase home and the nav; one primitive page (e.g. `/dialog`) opens a dialog and `/button` renders. `Ctrl+C` to stop. If the server picks a non-default port, report the actual one.
 
-- [ ] **Step 8: Regenerate lockfiles and commit**
+- [ ] **Step 11: Regenerate lockfiles and commit**
 
 ```powershell
 bun run sync:lockfiles
 git add -A
-git commit -m "refactor(docs): relocate showcase into docs app, root becomes orchestrator"
+git commit -m "refactor(workspace): relocate showcase docs, nest svbase harness in packages/svbase"
 ```
 
-Commit must include: `docs/**` moved content, `docs/package.json`, `docs/vite.config.ts`, root `package.json`, removed root files, all three lockfiles.
+Commit must include: `docs/**` moved content, `packages/svbase/**` nested harness + configs + `package.json` + `.gitignore`, new `docs` configs, root `package.json` + `AGENTS.md`, removed root files, and the lockfiles that resolved (`bun.lock`, `pnpm-lock.yaml`; `package-lock.json` only if npm did not crash).
 
 ---
 
@@ -447,48 +624,54 @@ Commit must include: `docs/**` moved content, `docs/package.json`, `docs/vite.co
 
 **Files:**
 
-- Modify: `AGENTS.md`, `init.ps1`, `init.sh`, `feature_list.json`, `progress.md`, `session-handoff.md`
-- Modify: `.agents/rules/*.md`, `CLAUDE.md`, `README.md` — only where they reference `src/lib` paths
-- Delete: root `README.md` boilerplate → replace with a short monorepo overview
+- Move: `README.md` → `packages/svbase/README.md` (the library README belongs to the package — shows on npm)
+- Create: root `README.md` (thin monorepo overview)
+- Modify (all inside `packages/svbase/`): `AGENTS.md`, `init.ps1`, `init.sh`, `feature_list.json`, `progress.md`, `session-handoff.md`, `.agents/rules/*.md`, `CLAUDE.md` — path references only
 
 **Interfaces:**
 
-- Consumes: Task 2 root scripts (`dev`, `check`, `test`, `prepack`, `format`, `lint` orchestrate the packages).
-- Produces: documentation that a fresh agent session can navigate the split without re-deriving it.
+- Consumes: Task 2 final layout (`packages/svbase/` self-contained harness + tooling; `docs/` self-contained app; root thin).
+- Produces: documentation that a fresh agent session can navigate both the workspace and the package without re-deriving the split.
 
-- [ ] **Step 1: Rewrite `README.md` as a monorepo overview**
+- [ ] **Step 1: Move `README.md` into the package + write a thin root README**
 
-Replace the `sv` template boilerplate with ~15 lines: what the repo is (`docs` showcase + `packages/svbase` library), quickstart (`bun install` then `bun run dev`), and the three gate commands (`bun run check`, `bun run test`, `bun run prepack`).
+```powershell
+git mv README.md packages/svbase/README.md
+```
 
-- [ ] **Step 2: Update `AGENTS.md`**
+New root `README.md`, ~15 lines workspace overview: what the repo is (`docs` showcase + `packages/svbase` library), quickstart (`bun install`, `bun run dev`), the gates (`bun run check`, `bun run test`, `bun run prepack`), and a harness pointer to `packages/svbase/AGENTS.md`.
 
-In "Standard Package Commands", note that the scripts orchestrate the workspace, and add a two-line layout section:
+- [ ] **Step 2: Update `packages/svbase/AGENTS.md`**
+
+Add a `## Repository Layout` section describing the split:
 
 ```markdown
 ## Repository Layout
 
-- `packages/svbase/` — the publishable library (`src/lib`, tests, `prepack`/`publint`). Relative imports only.
-- `docs/` — SvelteKit showcase app consuming the library as the `svbase` workspace package. Aliases/`$lib`/UI deps allowed here.
-- Root — orchestrator + tooling only: `oxfmt`/`oxlint`/`eslint`/`shared-ignore`, lockfiles, harness files.
+- `packages/svbase/` — the publishable library (`src/lib`, tests, `prepack`/`publint`) and its self-contained harness (this AGENTS.md, `.agents/`, `init.*`, `feature_list.json`, `eslint`/`oxfmt`/`oxlint` configs). Relative imports only.
+- `docs/` — SvelteKit showcase app consuming the library as the `svbase` workspace package, with its own copy of the lint/format configs. Aliases/`$lib`/UI deps allowed there.
+- Root — thin orchestrator: `bun run <script>` delegates to each package; zero devDeps.
 ```
 
-- [ ] **Step 3: Fix path references in `.agents/rules/` + `CLAUDE.md`**
+Fix any stale path references in the existing content (e.g. "Mounted on demo page `src/routes/+page.svelte`" → `docs/src/routes/...`).
 
-Grep and update `src/lib`/`src\lib` path mentions to `packages/svbase/src/lib` and `src/routes` to `docs/src/routes`:
+- [ ] **Step 3: Fix path references in `packages/svbase/.agents/rules/` + `CLAUDE.md`**
 
 ```powershell
 Select-String -Path .agents\rules\*.md,CLAUDE.md -Pattern 'src[/\\]lib|src[/\\]routes'
 ```
 
-Edit each match; do not touch rule content beyond the path strings.
+Edit each match to `packages/svbase/src/lib` / `docs/src/routes`; do not touch rule content beyond the path strings.
 
-- [ ] **Step 4: Refresh `init.ps1` / `init.sh`**
+- [ ] **Step 4: Refresh `packages/svbase/init.ps1` / `init.sh`**
 
-Keep the same steps (they call root scripts, which now orchestrate), but update the trailing "Next steps" hints to reference the monorepo: (1) read AGENTS.md + rules, (2) pick a feature from `feature_list.json` in `packages/svbase`, (3) gates at root via `bun run <script>`.
+Steps already run inside the package (same directory as before), so the local paths still hold; update the trailing "Next steps" hints to reference the split: (1) read this AGENTS.md + `.agents/rules/`, (2) pick a feature from the local `feature_list.json`, (3) run the package gates via local `bun run <script>` — docs gates run in `docs/`.
 
-- [ ] **Step 5: Record the milestone in harness artifacts**
+- [ ] **Step 5: Record the milestone in harness artifacts (in `packages/svbase/`)**
 
-In `feature_list.json`, add a roadmap entry `monorepo workspace split` (Phase 1) marked `"status": "done"` with the commit hashes from Tasks 1–2 in `"evidence"`. Append a dated Phase 1 entry to `progress.md` (what moved, gate results, the `ponytail:` dev-DX note). Update `session-handoff.md` next steps to Phase 2: mdsvex `.svx` conversion of docs pages, dark mode, deploy adapter timing, first npm publish.
+- `feature_list.json`: roadmap entry `monorepo workspace split` (Phase 1) with `"status": "done"` and the commit hashes from Tasks 1–2 (+ this task) in `"evidence"`.
+- `progress.md`: dated Phase 1 entry (what moved, gate results, the `ponytail:` dev-DX note, the parked `package-lock.json` issue).
+- `session-handoff.md`: next steps → Phase 2: mdsvex `.svx` conversion of docs pages, dark mode, deploy adapter cadence, first npm publish.
 
 - [ ] **Step 6: Full final verification and commit**
 
@@ -502,7 +685,7 @@ git add -A
 git commit -m "docs: update harness artifacts for monorepo layout"
 ```
 
-Expected: identical gate results to Task 2 Step 6; commit contains only docs/harness files.
+Expected: identical gate results to Task 2 Step 9; commit contains only docs/harness files.
 
 ---
 
@@ -512,7 +695,9 @@ Expected: identical gate results to Task 2 Step 6; commit contains only docs/har
 
 **Placeholder scan:** No TBD/"later". Every code step carries full file contents or exact commands. The one rule-edit step (Task 3 Step 3) is deliberately grep-driven because `.agents/rules/*.md` path mentions are few and line-specific — the executor's grep output is the content gate.
 
-**Type / name consistency:** Package name `svbase` (Task 1) and root `svbase-workspace` (Task 1 Step 5) are the only such names and never co-exist as publishes. `exports`/`types`/`svelte` fields match between `packages/svbase/package.json` and the dist output produced by `svelte-package`. Root scripts reference `packages/svbase` and `docs` via the exact `package.json` `name` fields. `check` ordering (lib → prepack → docs) is specified identically in Task 2 Steps 4 and 6.
+**Type / name consistency:** Package name `svbase` (Task 1) and root `svbase-workspace` (Task 1 Step 5) are the only such names and never co-exist as publishes. `exports`/`types`/`svelte` fields match between `packages/svbase/package.json` and the dist output produced by `svelte-package`. Root scripts reference `packages/svbase` and `docs` via the exact `package.json` `name` fields. `check` ordering (lib → prepack → docs) is specified identically in Task 2 Steps 7 and 9.
+
+**Amendment (2026-09-24):** Task 2 was re-scoped by user directive — everything that belongs to the svbase project (harness, tooling configs, agent config) nests into `packages/svbase/`; `docs/` becomes self-contained (own eslint/oxfmt/oxlint configs); root becomes a thin delegating orchestrator with zero devDeps and a stub `AGENTS.md`. Hard facts recorded in the Task 2 section: `node_modules` is never copied/moved (only reinstalled), and bun workspace linking requires the root `node_modules/.bun` store.
 
 ---
 
