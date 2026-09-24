@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	import { cn } from './cn.js';
+	import { cn } from 'cn';
 
 	interface Props {
 		props: Array<ApiProp>;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { cn } from './cn.js';
+	import { cn } from 'cn';
 
 	interface Props {
 		class?: string;
