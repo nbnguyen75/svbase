@@ -21,7 +21,8 @@ bun run prepack
 Write-Host "=== All Checks Passed Successfully ===" -ForegroundColor Green
 Write-Host ""
 Write-Host "Next steps for agent:"
-Write-Host "1. Read AGENTS.md and .agents/rules/*.md"
+Write-Host "1. Read this AGENTS.md and .agents/rules/*.md (package harness lives here)"
 Write-Host "2. Check feature_list.json for the next unfinished primitive"
 Write-Host "3. Follow Svelte 5 Runes & Base UI architecture guidelines"
 Write-Host "4. Update progress.md and feature_list.json upon completion"
+Write-Host "5. Docs gates (check/lint/format) run from the docs/ directory"

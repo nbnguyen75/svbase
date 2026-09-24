@@ -2,17 +2,18 @@
 
 ## Current State
 
-- All feats `feat-001`–`feat-015` complete and verified — the roadmap in `feature_list.json` is done. Test suite at 127/127.
-- Docs site (`src/routes`): Tailwind v4 + shadcn tokens, 19 primitive pages with live demos, anatomy, API tables, keyboard notes. Library (`src/lib`) unchanged and CSS-free.
-- Verification is green: `test` 127/127, `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` exit 0.
+- Monorepo split complete (`phase-001` done): `packages/svbase/` holds the library + its self-contained harness (this file, `AGENTS.md`, `.agents/`, `init.*`, `feature_list.json`, lint/format configs); `docs/` is the showcase app consuming `svbase` from `dist`; root is a thin delegating orchestrator.
+- All feats `feat-001`–`feat-015` complete and verified. Test suite at 127/127.
+- Verification is green at root: `check` 0/0 (lib then docs), `test` 127/127, `format` clean, `lint` exit 0, `prepack` + publint pass, docs `build` exit 0.
+- Parked: `package-lock.json` not generated on bun-managed trees (see `progress.md`); full `pnpm install` needs Windows Developer Mode.
 
 ## Immediate Next Task
 
-- Roadmap complete. Natural next steps (all deferred during feats, pick any): dark-mode toggle, sidebar/search nav, deploy adapter for `svbase.dev`, `llms.txt`, first npm publish (`bun run package && npm publish`).
+- Phase 2 (pick any): mdsvex `.svx` conversion of docs pages, dark mode, deploy adapter cadence for `svbase.dev`, `llms.txt`, first npm publish.
+- Remember the `ponytail:` dev-DX note: run `bun run prepack` after lib edits so docs sees them.
 
 ## How to Resume
 
-1. Run `./init.sh` (or `.\init.ps1` in PowerShell) to verify workspace health.
-2. Read [.agents/rules/primitives-architecture.md](file:///D:/Personal/Project/svbase/.agents/rules/primitives-architecture.md) and [.agents/rules/typescript.md](file:///D:/Personal/Project/svbase/.agents/rules/typescript.md).
-3. Implement `feat-002` strictly in scope.
-4. Run `./init.sh`, update [feature_list.json](file:///D:/Personal/Project/svbase/feature_list.json) and [progress.md](file:///D:/Personal/Project/svbase/progress.md).
+1. Read `packages/svbase/AGENTS.md`, then `packages/svbase/.agents/rules/`.
+2. Run `packages/svbase/init.ps1` (or `init.sh`) to verify package health; run docs gates from `docs/`.
+3. Pick the next work from Phase 2 above; record it in `feature_list.json` and `progress.md`.

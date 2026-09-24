@@ -12,4 +12,4 @@ Before marking any primitive as done:
 2. **Lint & Format**: `bun run lint` passes with 0 errors.
 3. **Packaging / Build**: `bun run prepack` or `bun run build` succeeds without package or DTS generation errors.
 4. **Svelte Autofixer**: Verified with `svelte-autofixer` tool or svelte best practices.
-5. **Interactive Demo**: The primitive is mounted and demonstrated on the test/demo route (`src/routes/+page.svelte` or sub-route) with keyboard and screen reader accessibility verified.
+5. **Interactive Demo**: The primitive is mounted and demonstrated on the test/demo route (`docs/src/routes/+page.svelte` or sub-route) with keyboard and screen reader accessibility verified.

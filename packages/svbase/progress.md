@@ -14,6 +14,14 @@
 - [x] **Gates green on bun tree**: test 127/127, check 0/0, format clean, lint 0, prepack + publint pass.
 - [ ] **BLOCKED — needs human**: full `pnpm install` fails with `ERR_PNPM_PACKAGE_MANAGER_SYMLINK_FAILED` (Windows symlink privilege). Fix: enable Developer Mode (Settings → System → For Developers) or run one elevated install. Until then: `pnpm install --lockfile-only` works (no symlinks); pnpm-based gate runs unverified.
 
+### 2026-09-24: Monorepo Phase 1 — workspace split (`docs/` + `packages/svbase`)
+
+- [x] **Task 1 — library move** (`7324aa1`): `src/lib/` → `packages/svbase/src/lib/` via rename-preserving moves; standalone `package.json`/`tsconfig.json`/`vite.config.ts`; root renamed `svbase-workspace`, routes repointed `$lib/index.js` → `svbase` against built `dist`.
+- [x] **Task 2 — showcase + harness move** (`54a7c36`): `src/routes/` → `docs/src/routes/` (+ assets/app.html/favicon); svbase harness, tooling configs (`eslint`/`oxfmt`/`oxlint`/`shared-ignore`), and agent config (`.agents/`, `.claude/`, `.opencode/`) nested into `packages/svbase/`; `docs/` self-contained (own configs, `svbase: workspace:*` link, `@/*` alias); root thin orchestrator with zero devDeps + stub `AGENTS.md`.
+- [x] **Gates on the split tree**: check 0/0 (lib then docs), test 127/127, docs production build OK (adapter-vercel), lint 0 + format clean in both packages, prepack + publint "All good!", dev smoke `:5173` (`/` + `/dialog` 200).
+- [x] **`ponytail:` dev-DX note**: docs consumes the library from `dist`, so rebuild the package (`bun run prepack`) after lib edits before docs dev/check shows them.
+- [ ] **Parked — `package-lock.json`**: npm cannot generate it on a bun-managed tree (arborist crash on `.bun` store; `workspace:*` unsupported by npm 12). Committed `bun.lock` + `pnpm-lock.yaml` only; regenerate the npm lockfile in a non-bun `node_modules` environment before first publish.
+
 ---
 
 ## Session History

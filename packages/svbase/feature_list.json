@@ -132,6 +132,14 @@
 			],
 			"status": "done",
 			"evidence": "src/routes/+page.svelte"
+		},
+		{
+			"id": "phase-001",
+			"name": "Monorepo workspace split",
+			"description": "Split single-project repo into docs/ showcase app + packages/svbase library; nested svbase harness, tooling configs, and agent config into the package; root is a thin delegating orchestrator with zero devDeps.",
+			"dependencies": ["feat-015"],
+			"status": "done",
+			"evidence": "add61d7 (Phase 0 pnpm defs), 7324aa1 (Task 1 lib move), 54a7c36 (Task 2 docs + harness move), docs/superpowers/plans/2026-09-24-workspace-split.md"
 		}
 	]
 }

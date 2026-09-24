@@ -8,6 +8,14 @@ bringing the design patterns and accessibility of **Base UI** to the Svelte ecos
 
 ---
 
+## Repository Layout
+
+- `packages/svbase/` — the publishable library (`src/lib`, tests, `prepack`/`publint`) and its self-contained harness (this AGENTS.md, `.agents/`, `init.*`, `feature_list.json`, `eslint`/`oxfmt`/`oxlint` configs). Relative imports only.
+- `docs/` — SvelteKit showcase app consuming the library as the `svbase` workspace package, with its own copy of the lint/format configs. Aliases/`$lib`/UI deps allowed there.
+- Root — thin orchestrator: `bun run <script>` delegates to each package; zero devDeps.
+
+---
+
 ## Startup Workflow
 
 Before writing any code:
@@ -115,7 +123,7 @@ A primitive or feature is done only when:
 - [ ] `bun run format` passes with 0 errors
 - [ ] `bun run lint` passes with 0 errors
 - [ ] `bun run prepack` builds dist and passes `publint` with 0 errors
-- [ ] Mounted on demo page `src/routes/+page.svelte` for visual & functional verification
+- [ ] Mounted on a demo page under `docs/src/routes/` for visual & functional verification
 - [ ] Evidence recorded in `feature_list.json` and `progress.md`
 
 ---
