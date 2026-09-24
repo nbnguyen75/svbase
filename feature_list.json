@@ -101,7 +101,7 @@
 			"name": "Separator & Scroll Area Primitives",
 			"description": "Separator (semantic/decorative divider) and ScrollArea (custom styled scrollbar thumb and track with native scrolling support).",
 			"dependencies": ["feat-002"],
-			"status": "todo",
+			"status": "done",
 			"evidence": "src/lib/primitives/separator/, src/lib/primitives/scroll-area/"
 		},
 		{

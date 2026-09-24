@@ -28,6 +28,8 @@
 		<a href={resolve('/slider')}>Slider</a>
 		<a href={resolve('/progress')}>Progress</a>
 		<a href={resolve('/select')}>Select</a>
+		<a href={resolve('/separator')}>Separator</a>
+		<a href={resolve('/scroll-area')}>Scroll Area</a>
 		<a href={resolve('/switch')}>Switch</a>
 	</nav>
 </header>

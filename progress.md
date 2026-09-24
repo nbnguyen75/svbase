@@ -171,3 +171,11 @@
 - [x] **Verification**: `test` 113/113 (7 browser: open/linkage, click+form+refocus, arrows/Enter, closed arrows+typeahead, Escape/outside, group linkage, axe), `check` 0/0, `format` clean, `lint` exit 0, `prepack` + publint pass, `build` includes `/select`.
 - [x] **Axe earned its keep again**: `aria-progressbar-name` in progress fixture (fixed with labels) and `button-name` on unlabeled combobox trigger (combobox names must be author-provided — fixture fixed).
 - [x] **Demo route** `routes/select/` linked in layout nav.
+
+### 2026-09-24: Separator & Scroll Area Primitives (feat-013)
+
+- [x] **`src/lib/primitives/separator/`**: single div, `role="separator"` + `aria-orientation`, `data-orientation`.
+- [x] **`src/lib/primitives/scroll-area/` (Root/Viewport/Scrollbar/Thumb)**: native scrolling with custom thumb/track; scroll snapshot state in Root; percentage thumb geometry; track click-to-jump; thumb drag with window-pointer tracking; scrollbar hidden without overflow; Viewport `tabindex=0` + functional `overflow: auto`.
+- [x] **Caught by tests**: namespace imports need the extra level in fixtures (`Separator.Separator`); paragraph margins break scroll math (fixture pins exact heights); `svelte/require-each-key` in demo.
+- [x] **Verification**: `test` 120/120 (2 separator + 5 scroll-area incl. real drag geometry + axe ×2), `check` 0/0, `format` clean, `lint` exit 0.
+- [x] **Demo routes** `routes/separator/` + `routes/scroll-area/` linked in layout nav.
