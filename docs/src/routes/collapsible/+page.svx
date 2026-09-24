@@ -3,6 +3,7 @@
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';
+import Kbd from '../Kbd.svelte';
 
 	let controlledOpen = $state(false);
 
@@ -45,14 +46,14 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Collapsible
 
 Expandable region with trigger, panel, and generated id linkage.
 
-<div class="demo-card">
-	<div class="demo-row">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
+	<div class="flex flex-wrap items-center gap-3">
 		<Collapsible.Root>
 			<Collapsible.Trigger>Show more</Collapsible.Trigger>
 			<Collapsible.Panel>
@@ -86,5 +87,5 @@ Expandable region with trigger, panel, and generated id linkage.
 
 ## Keyboard interactions
 
-- The trigger is a button: <kbd>Enter</kbd> and <kbd>Space</kbd> toggle the panel.
+- The trigger is a button: <Kbd>Enter</Kbd> and <Kbd>Space</Kbd> toggle the panel.
 - State surfaces as `data-state="open|closed"` on trigger and panel for styling.

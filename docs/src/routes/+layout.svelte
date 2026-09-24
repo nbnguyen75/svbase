@@ -51,11 +51,11 @@
 	const isHome = $derived(page.url.pathname === '/');
 </script>
 
-<header class="sticky top-0 z-50 border-b border-white/10 bg-[#131316]/95 backdrop-blur">
+<header class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
 	<div class="mx-auto flex h-14 w-full max-w-[1400px] items-center gap-4 px-4">
 		<a href={resolve('/')} class="flex items-center gap-2.5">
 			<span
-				class="flex h-7 w-7 items-center justify-center rounded-md bg-[#ff3e00] text-base font-bold text-white"
+				class="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-base font-bold text-white"
 				>S</span
 			>
 			<span class="text-sm font-semibold tracking-[0.2em]">SVBASE</span>
@@ -64,7 +64,7 @@
 			<a
 				href={resolve('/')}
 				aria-current={isHome ? 'page' : undefined}
-				class="rounded-md px-2.5 py-1.5 text-sm font-medium text-[#ff3e00]"
+				class="rounded-md px-2.5 py-1.5 text-sm font-medium text-primary"
 			>
 				Docs
 			</a>
@@ -75,7 +75,7 @@
 			type="search"
 			placeholder="Filter primitives…"
 			aria-label="Filter primitives"
-			class="h-8 w-44 rounded-md border border-white/10 bg-white/5 px-3 text-sm text-zinc-200 placeholder:text-zinc-500 focus:border-[#ff3e00]/60 focus:outline-none sm:w-56"
+			class="h-8 w-44 rounded-md border bg-white/5 px-3 text-sm text-zinc-200 placeholder:text-zinc-500 focus:border-primary/60 focus:outline-none sm:w-56"
 		/>
 	</div>
 </header>
@@ -85,23 +85,23 @@
 		class="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-60 shrink-0 overflow-y-auto py-8 lg:block"
 	>
 		<nav aria-label="Documentation">
-			<p class="px-3 pb-2 font-serif text-lg text-zinc-100">Introduction</p>
+			<p class="px-3 pb-2 text-lg font-semibold text-zinc-100">Introduction</p>
 			<a
 				href={resolve('/')}
 				aria-current={isHome ? 'page' : undefined}
-				class="block rounded-md px-3 py-1.5 font-serif text-[15px] {isHome
-					? 'text-[#ff3e00]'
+				class="block rounded-md px-3 py-1.5 text-[15px] {isHome
+					? 'text-primary'
 					: 'text-zinc-400 hover:text-zinc-100'}"
 			>
 				Overview
 			</a>
-			<p class="px-3 pt-6 pb-2 font-serif text-lg text-zinc-100">Primitives</p>
+			<p class="px-3 pt-6 pb-2 text-lg font-semibold text-zinc-100">Primitives</p>
 			{#each filtered as [href, label] (href)}
 				<a
 					href={resolve(`/${href}`)}
 					aria-current={isActive(href) ? 'page' : undefined}
-					class="block rounded-md px-3 py-1.5 font-serif text-[15px] {isActive(href)
-						? 'text-[#ff3e00]'
+					class="block rounded-md px-3 py-1.5 text-[15px] {isActive(href)
+						? 'text-primary'
 						: 'text-zinc-400 hover:text-zinc-100'}"
 				>
 					{label}
@@ -113,7 +113,7 @@
 		</nav>
 	</aside>
 	<main class="min-w-0 flex-1 py-8">
-		<article data-docs-article class="docs-article mx-auto w-full max-w-3xl">
+		<article data-docs-article class="mx-auto w-full max-w-3xl min-w-0">
 			{@render children()}
 		</article>
 	</main>

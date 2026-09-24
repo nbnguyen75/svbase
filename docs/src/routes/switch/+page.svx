@@ -45,14 +45,14 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Switch
 
 Toggle switch with aria-checked and thumb.
 
-<div class="demo-card">
-	<div class="demo-row">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
+	<div class="flex flex-wrap items-center gap-3">
 		<Switch.Root
 			bind:checked={switchChecked}
 			onCheckedChange={(checked) => {
@@ -67,7 +67,7 @@ Toggle switch with aria-checked and thumb.
 			Disabled
 		</Switch.Root>
 	</div>
-	<p class="demo-note">Changes: {switchChanges.length ? switchChanges.join(', ') : '—'}</p>
+	<p class="mt-3 text-sm text-muted-foreground">Changes: {switchChanges.length ? switchChanges.join(', ') : '—'}</p>
 </div>
 
 ## Anatomy

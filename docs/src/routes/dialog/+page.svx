@@ -3,6 +3,7 @@
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';
+import Kbd from '../Kbd.svelte';
 
 	let open = $state(false);
 
@@ -56,15 +57,15 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Dialog
 
 Modal dialog with focus trap, scroll lock, and Escape dismissal.
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<Dialog.Root bind:open>
-		<Dialog.Trigger class="demo-btn">
+		<Dialog.Trigger class="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110">
 			Open dialog (currently {open ? 'open' : 'closed'})
 		</Dialog.Trigger>
 		<Dialog.Portal>
@@ -76,14 +77,14 @@ Modal dialog with focus trap, scroll lock, and Escape dismissal.
 				<Dialog.Description class="text-sm text-muted-foreground">
 					This cannot be undone.
 				</Dialog.Description>
-				<div class="demo-row">
-					<Button class="demo-btn-outline">Extra action</Button>
-					<Dialog.Close class="demo-btn-outline">Close</Dialog.Close>
+				<div class="flex flex-wrap items-center gap-3">
+					<Button class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent">Extra action</Button>
+					<Dialog.Close class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent">Close</Dialog.Close>
 				</div>
 			</Dialog.Content>
 		</Dialog.Portal>
 	</Dialog.Root>
-	<p class="demo-note">Tab cycles inside while open; Escape closes and returns focus here.</p>
+	<p class="mt-3 text-sm text-muted-foreground">Tab cycles inside while open; Escape closes and returns focus here.</p>
 </div>
 
 ## Anatomy
@@ -98,6 +99,6 @@ Modal dialog with focus trap, scroll lock, and Escape dismissal.
 
 ## Keyboard interactions
 
-- <kbd>Tab</kbd> cycles focus inside the dialog (focus trap).
-- <kbd>Esc</kbd> closes and returns focus to the trigger.
+- <Kbd>Tab</Kbd> cycles focus inside the dialog (focus trap).
+- <Kbd>Esc</Kbd> closes and returns focus to the trigger.
 - Initial focus lands on the first tabbable element. Style with `data-state="open"`.

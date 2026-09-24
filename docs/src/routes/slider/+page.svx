@@ -3,6 +3,7 @@
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';
+import Kbd from '../Kbd.svelte';
 
 	let volume = $state(30);
 	let range = $state([20, 80]);
@@ -48,13 +49,13 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Slider
 
 Single and range sliders with keyboard stepping and pointer drag.
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<Slider.Root bind:value={volume}>
 		<Slider.Track style="width: 240px; height: 24px; position: relative;">
 			<Slider.Thumb
@@ -63,10 +64,10 @@ Single and range sliders with keyboard stepping and pointer drag.
 			/>
 		</Slider.Track>
 	</Slider.Root>
-	<p class="demo-note">Volume: {volume} (arrows ±1, PageUp/Down ±10, Home/End, or drag)</p>
+	<p class="mt-3 text-sm text-muted-foreground">Volume: {volume} (arrows ±1, PageUp/Down ±10, Home/End, or drag)</p>
 </div>
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<h3>Range</h3>
 	<Slider.Root bind:value={range} minStepsBetweenValues={5}>
 		<Slider.Track style="width: 240px; height: 24px; position: relative;">
@@ -74,10 +75,10 @@ Single and range sliders with keyboard stepping and pointer drag.
 			<Slider.Thumb index={1} ariaLabel="Max price" />
 		</Slider.Track>
 	</Slider.Root>
-	<p class="demo-note">Range: {range.join(' – ')} (thumbs push with 5 minimum distance)</p>
+	<p class="mt-3 text-sm text-muted-foreground">Range: {range.join(' – ')} (thumbs push with 5 minimum distance)</p>
 </div>
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<h3>Vertical</h3>
 	<Slider.Root orientation="vertical" defaultValue={40}>
 		<Slider.Track style="width: 24px; height: 160px; position: relative;">
@@ -98,6 +99,6 @@ Single and range sliders with keyboard stepping and pointer drag.
 
 ## Keyboard interactions
 
-- <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> step by `step`; <kbd>PgUp</kbd> / <kbd>PgDn</kbd> jump by `largeStep`.
-- <kbd>Home</kbd> / <kbd>End</kbd> jump to min/max.
+- <Kbd>←</Kbd><Kbd>→</Kbd><Kbd>↑</Kbd><Kbd>↓</Kbd> step by `step`; <Kbd>PgUp</Kbd> / <Kbd>PgDn</Kbd> jump by `largeStep`.
+- <Kbd>Home</Kbd> / <Kbd>End</Kbd> jump to min/max.
 - Each thumb is tabbable with full `aria-valuenow` contract.

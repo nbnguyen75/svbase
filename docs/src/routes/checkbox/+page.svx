@@ -75,14 +75,14 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Checkbox
 
 Accessible checkbox with indeterminate state and hidden form input.
 
-<div class="demo-card">
-	<div class="demo-row">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
+	<div class="flex flex-wrap items-center gap-3">
 		<Checkbox.Root
 			onCheckedChange={(checked) => {
 				checkboxChecked = checked;
@@ -104,9 +104,9 @@ Accessible checkbox with indeterminate state and hidden form input.
 			Read-only
 		</Checkbox.Root>
 	</div>
-	<p class="demo-note">Last change: {checkboxChecked ? 'checked' : 'unchecked'}</p>
+	<p class="mt-3 text-sm text-muted-foreground">Last change: {checkboxChecked ? 'checked' : 'unchecked'}</p>
 	<form
-		class="demo-row"
+		class="flex flex-wrap items-center gap-3"
 		onsubmit={(event) => {
 			event.preventDefault();
 			const data = new FormData(event.currentTarget);
@@ -121,9 +121,9 @@ Accessible checkbox with indeterminate state and hidden form input.
 			<Checkbox.Indicator>✓</Checkbox.Indicator>
 			Newsletter (unchecked submits "no")
 		</Checkbox.Root>
-		<Button class="demo-btn" type="submit">Submit form</Button>
+		<Button class="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110" type="submit">Submit form</Button>
 	</form>
-	<p class="demo-note">Submitted: <code>{submitted}</code></p>
+	<p class="mt-3 text-sm text-muted-foreground">Submitted: <code class="rounded-md border bg-muted px-1.5 py-0.5 font-mono text-[0.8em]">{submitted}</code></p>
 </div>
 
 ## Anatomy

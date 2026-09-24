@@ -3,6 +3,7 @@
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';
+import Kbd from '../Kbd.svelte';
 
 	const anatomy = `<script>
   import { AlertDialog } from 'svbase';
@@ -42,15 +43,15 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Alert Dialog
 
 Modal confirmation that ignores overlay clicks (Escape still closes).
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<AlertDialog.Root>
-		<AlertDialog.Trigger class="demo-btn">Delete item</AlertDialog.Trigger>
+		<AlertDialog.Trigger class="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110">Delete item</AlertDialog.Trigger>
 		<AlertDialog.Portal>
 			<AlertDialog.Overlay class="fixed inset-0 bg-black/50" />
 			<AlertDialog.Content
@@ -60,7 +61,7 @@ Modal confirmation that ignores overlay clicks (Escape still closes).
 				<AlertDialog.Description class="text-sm text-muted-foreground">
 					This action cannot be undone.
 				</AlertDialog.Description>
-				<AlertDialog.Close class="demo-btn">Cancel</AlertDialog.Close>
+				<AlertDialog.Close class="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110">Cancel</AlertDialog.Close>
 			</AlertDialog.Content>
 		</AlertDialog.Portal>
 	</AlertDialog.Root>
@@ -80,5 +81,5 @@ All other parts are re-exported from Dialog with identical props.
 
 ## Keyboard interactions
 
-- Same focus trap as Dialog; <kbd>Esc</kbd> closes.
+- Same focus trap as Dialog; <Kbd>Esc</Kbd> closes.
 - Overlay clicks are ignored — destructive actions require an explicit choice.

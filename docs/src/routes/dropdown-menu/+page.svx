@@ -3,6 +3,7 @@
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';
+import Kbd from '../Kbd.svelte';
 
 	let eatCount = $state(0);
 
@@ -43,13 +44,13 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Dropdown Menu
 
 Menu with roving focus, typeahead, checks, radios, and a submenu.
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<Menu.Root>
 		<Menu.Trigger>File</Menu.Trigger>
 		<Menu.Portal>
@@ -107,7 +108,7 @@ Menu with roving focus, typeahead, checks, radios, and a submenu.
 			</Menu.Content>
 		</Menu.Portal>
 	</Menu.Root>
-	<p class="demo-note">
+	<p class="mt-3 text-sm text-muted-foreground">
 		New clicked {eatCount}×. Type a letter to jump; arrows move; hover Share for the submenu.
 	</p>
 </div>
@@ -126,6 +127,6 @@ Item clicks close the menu; `CheckboxItem` and `RadioItem` stay open. Highlighte
 
 ## Keyboard interactions
 
-- <kbd>↑</kbd><kbd>↓</kbd> move focus and highlight; <kbd>Home</kbd> / <kbd>End</kbd> jump; type to search.
-- <kbd>Enter</kbd> / <kbd>Space</kbd> selects; <kbd>Esc</kbd> closes one level; <kbd>Tab</kbd> dismisses.
-- Submenu: hover or <kbd>→</kbd> opens, <kbd>←</kbd> closes.
+- <Kbd>↑</Kbd><Kbd>↓</Kbd> move focus and highlight; <Kbd>Home</Kbd> / <Kbd>End</Kbd> jump; type to search.
+- <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> selects; <Kbd>Esc</Kbd> closes one level; <Kbd>Tab</Kbd> dismisses.
+- Submenu: hover or <Kbd>→</Kbd> opens, <Kbd>←</Kbd> closes.

@@ -42,16 +42,16 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Toast
 
 Auto-dismissing notifications with swipe, pause-on-hover, and live regions.
 
-<div class="demo-card">
-	<div class="demo-row">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
+	<div class="flex flex-wrap items-center gap-3">
 		<Button
-			class="demo-btn"
+			class="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110"
 			onclick={() => {
 				count += 1;
 			}}
@@ -67,17 +67,17 @@ Auto-dismissing notifications with swipe, pause-on-hover, and live regions.
 					<Toast.Description class="text-sm text-muted-foreground">
 						All changes saved.
 					</Toast.Description>
-					<div class="demo-row">
-						<Toast.Action class="demo-btn">Undo</Toast.Action>
-						<Toast.Close class="demo-btn">Dismiss</Toast.Close>
+					<div class="flex flex-wrap items-center gap-3">
+						<Toast.Action class="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110">Undo</Toast.Action>
+						<Toast.Close class="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110">Dismiss</Toast.Close>
 					</div>
 				</Toast.Root>
 			{/each}
 		</Toast.Viewport>
 	</Toast.Provider>
-	<p class="demo-note">Hover a toast to pause its timer; swipe it sideways past 40px to dismiss.</p>
-	<p class="demo-note">
-		Each toast is <code>role="status"</code> — screen readers announce it, no live region wiring
+	<p class="mt-3 text-sm text-muted-foreground">Hover a toast to pause its timer; swipe it sideways past 40px to dismiss.</p>
+	<p class="mt-3 text-sm text-muted-foreground">
+		Each toast is <code class="rounded-md border bg-muted px-1.5 py-0.5 font-mono text-[0.8em]">role="status"</code> — screen readers announce it, no live region wiring
 		needed.
 	</p>
 </div>

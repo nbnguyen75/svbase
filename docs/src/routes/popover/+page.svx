@@ -3,6 +3,7 @@
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';
+import Kbd from '../Kbd.svelte';
 
 	const anatomy = `<script>
   import { Popover } from 'svbase';
@@ -43,28 +44,28 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Popover
 
 Anchored floating panel with flip-on-collision positioning.
 
-<div class="demo-card">
-	<div class="demo-row">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
+	<div class="flex flex-wrap items-center gap-3">
 		<Popover.Root>
-			<Popover.Trigger class="demo-btn-outline">Options</Popover.Trigger>
+			<Popover.Trigger class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent">Options</Popover.Trigger>
 			<Popover.Content class="rounded-lg border bg-popover p-4 text-popover-foreground shadow-md">
 				<p>Popover body. Click outside or press Escape to dismiss.</p>
-				<Button class="demo-btn">Inner action</Button>
+				<Button class="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110">Inner action</Button>
 			</Popover.Content>
 		</Popover.Root>
 	</div>
 </div>
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<h3>With arrow and offset</h3>
 	<Popover.Root sideOffset={8}>
-		<Popover.Trigger class="demo-btn-outline">With arrow</Popover.Trigger>
+		<Popover.Trigger class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent">With arrow</Popover.Trigger>
 		<Popover.Content class="rounded-lg border bg-popover p-4 text-popover-foreground shadow-md">
 			<Popover.Arrow>◆</Popover.Arrow>
 			<p>Arrow centers on the trigger edge.</p>
@@ -86,5 +87,5 @@ Positioning runs on `@floating-ui/dom` (the sole runtime dependency besides Svel
 
 ## Keyboard interactions
 
-- Trigger toggles on <kbd>Enter</kbd> / <kbd>Space</kbd>.
-- <kbd>Esc</kbd> closes; focus stays where it was (modeless).
+- Trigger toggles on <Kbd>Enter</Kbd> / <Kbd>Space</Kbd>.
+- <Kbd>Esc</Kbd> closes; focus stays where it was (modeless).

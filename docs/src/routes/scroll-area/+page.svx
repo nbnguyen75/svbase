@@ -3,6 +3,7 @@
 
 	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
 	import CodeBlock from '../CodeBlock.svelte';
+import Kbd from '../Kbd.svelte';
 
 	const lines = Array.from({ length: 30 }, (_, index) => `Line ${index + 1}`);
 
@@ -35,13 +36,13 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Scroll Area
 
 Native scrolling with a custom thumb and track. Style the parts with CSS.
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<ScrollArea.Root>
 		<ScrollArea.Viewport style="height: 200px; border: 1px solid;">
 			{#each lines as line (line)}
@@ -52,7 +53,7 @@ Native scrolling with a custom thumb and track. Style the parts with CSS.
 			<ScrollArea.Thumb style="background: gray;" />
 		</ScrollArea.Scrollbar>
 	</ScrollArea.Root>
-	<p class="demo-note">Drag the thumb, click the track, or Tab in and scroll with keys.</p>
+	<p class="mt-3 text-sm text-muted-foreground">Drag the thumb, click the track, or Tab in and scroll with keys.</p>
 </div>
 
 ## Anatomy
@@ -69,5 +70,5 @@ Thumb geometry (`height/width/top/left` percentages) is set inline as functional
 
 ## Keyboard interactions
 
-- The viewport is focusable (<kbd>Tab</kbd>); arrows/PageUp/PageDown scroll natively.
+- The viewport is focusable (<Kbd>Tab</Kbd>); arrows/PageUp/PageDown scroll natively.
 - The thumb itself is never in the Tab order.

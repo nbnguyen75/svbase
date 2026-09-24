@@ -33,7 +33,7 @@
 	}
 </script>
 
-<div class={cn('overflow-hidden rounded-lg border border-white/10 bg-[#1b1b20]', className)}>
+<div class={cn('overflow-hidden rounded-lg border bg-card', className)}>
 	<div class="flex items-center justify-between border-b border-white/10 px-4 py-1.5">
 		<span class="font-mono text-xs text-zinc-400">{filename}</span>
 		<button

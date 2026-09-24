@@ -110,7 +110,7 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Introduction</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Introduction</p>
 
 # Overview
 
@@ -144,25 +144,25 @@ Demo id: `{demoId}` / `{generated}`
 
 Shared internals every primitive is built on. Try them live.
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<h3>Portal</h3>
-	<div class="demo-row">
-		<button class="demo-btn-outline" onclick={() => (portalOpen = !portalOpen)}>
+	<div class="flex flex-wrap items-center gap-3">
+		<button class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" onclick={() => (portalOpen = !portalOpen)}>
 			Toggle portal content
 		</button>
 	</div>
 	{#if portalOpen}
 		<Portal>
-			<p>This paragraph is teleported to <code>document.body</code>.</p>
+			<p>This paragraph is teleported to <code class="rounded-md border bg-muted px-1.5 py-0.5 font-mono text-[0.8em]">document.body</code>.</p>
 		</Portal>
 	{/if}
 </div>
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<h3>clickOutside + escapeKey</h3>
-	<p class="demo-note">Dismissed by: <strong>{dismissedBy}</strong></p>
-	<div class="demo-row">
-		<button class="demo-btn-outline" onclick={() => (dismissedBy = 'none')}>Reset</button>
+	<p class="mt-3 text-sm text-muted-foreground">Dismissed by: <strong>{dismissedBy}</strong></p>
+	<div class="flex flex-wrap items-center gap-3">
+		<button class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" onclick={() => (dismissedBy = 'none')}>Reset</button>
 	</div>
 	<div
 		role="dialog"
@@ -172,33 +172,33 @@ Shared internals every primitive is built on. Try them live.
 		{@attach clickOutside(() => (dismissedBy = 'outside'))}
 		{@attach escapeKey(() => (dismissedBy = 'escape'))}
 	>
-		<p class="demo-note">Click outside this box or press Escape. Focus it first for keyboard testing.</p>
+		<p class="mt-3 text-sm text-muted-foreground">Click outside this box or press Escape. Focus it first for keyboard testing.</p>
 	</div>
 </div>
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<h3>composeHandlers</h3>
-	<div class="demo-row">
-		<button class="demo-btn-outline" onclick={composed}>Fire composed handlers</button>
-		<button class="demo-btn-outline" onclick={() => (composedLog = [])}>Clear</button>
+	<div class="flex flex-wrap items-center gap-3">
+		<button class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" onclick={composed}>Fire composed handlers</button>
+		<button class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" onclick={() => (composedLog = [])}>Clear</button>
 	</div>
-	<p class="demo-note">Call order: {composedLog.length ? composedLog.join(' → ') : '—'}</p>
+	<p class="mt-3 text-sm text-muted-foreground">Call order: {composedLog.length ? composedLog.join(' → ') : '—'}</p>
 </div>
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<h3>mergeProps</h3>
-	<div class="demo-row">
-		<button class="demo-btn-outline" onclick={mergedDemo.onclick}>Fire merged props</button>
-		<button class="demo-btn-outline" onclick={() => (mergedLog = [])}>Clear</button>
+	<div class="flex flex-wrap items-center gap-3">
+		<button class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" onclick={mergedDemo.onclick}>Fire merged props</button>
+		<button class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" onclick={() => (mergedLog = [])}>Clear</button>
 	</div>
-	<p class="demo-note">Merged class: <code>{mergedDemo.class}</code></p>
-	<p class="demo-note">Call order: {mergedLog.length ? mergedLog.join(' → ') : '—'}</p>
+	<p class="mt-3 text-sm text-muted-foreground">Merged class: <code class="rounded-md border bg-muted px-1.5 py-0.5 font-mono text-[0.8em]">{mergedDemo.class}</code></p>
+	<p class="mt-3 text-sm text-muted-foreground">Call order: {mergedLog.length ? mergedLog.join(' → ') : '—'}</p>
 </div>
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<h3>generateId</h3>
-	<div class="demo-row">
-		<button class="demo-btn-outline" onclick={() => addSide('new row')}>Add row</button>
+	<div class="flex flex-wrap items-center gap-3">
+		<button class="inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" onclick={() => addSide('new row')}>Add row</button>
 	</div>
 	<ul>
 		{#each sides as side (side.id)}

@@ -156,6 +156,14 @@
 			"dependencies": ["phase-001"],
 			"status": "done",
 			"evidence": "docs/src/routes/**/*.svx, docs/src/routes/+layout.svelte, docs/src/routes/Toc.svelte, docs/src/assets/app.css"
+		},
+		{
+			"id": "feat-018",
+			"name": "Docs Tailwind-only chrome with Inter font",
+			"description": "Removed all custom docs CSS classes; prose gets Tailwind utilities from an extended rehype plugin, Kbd.svelte component, inline demo chrome; Inter Variable as default sans; orange brand kept via tokens.",
+			"dependencies": ["feat-017"],
+			"status": "done",
+			"evidence": "docs/src/assets/app.css, docs/vite.config.ts, docs/src/routes/Kbd.svelte"
 		}
 	]
 }

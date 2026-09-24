@@ -26,13 +26,13 @@
 	];
 </script>
 
-<p class="eyebrow">Svbase · Primitives</p>
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
 
 # Separator
 
 Accessible divider with orientation.
 
-<div class="demo-card">
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
 	<p>Above</p>
 	<Separator.Separator class="my-4 border-t" />
 	<p>Below</p>
@@ -41,8 +41,8 @@ Accessible divider with orientation.
 		<Separator.Separator orientation="vertical" class="h-5 border-l" />
 		<span>Right</span>
 	</div>
-	<p class="demo-note">
-		Inspect <code>role="separator"</code> with <code>aria-orientation</code>.
+	<p class="mt-3 text-sm text-muted-foreground">
+		Inspect <code class="rounded-md border bg-muted px-1.5 py-0.5 font-mono text-[0.8em]">role="separator"</code> with <code class="rounded-md border bg-muted px-1.5 py-0.5 font-mono text-[0.8em]">aria-orientation</code>.
 	</p>
 </div>
 
