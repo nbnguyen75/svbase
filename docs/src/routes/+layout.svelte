@@ -29,6 +29,7 @@
 		['form', 'Form'],
 		['menubar', 'Menubar'],
 		['navigation-menu', 'Navigation Menu'],
+		['number-field', 'Number Field'],
 		['popover', 'Popover'],
 		['progress', 'Progress'],
 		['radio-group', 'Radio Group'],

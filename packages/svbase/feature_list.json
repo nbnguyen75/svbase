@@ -218,8 +218,8 @@
 			"name": "Number field",
 			"description": "Spinbutton with increment/decrement controls, keyboard stepping, min/max/step/clamp validation integrated with Field.",
 			"dependencies": ["feat-019"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/number-field/, docs/src/routes/number-field/+page.svx"
 		},
 		{
 			"id": "feat-026",

@@ -18,6 +18,7 @@ export { HiddenInput, type HiddenInputProps } from './primitives/hidden-input/in
 export { Input, type InputProps } from './primitives/input/index.js';
 export * as Menubar from './primitives/menubar/index.js';
 export * as NavigationMenu from './primitives/navigation-menu/index.js';
+export * as NumberField from './primitives/number-field/index.js';
 export { Portal, type PortalProps } from './primitives/portal/index.js';
 export * as Popover from './primitives/popover/index.js';
 export * as Progress from './primitives/progress/index.js';

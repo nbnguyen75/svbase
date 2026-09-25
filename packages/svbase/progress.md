@@ -70,6 +70,12 @@
 - [x] **Fixes found by tests**: `HTMLImgAttributes` (not `HTMLInputAttributes`); hidden images leave the a11y tree (query by DOM, not role).
 - [x] **Verification**: 3 browser tests + axe; suite 168/168; check/lint/format/build/prepack green; `./avatar` export + docs page + sidebar entry.
 
+### 2026-09-25: Number field (feat-025)
+
+- [x] **Number field root/input/increment/decrement/group** (`src/lib/primitives/number-field/`): nullable numeric value with min/max/step/largeStep, step rounding without float dust, clamp-on-commit, spinbutton ARIA contract, Field auto-registration, form hidden-input sync; steppers disable at bounds.
+- [x] **Fixes found by tests**: duplicate export entries break JSON validity (deduped); wrapper + `bind:` needs care under `exactOptionalPropertyTypes`; Svelte uses HTML-cased `readonly`.
+- [x] **Verification**: 5 browser tests + axe; suite 173/173; check/lint/format/build/prepack green; `./number-field` export + docs page + sidebar entry. Hold-to-repeat and scrub area deferred.
+
 ---
 
 ## Session History
