@@ -98,6 +98,16 @@
 			"svelte": "./dist/primitives/menubar/index.js",
 			"default": "./dist/primitives/menubar/index.js"
 		},
+		"./navigation-menu": {
+			"types": "./dist/primitives/navigation-menu/index.d.ts",
+			"svelte": "./dist/primitives/navigation-menu/index.js",
+			"default": "./dist/primitives/navigation-menu/index.js"
+		},
+		"./navigation-menu": {
+			"types": "./dist/primitives/navigation-menu/index.d.ts",
+			"svelte": "./dist/primitives/navigation-menu/index.js",
+			"default": "./dist/primitives/navigation-menu/index.js"
+		},
 		"./popover": {
 			"types": "./dist/primitives/popover/index.d.ts",
 			"svelte": "./dist/primitives/popover/index.js",

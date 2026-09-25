@@ -58,6 +58,12 @@
 - [x] **Fixes found by tests**: wrapper must redeclare `open` as `$bindable` for two-way control — instead follow the AlertDialog precedent (one-way passthrough, consumer syncs via `onOpenChange`).
 - [x] **Verification**: 3 browser tests + axe; suite 160/160; check/lint/format/build/prepack green; `./drawer` export + docs page + sidebar entry. Swipe-to-dismiss deferred.
 
+### 2026-09-25: Navigation menu (feat-023)
+
+- [x] **Nav layer over menubar coordination** (`src/lib/primitives/navigation-menu/`): root/item/trigger/content/link parts; hover intent (50ms open, 50ms close with switch guards) in an internal intent controller; per-item positioned panels (shared viewport deferred); click-to-toggle covers touch.
+- [x] **Fixes found by tests**: stray control character broke one fixture line's parse (rewrote the line; watch for invisible bytes); menubar switch test is timing-sensitive under load (settled validation state before clicks).
+- [x] **Verification**: 5 browser tests + axe; suite 165/165; check/lint/format/build/prepack green; `./navigation-menu` export + docs page + sidebar entry.
+
 ---
 
 ## Session History

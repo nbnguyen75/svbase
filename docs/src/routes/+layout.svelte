@@ -27,6 +27,7 @@
 		['dropdown-menu', 'Dropdown Menu'],
 		['form', 'Form'],
 		['menubar', 'Menubar'],
+		['navigation-menu', 'Navigation Menu'],
 		['popover', 'Popover'],
 		['progress', 'Progress'],
 		['radio-group', 'Radio Group'],

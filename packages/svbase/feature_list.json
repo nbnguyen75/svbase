@@ -202,8 +202,8 @@
 			"name": "Navigation menu",
 			"description": "Hover-intent site navigation menus with viewport-positioned content panels and keyboard traversal across triggers.",
 			"dependencies": ["feat-009"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/navigation-menu/, docs/src/routes/navigation-menu/+page.svx"
 		},
 		{
 			"id": "feat-024",

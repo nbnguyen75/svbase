@@ -1,19 +1,12 @@
 export { default as Root, type RootProps } from './Root.svelte';
-export { default as Menu, type MenuProps } from './Menu.svelte';
+export { default as Item, type ItemProps } from './Item.svelte';
 export { default as Trigger, type TriggerProps } from './Trigger.svelte';
-export {
-	getMenubarState,
-	setMenubarState,
-	type MenubarState,
-	type MenubarMenuHandle,
-	type MenubarTriggerHandle
-} from './context.js';
+export { default as Content, type ContentProps } from './Content.svelte';
+export { default as Link, type LinkProps } from './Link.svelte';
 // Menu contents reuse the dropdown-menu engine unchanged.
 export {
-	Content,
-	type ContentProps,
-	Item,
-	type ItemProps,
+	Item as MenuItem,
+	type ItemProps as MenuItemProps,
 	Separator,
 	type SeparatorProps,
 	CheckboxItem,
