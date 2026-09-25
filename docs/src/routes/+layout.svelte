@@ -44,6 +44,7 @@
 		['toast', 'Toast'],
 		['toggle', 'Toggle'],
 		['toggle-group', 'Toggle Group'],
+		['toolbar', 'Toolbar'],
 		['tooltip', 'Tooltip']
 	] as const;
 

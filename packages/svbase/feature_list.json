@@ -242,8 +242,8 @@
 			"name": "Toolbar",
 			"description": "Roving-tabindex toolbar grouping controls with orientation, disabled-item skipping, and group/link subparts.",
 			"dependencies": ["feat-002"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/toolbar/, docs/src/routes/toolbar/+page.svx"
 		},
 		{
 			"id": "feat-029",

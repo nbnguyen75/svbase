@@ -89,6 +89,12 @@
 - [x] **Fixes found by tests**: wrappers must extend the wrapped component's prop base (else spreads fail under `exactOptionalPropertyTypes`); checkbox `id` widened to `string | undefined` for passthrough; menubar triggers must own `menuitem` roles directly (native buttons violate required-owned).
 - [x] **Verification**: 9 browser tests + axe ×2; suite 187/187; check/lint/format/build/prepack green; `./toggle-group` + `./checkbox-group` exports + docs pages + sidebar entries.
 
+### 2026-09-25: Toolbar (feat-028)
+
+- [x] **Toolbar root/group/button/link/input/separator** (`src/lib/primitives/toolbar/`): roving single tab stop with orientation gating, disabled skipping, focus-tracked tabindex, inputs keep caret keys and stay tabbable.
+- [x] **Fixes found by tests**: full-suite runs flake on timing-sensitive focus tests under load (select highlight, menubar switch) — green in isolation and usually in suite; unrelated to this feat (no existing files touched).
+- [x] **Verification**: 4 browser tests + axe; suite 191/191; check/lint/format/build/prepack green; `./toolbar` export + docs page + sidebar entry.
+
 ---
 
 ## Session History

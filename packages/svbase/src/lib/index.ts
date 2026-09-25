@@ -34,6 +34,7 @@ export * as Tabs from './primitives/tabs/index.js';
 export * as Toast from './primitives/toast/index.js';
 export { Toggle, type ToggleProps } from './primitives/toggle/index.js';
 export * as ToggleGroup from './primitives/toggle-group/index.js';
+export * as Toolbar from './primitives/toolbar/index.js';
 export * as Tooltip from './primitives/tooltip/index.js';
 export {
 	FloatingPosition,
