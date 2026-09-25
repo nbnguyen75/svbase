@@ -82,6 +82,13 @@
 - [x] **Fixes found by tests**: `resolve()` with computed route unions breaks svelte-check (plain hrefs, consistent with the active check); sync DOM reads after dispatch race Svelte's flush — poll first via `vi.waitFor`.
 - [x] **Verification**: 5 browser tests + axe; suite 178/178; check/lint/format/build/prepack green; `./otp-field` export + docs page + sidebar entry.
 
+### 2026-09-25: Toggle group + checkbox group (feat-027)
+
+- [x] **Toggle group** (`src/lib/primitives/toggle-group/`): single (toggle-off allowed) + multiple modes, orientation-gated roving with single tab stop, per-value hidden form inputs, renders Toggle parts bound to group state.
+- [x] **Checkbox group** (`src/lib/primitives/checkbox-group/`): value array with `allValues` universe, mixed-state Parent part, per-value hidden inputs; items render Checkbox parts without double submission (names live on the root only).
+- [x] **Fixes found by tests**: wrappers must extend the wrapped component's prop base (else spreads fail under `exactOptionalPropertyTypes`); checkbox `id` widened to `string | undefined` for passthrough; menubar triggers must own `menuitem` roles directly (native buttons violate required-owned).
+- [x] **Verification**: 9 browser tests + axe ×2; suite 187/187; check/lint/format/build/prepack green; `./toggle-group` + `./checkbox-group` exports + docs pages + sidebar entries.
+
 ---
 
 ## Session History

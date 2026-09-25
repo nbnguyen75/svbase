@@ -43,6 +43,11 @@
 			"svelte": "./dist/primitives/checkbox/index.js",
 			"default": "./dist/primitives/checkbox/index.js"
 		},
+		"./checkbox-group": {
+			"types": "./dist/primitives/checkbox-group/index.d.ts",
+			"svelte": "./dist/primitives/checkbox-group/index.js",
+			"default": "./dist/primitives/checkbox-group/index.js"
+		},
 		"./collapsible": {
 			"types": "./dist/primitives/collapsible/index.d.ts",
 			"svelte": "./dist/primitives/collapsible/index.js",
@@ -177,6 +182,11 @@
 			"types": "./dist/primitives/toggle/index.d.ts",
 			"svelte": "./dist/primitives/toggle/index.js",
 			"default": "./dist/primitives/toggle/index.js"
+		},
+		"./toggle-group": {
+			"types": "./dist/primitives/toggle-group/index.d.ts",
+			"svelte": "./dist/primitives/toggle-group/index.js",
+			"default": "./dist/primitives/toggle-group/index.js"
 		},
 		"./tooltip": {
 			"types": "./dist/primitives/tooltip/index.d.ts",

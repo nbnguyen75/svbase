@@ -5,6 +5,7 @@ export * as AlertDialog from './primitives/alert-dialog/index.js';
 export * as Avatar from './primitives/avatar/index.js';
 export { Button, type ButtonProps } from './primitives/button/index.js';
 export * as Checkbox from './primitives/checkbox/index.js';
+export * as CheckboxGroup from './primitives/checkbox-group/index.js';
 export * as Collapsible from './primitives/collapsible/index.js';
 export * as Combobox from './primitives/combobox/index.js';
 export * as ContextMenu from './primitives/context-menu/index.js';
@@ -32,6 +33,7 @@ export * as Switch from './primitives/switch/index.js';
 export * as Tabs from './primitives/tabs/index.js';
 export * as Toast from './primitives/toast/index.js';
 export { Toggle, type ToggleProps } from './primitives/toggle/index.js';
+export * as ToggleGroup from './primitives/toggle-group/index.js';
 export * as Tooltip from './primitives/tooltip/index.js';
 export {
 	FloatingPosition,

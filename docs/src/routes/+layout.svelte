@@ -20,6 +20,7 @@
 		['avatar', 'Avatar'],
 		['button', 'Button'],
 		['checkbox', 'Checkbox'],
+		['checkbox-group', 'Checkbox Group'],
 		['collapsible', 'Collapsible'],
 		['combobox', 'Combobox'],
 		['context-menu', 'Context Menu'],
@@ -42,6 +43,7 @@
 		['tabs', 'Tabs'],
 		['toast', 'Toast'],
 		['toggle', 'Toggle'],
+		['toggle-group', 'Toggle Group'],
 		['tooltip', 'Tooltip']
 	] as const;
 
@@ -105,6 +107,7 @@
 				Overview
 			</a>
 			<p class="px-3 pt-6 pb-2 text-lg font-semibold text-zinc-100">Primitives</p>
+			<!-- eslint-disable svelte/no-navigation-without-resolve -- no base path configured; sidebar hrefs are static strings and resolve() rejects computed unions (svelte-check) -->
 			{#each filtered as [href, label] (href)}
 				<a
 					href={`/${href}`}
@@ -116,6 +119,7 @@
 					{label}
 				</a>
 			{/each}
+			<!-- eslint-enable svelte/no-navigation-without-resolve -->
 			{#if filtered.length === 0}
 				<p class="px-3 py-1.5 text-sm text-zinc-500">No primitives match.</p>
 			{/if}

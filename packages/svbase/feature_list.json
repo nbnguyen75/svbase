@@ -234,8 +234,8 @@
 			"name": "Toggle group + checkbox group",
 			"description": "Grouped selection: single/multiple toggle group with roving focus, and checkbox group with mixed select-all state.",
 			"dependencies": ["feat-003", "feat-004"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/toggle-group/, src/lib/primitives/checkbox-group/, docs/src/routes/toggle-group/+page.svx, docs/src/routes/checkbox-group/+page.svx"
 		},
 		{
 			"id": "feat-028",

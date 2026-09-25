@@ -27,7 +27,7 @@
 		name?: string;
 		form?: string;
 		/** Applied to the hidden input for native `<label for>` association. */
-		id?: string;
+		id?: string | undefined;
 	}
 </script>
 
