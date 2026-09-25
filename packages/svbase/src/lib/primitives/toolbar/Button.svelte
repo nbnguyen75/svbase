@@ -3,8 +3,8 @@
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	export interface ButtonProps extends HTMLButtonAttributes {
-		children?: Snippet;
 		ref?: HTMLElement | undefined;
+		children?: Snippet;
 		/** Whether user interaction is ignored (OR-ed with toolbar). @default false */
 		disabled?: boolean;
 	}

@@ -6,12 +6,12 @@
 		onValueChange?: ((value: string | Array<string> | null) => void) | undefined;
 		/** Initial value for uncontrolled usage. @default null (single) / [] (multiple) */
 		defaultValue?: string | Array<string> | null;
+		/** Arrow-key axis. @default 'horizontal' */
+		orientation?: 'horizontal' | 'vertical';
 		/** Selected value(s). Single string, array, or null when empty (controlled). */
 		value?: string | Array<string> | null;
 		/** Whether several items may be pressed at once. @default false */
 		multiple?: boolean;
-		/** Arrow-key axis. @default 'horizontal' */
-		orientation?: 'horizontal' | 'vertical';
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
 		children?: Snippet;
@@ -23,7 +23,7 @@
 <script lang="ts">
 	import { nextRovingTarget } from '../../utils/roving.js';
 
-	import { setToggleGroupState, type ToggleGroupItemEntry } from './context.js';
+	import { type ToggleGroupItemEntry, setToggleGroupState } from './context.js';
 
 	let {
 		defaultValue = undefined,

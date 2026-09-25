@@ -6,15 +6,15 @@
 		onValueChange?: ((value: string) => void) | undefined;
 		/** Initial code for uncontrolled usage. @default '' */
 		defaultValue?: string;
-		/** Current code (controlled). */
-		value?: string;
-		/** Segment count. Must be a positive integer. @default 6 */
-		length?: number;
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
 		/** Whether the code is display-only. @default false */
 		readOnly?: boolean;
 		children?: Snippet;
+		/** Segment count. Must be a positive integer. @default 6 */
+		length?: number;
+		/** Current code (controlled). */
+		value?: string;
 		/** Form field name (hidden input syncs the value). */
 		name?: string;
 	}

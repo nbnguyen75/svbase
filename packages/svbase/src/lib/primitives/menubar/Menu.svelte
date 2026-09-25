@@ -3,10 +3,10 @@
 
 	export interface MenuProps {
 		children?: Snippet;
-		/** Unique menu id within the menubar. */
-		value: string;
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
+		/** Unique menu id within the menubar. */
+		value: string;
 	}
 </script>
 

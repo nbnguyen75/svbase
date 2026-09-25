@@ -1,14 +1,11 @@
 <script lang="ts" module>
+	import type { FormValidationMode } from './context.js';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
-
-	import type { FormValidationMode } from './context.js';
 
 	export type { FormValidationMode };
 
 	export interface FormProps extends Omit<HTMLFormAttributes, 'children'> {
-		children?: Snippet;
-		ref?: HTMLFormElement | undefined;
 		/**
 		 * Called on every submit with the native form values and per-field errors.
 		 * Native submission is always prevented — handle navigation/saving here.
@@ -18,6 +15,8 @@
 			| undefined;
 		/** Default validation mode for nested fields. A field's own mode wins. @default 'onSubmit' */
 		validationMode?: FormValidationMode | undefined;
+		ref?: HTMLFormElement | undefined;
+		children?: Snippet;
 	}
 </script>
 
@@ -26,7 +25,7 @@
 
 	import { composeHandlers } from '../../utils/compose-handlers.js';
 
-	import { setFormState, type FormFieldRegistration } from './context.js';
+	import { type FormFieldRegistration, setFormState } from './context.js';
 
 	let {
 		onFormSubmit = undefined,

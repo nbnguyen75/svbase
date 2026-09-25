@@ -3,14 +3,14 @@
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	export interface ItemProps extends Omit<HTMLButtonAttributes, 'children'> {
-		children?: Snippet;
+		/** Fired with the next state, then synced into the group. */
+		onPressedChange?: ((pressed: boolean) => void) | undefined;
 		ref?: HTMLElement | undefined;
+		children?: Snippet;
 		/** Whether user interaction is ignored (OR-ed with group). @default false */
 		disabled?: boolean;
 		/** Unique identifying value. */
 		value: string;
-		/** Fired with the next state, then synced into the group. */
-		onPressedChange?: ((pressed: boolean) => void) | undefined;
 	}
 </script>
 

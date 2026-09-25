@@ -1,11 +1,11 @@
 <script lang="ts" module>
-	import type { HTMLImgAttributes } from 'svelte/elements';
 	import type { AvatarImageStatus } from './context.js';
+	import type { HTMLImgAttributes } from 'svelte/elements';
 
 	export interface ImageProps extends Omit<HTMLImgAttributes, 'children'> {
-		ref?: HTMLImageElement | undefined;
 		/** Fired whenever the loading status changes. */
 		onLoadingStatusChange?: ((status: AvatarImageStatus) => void) | undefined;
+		ref?: HTMLImageElement | undefined;
 	}
 </script>
 

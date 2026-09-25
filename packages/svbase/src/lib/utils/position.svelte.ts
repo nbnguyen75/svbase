@@ -1,17 +1,17 @@
 import {
 	arrow as arrowMiddleware,
+	type VirtualElement,
 	computePosition,
 	type Middleware,
 	type Placement,
 	type Strategy,
-	type VirtualElement,
 	autoUpdate,
 	offset,
 	shift,
 	flip
 } from '@floating-ui/dom';
 
-export type { Middleware, Placement, Strategy, VirtualElement };
+export type { VirtualElement, Middleware, Placement, Strategy };
 
 export interface FloatingPositionOptions {
 	/** Preferred placement; floating-ui may flip it on collision. @default 'bottom' */

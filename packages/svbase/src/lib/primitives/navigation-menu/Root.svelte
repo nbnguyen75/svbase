@@ -2,15 +2,15 @@
 	import type { Snippet } from 'svelte';
 
 	export interface RootProps {
-		children?: Snippet;
-		/** Hover intent before opening from closed. @default 50 */
-		delay?: number;
-		/** Hover intent before closing. @default 50 */
-		closeDelay?: number;
 		/** Arrow-key axis for moving between items. @default 'horizontal' */
 		orientation?: 'horizontal' | 'vertical';
+		/** Hover intent before closing. @default 50 */
+		closeDelay?: number;
+		children?: Snippet;
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
+		/** Hover intent before opening from closed. @default 50 */
+		delay?: number;
 	}
 </script>
 

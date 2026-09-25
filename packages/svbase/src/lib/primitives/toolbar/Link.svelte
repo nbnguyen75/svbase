@@ -3,10 +3,10 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface LinkProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
 		ref?: HTMLElement | undefined;
 		/** Destination URL. */
 		href?: string | undefined;
+		children?: Snippet;
 		/** Whether user interaction is ignored (OR-ed with toolbar). @default false */
 		disabled?: boolean;
 	}
@@ -66,6 +66,7 @@
 	}
 </script>
 
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <a
 	{...rest}
 	bind:this={ref}

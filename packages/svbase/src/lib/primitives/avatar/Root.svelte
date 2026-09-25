@@ -3,13 +3,13 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface RootProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
 		ref?: HTMLElement | undefined;
+		children?: Snippet;
 	}
 </script>
 
 <script lang="ts">
-	import { setAvatarState, type AvatarImageStatus } from './context.js';
+	import { type AvatarImageStatus, setAvatarState } from './context.js';
 
 	let {
 		ref = $bindable<HTMLElement | undefined>(undefined),

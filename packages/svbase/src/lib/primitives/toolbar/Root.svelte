@@ -3,10 +3,10 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface RootProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
-		ref?: HTMLElement | undefined;
 		/** Arrow-key axis. @default 'horizontal' */
 		orientation?: 'horizontal' | 'vertical';
+		ref?: HTMLElement | undefined;
+		children?: Snippet;
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
 	}
@@ -16,7 +16,7 @@
 	import { composeHandlers } from '../../utils/compose-handlers.js';
 	import { nextRovingTarget } from '../../utils/roving.js';
 
-	import { setToolbarState, type ToolbarItemEntry } from './context.js';
+	import { type ToolbarItemEntry, setToolbarState } from './context.js';
 
 	let {
 		orientation = 'horizontal',

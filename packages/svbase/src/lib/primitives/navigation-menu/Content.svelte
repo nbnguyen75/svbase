@@ -3,8 +3,8 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface ContentProps extends HTMLAttributes<HTMLDivElement> {
-		children?: Snippet;
 		ref?: HTMLDivElement | undefined;
+		children?: Snippet;
 		/** Overrides the generated id (input links to it). */
 		id?: string;
 	}

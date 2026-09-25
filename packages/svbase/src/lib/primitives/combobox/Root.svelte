@@ -3,41 +3,41 @@
 	import type { Snippet } from 'svelte';
 
 	export interface RootProps {
+		/** Custom matcher for filtering labels. Defaults to case-insensitive substring. */
+		filterItems?: ((label: string, filter: string) => boolean) | undefined;
 		/** Fired with the next value whenever selection changes. */
 		onValueChange?: ((value: string | null) => void) | undefined;
-		/** Fired with the next state whenever the list opens or closes. */
-		onOpenChange?: ((open: boolean) => void) | undefined;
 		/** Fired with the next filter text whenever it changes. */
 		onFilterChange?: ((filter: string) => void) | undefined;
+		/** Fired with the next state whenever the list opens or closes. */
+		onOpenChange?: ((open: boolean) => void) | undefined;
 		/** Initially selected value for uncontrolled usage. @default null */
 		defaultValue?: string | null;
+		/** Highlight the first match while filtering. @default true */
+		autoHighlight?: boolean;
+		/** Initial filter text for uncontrolled usage. @default '' */
+		defaultFilter?: string;
 		/** Selected item value, or `null` when empty (controlled). */
 		value?: string | null;
 		/** Initially open for uncontrolled usage. @default false */
 		defaultOpen?: boolean;
-		/** Whether the list is open (controlled). */
-		open?: boolean;
-		/** Initial filter text for uncontrolled usage. @default '' */
-		defaultFilter?: string;
-		/** Filter text (controlled). */
-		filter?: string;
-		/** Custom matcher for filtering labels. Defaults to case-insensitive substring. */
-		filterItems?: ((label: string, filter: string) => boolean) | undefined;
-		/** Highlight the first match while filtering. @default true */
-		autoHighlight?: boolean;
+		/** Preferred placement; flips on collision. @default 'bottom-start' */
+		placement?: Placement;
 		/**
 		 * Autocomplete mode: Enter commits the typed text itself as the value
 		 * instead of requiring an item match; blur keeps the text.
 		 * @default false
 		 */
 		freeInput?: boolean;
-		/** Preferred placement; flips on collision. @default 'bottom-start' */
-		placement?: Placement;
 		/** Gap between input and content, in pixels. @default 0 */
 		sideOffset?: number;
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
 		children?: Snippet;
+		/** Filter text (controlled). */
+		filter?: string;
+		/** Whether the list is open (controlled). */
+		open?: boolean;
 		/** Form field name (hidden input syncs the value). */
 		name?: string;
 	}

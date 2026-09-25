@@ -3,8 +3,8 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface RootProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
 		ref?: HTMLElement | undefined;
+		children?: Snippet;
 		/** Disables every nested Field control. @default false */
 		disabled?: boolean;
 	}

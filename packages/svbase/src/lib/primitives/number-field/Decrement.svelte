@@ -3,8 +3,8 @@
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	export interface DecrementProps extends HTMLButtonAttributes {
-		children?: Snippet;
 		ref?: HTMLElement | undefined;
+		children?: Snippet;
 		/** Whether user interaction is ignored (OR-ed with root). @default false */
 		disabled?: boolean;
 	}

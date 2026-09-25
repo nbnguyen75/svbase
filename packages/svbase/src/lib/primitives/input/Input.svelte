@@ -8,23 +8,23 @@
 		/** Fired with the next value on every committed change. */
 		onValueChange?: ((value: string) => void) | undefined;
 		inputRef?: HTMLInputElement | undefined;
-		/** Initial value for uncontrolled usage. @default '' */
-		defaultValue?: string;
-		/** Current value (controlled). */
-		value?: string;
 		/** Form field name. Falls back to the enclosing Field's name. Omit to exclude from submission. */
 		name?: string | undefined;
 		/** Applied to the input for native `<label for>` association. Falls back to the Field control id. */
 		id?: string | undefined;
+		/** Initial value for uncontrolled usage. @default '' */
+		defaultValue?: string;
+		/** Current value (controlled). */
+		value?: string;
 	}
 </script>
 
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { createId } from '../../utils/id.js';
-	import { optionalContext } from '../../utils/context.js';
 	import { composeHandlers } from '../../utils/compose-handlers.js';
+	import { optionalContext } from '../../utils/context.js';
+	import { createId } from '../../utils/id.js';
 	import { getFieldState } from '../field/context.js';
 
 	let {

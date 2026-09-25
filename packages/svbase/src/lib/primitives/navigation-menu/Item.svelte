@@ -3,10 +3,10 @@
 
 	export interface ItemProps {
 		children?: Snippet;
-		/** Unique item id within the navigation menu. */
-		value: string;
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
+		/** Unique item id within the navigation menu. */
+		value: string;
 	}
 </script>
 

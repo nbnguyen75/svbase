@@ -6,14 +6,12 @@
 		onValueChange?: ((value: number | null) => void) | undefined;
 		/** Initial value for uncontrolled usage. @default null */
 		defaultValue?: number | null;
-		/** Current value, or `null` when empty (controlled). */
-		value?: number | null;
 		/** Range minimum. Unbounded when omitted. */
 		min?: number | undefined;
 		/** Range maximum. Unbounded when omitted. */
 		max?: number | undefined;
-		/** Step for arrows and steppers. @default 1 */
-		step?: number;
+		/** Current value, or `null` when empty (controlled). */
+		value?: number | null;
 		/** Step for PageUp/PageDown. @default 10 */
 		largeStep?: number;
 		/** Whether user interaction is ignored. @default false */
@@ -21,6 +19,8 @@
 		/** Whether the value is display-only. @default false */
 		readOnly?: boolean;
 		children?: Snippet;
+		/** Step for arrows and steppers. @default 1 */
+		step?: number;
 		/** Form field name (hidden input syncs the value). */
 		name?: string;
 	}

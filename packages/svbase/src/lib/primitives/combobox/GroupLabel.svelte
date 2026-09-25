@@ -3,8 +3,8 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface GroupLabelProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
 		ref?: HTMLElement | undefined;
+		children?: Snippet;
 	}
 </script>
 

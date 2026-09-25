@@ -4,10 +4,10 @@
 	import { cn } from 'cn';
 
 	interface Props {
-		class?: string;
-		code: string;
 		filename?: string;
+		class?: string;
 		lang?: string;
+		code: string;
 	}
 
 	let { code, lang = 'svelte', filename = '', class: className = '' }: Props = $props();

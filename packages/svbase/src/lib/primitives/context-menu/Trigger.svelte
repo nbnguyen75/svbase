@@ -3,8 +3,8 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface TriggerProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
 		ref?: HTMLElement | undefined;
+		children?: Snippet;
 		/** Whether user interaction is ignored (native menu appears instead). @default false */
 		disabled?: boolean;
 	}

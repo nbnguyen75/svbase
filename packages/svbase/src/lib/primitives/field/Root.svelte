@@ -1,20 +1,11 @@
 <script lang="ts" module>
+	import type { FieldValidationMode } from './context.js';
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
-
-	import type { FieldValidationMode } from './context.js';
 
 	export type { FieldValidationMode };
 
 	export interface RootProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
-		ref?: HTMLElement | undefined;
-		/** Form field name. Falls back to the control's own name when omitted. */
-		name?: string | undefined;
-		/** Whether user interaction is ignored. Inherits fieldset disabled state. @default false */
-		disabled?: boolean;
-		/** External invalid flag (e.g. server errors). Keeps the field invalid while set. */
-		invalid?: boolean | undefined;
 		/**
 		 * Custom validator run after native constraints pass.
 		 * Return an error message string, or null when the value is valid.
@@ -23,18 +14,26 @@
 		validate?: ((value: unknown, formValues: Record<string, string>) => string | null) | undefined;
 		/** When validation runs. Overrides the enclosing Form's mode. @default 'onBlur' */
 		validationMode?: FieldValidationMode | undefined;
+		ref?: HTMLElement | undefined;
+		/** External invalid flag (e.g. server errors). Keeps the field invalid while set. */
+		invalid?: boolean | undefined;
+		/** Form field name. Falls back to the control's own name when omitted. */
+		name?: string | undefined;
+		children?: Snippet;
+		/** Whether user interaction is ignored. Inherits fieldset disabled state. @default false */
+		disabled?: boolean;
 	}
 </script>
 
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { createId } from '../../utils/id.js';
 	import { optionalContext } from '../../utils/context.js';
+	import { createId } from '../../utils/id.js';
 	import { getFieldsetState } from '../fieldset/context.js';
 	import { getFormState } from '../form/context.js';
 
-	import { setFieldState, type FieldControlHandle } from './context.js';
+	import { type FieldControlHandle, setFieldState } from './context.js';
 
 	let {
 		name = undefined,

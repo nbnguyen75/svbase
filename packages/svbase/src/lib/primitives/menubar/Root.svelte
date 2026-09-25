@@ -3,10 +3,10 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface RootProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
-		ref?: HTMLElement | undefined;
 		/** Arrow-key axis for moving between menus. @default 'horizontal' */
 		orientation?: 'horizontal' | 'vertical';
+		ref?: HTMLElement | undefined;
+		children?: Snippet;
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
 	}
@@ -15,7 +15,7 @@
 <script lang="ts">
 	import { nextRovingTarget } from '../../utils/roving.js';
 
-	import { setMenubarState, type MenubarMenuHandle, type MenubarTriggerHandle } from './context.js';
+	import { type MenubarTriggerHandle, type MenubarMenuHandle, setMenubarState } from './context.js';
 
 	let {
 		orientation = 'horizontal',

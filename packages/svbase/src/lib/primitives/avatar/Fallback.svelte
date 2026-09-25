@@ -3,8 +3,8 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface FallbackProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
 		ref?: HTMLElement | undefined;
+		children?: Snippet;
 		/**
 		 * Milliseconds to wait before showing the fallback while loading.
 		 * Errors always show immediately; once shown it stays visible.
@@ -28,7 +28,7 @@
 
 	const avatar = getAvatarState();
 
-	let delayPassed = $state(delayMs === 0);
+	let delayPassed = $derived(delayMs === 0);
 	let timer: number | undefined = undefined;
 
 	onDestroy(() => {

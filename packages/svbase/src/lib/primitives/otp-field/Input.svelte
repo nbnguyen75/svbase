@@ -8,21 +8,21 @@
 		inputRef?: HTMLInputElement | undefined;
 		/** Applied to the input for native `<label for>` association. Falls back to a generated id. */
 		id?: string | undefined;
-		/** Zero-based segment index within the code. */
-		index: number;
 		/**
 		 * Allowed characters as a regex source (tested per character).
 		 * @default '\\d'
 		 */
 		allowedPattern?: string;
+		/** Zero-based segment index within the code. */
+		index: number;
 	}
 </script>
 
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { createId } from '../../utils/id.js';
 	import { composeHandlers } from '../../utils/compose-handlers.js';
+	import { createId } from '../../utils/id.js';
 
 	import { getOtpState } from './context.js';
 

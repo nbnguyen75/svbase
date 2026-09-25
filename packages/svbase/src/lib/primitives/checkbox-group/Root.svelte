@@ -6,10 +6,10 @@
 		onValueChange?: ((value: Array<string>) => void) | undefined;
 		/** Initially selected values for uncontrolled usage. @default [] */
 		defaultValue?: Array<string>;
-		/** Selected values (controlled). */
-		value?: Array<string>;
 		/** Every selectable value; drives the parent checkbox state. */
 		allValues: Array<string>;
+		/** Selected values (controlled). */
+		value?: Array<string>;
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
 		children?: Snippet;
@@ -19,7 +19,7 @@
 </script>
 
 <script lang="ts">
-	import { setCheckboxGroupState, type CheckboxGroupParentState } from './context.js';
+	import { type CheckboxGroupParentState, setCheckboxGroupState } from './context.js';
 
 	let {
 		defaultValue = [],

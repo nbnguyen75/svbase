@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
+
+	import { afterNavigate } from '$app/navigation';
 
 	interface TocItem {
 		depth: number;
-		id: string;
 		text: string;
+		id: string;
 	}
 
 	let items: Array<TocItem> = $state([]);

@@ -7,24 +7,24 @@
 		onSelect?: (() => void) | undefined;
 		/** Delegated access to the item element. */
 		ref?: HTMLElement | undefined;
-		/** Whether the item is skipped by interaction and navigation. @default false */
-		disabled?: boolean;
-		children?: Snippet;
-		/** Unique identifying value submitted to forms. */
-		value: string;
 		/**
 		 * Display text used for filtering and committed to the input on select.
 		 * Falls back to the rendered text content when omitted.
 		 */
 		label?: string | undefined;
+		/** Whether the item is skipped by interaction and navigation. @default false */
+		disabled?: boolean;
+		children?: Snippet;
+		/** Unique identifying value submitted to forms. */
+		value: string;
 	}
 </script>
 
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { createId } from '../../utils/id.js';
 	import { composeHandlers } from '../../utils/compose-handlers.js';
+	import { createId } from '../../utils/id.js';
 	import { Button } from '../button/index.js';
 
 	import { getComboboxRootState } from './context.js';

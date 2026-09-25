@@ -14,6 +14,8 @@
 		indeterminate?: boolean;
 		/** Submitted value when unchecked (nothing submitted when omitted). */
 		uncheckedValue?: string;
+		/** Applied to the hidden input for native `<label for>` association. */
+		id?: string | undefined;
 		/** Whether user interaction is ignored. @default false */
 		disabled?: boolean;
 		required?: boolean;
@@ -26,8 +28,6 @@
 		/** Form field name. Omit to exclude from submission. */
 		name?: string;
 		form?: string;
-		/** Applied to the hidden input for native `<label for>` association. */
-		id?: string | undefined;
 	}
 </script>
 

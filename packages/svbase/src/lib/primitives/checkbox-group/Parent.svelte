@@ -3,17 +3,17 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface ParentProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
-		ref?: HTMLElement | undefined;
-		/** Whether user interaction is ignored (OR-ed with group). @default false */
-		disabled?: boolean;
 		/** Fired with the next state, then synced into the group. */
 		onCheckedChange?: ((checked: boolean) => void) | undefined;
+		ref?: HTMLElement | undefined;
+		children?: Snippet;
+		/** Whether user interaction is ignored (OR-ed with group). @default false */
+		disabled?: boolean;
 	}
 </script>
 
 <script lang="ts">
-	import { Root as CheckboxRoot, Indicator as CheckboxIndicator } from '../checkbox/index.js';
+	import { Indicator as CheckboxIndicator, Root as CheckboxRoot } from '../checkbox/index.js';
 
 	import { getCheckboxGroupState } from './context.js';
 

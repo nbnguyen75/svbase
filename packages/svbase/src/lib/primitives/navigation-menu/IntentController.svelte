@@ -2,10 +2,10 @@
 	import type { Snippet } from 'svelte';
 
 	export interface IntentControllerProps {
-		children?: Snippet;
-		delay?: number;
 		closeDelay?: number;
+		children?: Snippet;
 		disabled?: boolean;
+		delay?: number;
 	}
 </script>
 

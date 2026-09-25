@@ -3,10 +3,10 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface LinkProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
 		ref?: HTMLElement | undefined;
 		/** Destination URL. */
 		href?: string | undefined;
+		children?: Snippet;
 	}
 </script>
 

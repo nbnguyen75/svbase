@@ -3,10 +3,10 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export interface SeparatorProps extends HTMLAttributes<HTMLElement> {
-		children?: Snippet;
-		ref?: HTMLElement | undefined;
 		/** Separator orientation. @default 'horizontal' */
 		orientation?: 'horizontal' | 'vertical';
+		ref?: HTMLElement | undefined;
+		children?: Snippet;
 	}
 </script>
 

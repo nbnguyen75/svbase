@@ -14,9 +14,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { createId } from '../../utils/id.js';
-	import { optionalContext } from '../../utils/context.js';
 	import { composeHandlers } from '../../utils/compose-handlers.js';
+	import { optionalContext } from '../../utils/context.js';
+	import { createId } from '../../utils/id.js';
 	import { getFieldState } from '../field/context.js';
 
 	import { getComboboxRootState } from './context.js';
