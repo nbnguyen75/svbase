@@ -1,0 +1,84 @@
+<script lang="ts">
+	import { Drawer } from 'svbase';
+
+	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
+	import CodeBlock from '../CodeBlock.svelte';
+	import Kbd from '../Kbd.svelte';
+
+	const anatomy = `<script>
+  import { Drawer } from 'svbase';
+<\/script>
+
+<Drawer.Root side="right">
+  <Drawer.Trigger>Open</Drawer.Trigger>
+  <Drawer.Portal>
+    <Drawer.Overlay />
+    <Drawer.Content>
+      <Drawer.Title>Panel</Drawer.Title>
+      <Drawer.Close>Close</Drawer.Close>
+    </Drawer.Content>
+  </Drawer.Portal>
+</Drawer.Root>`;
+
+	const rootProps: Array<ApiProp> = [
+		{
+			name: 'side',
+			type: "'left' | 'right' | 'top' | 'bottom'",
+			defaultValue: "'right'",
+			description: 'Edge the drawer anchors to.'
+		},
+		{
+			name: 'open',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled open state (one-way). Sync back via onOpenChange.'
+		}
+	];
+</script>
+
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
+
+# Drawer
+
+Edge-anchored sheet reusing the dialog focus controller. Swipe gestures are a planned follow-up.
+
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
+	<Drawer.Root side="right">
+		<Drawer.Trigger
+			class="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110"
+		>
+			Open right drawer
+		</Drawer.Trigger>
+		<Drawer.Portal>
+			<Drawer.Overlay class="fixed inset-0 bg-black/50" />
+			<Drawer.Content class="w-full max-w-md border bg-card p-6 shadow-lg">
+				<Drawer.Title class="text-lg font-semibold">Notifications</Drawer.Title>
+				<Drawer.Description class="text-sm text-muted-foreground">
+					Edge-anchored, focus-trapped, Escape-dismissed.
+				</Drawer.Description>
+				<Drawer.Close
+					class="mt-4 inline-flex h-9 items-center justify-center gap-2 rounded-md border bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent"
+				>
+					Close
+				</Drawer.Close>
+			</Drawer.Content>
+		</Drawer.Portal>
+	</Drawer.Root>
+</div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### Drawer.Root
+
+<ApiTable props={rootProps} />
+
+`Drawer.Content` anchors to the `side` edge (`data-side` styling hook) with structural positioning only — all visuals stay consumer-owned. `Trigger`, `Overlay`, `Title`, `Description`, `Close`, and `Portal` are the dialog engine re-exported unchanged — see [Dialog](/dialog).
+
+## Keyboard interactions
+
+- <Kbd>Tab</Kbd> cycles focus inside while open (focus trap).
+- <Kbd>Esc</Kbd> closes and returns focus to the trigger.

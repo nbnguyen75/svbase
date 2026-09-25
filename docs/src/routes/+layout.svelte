@@ -23,6 +23,7 @@
 		['combobox', 'Combobox'],
 		['context-menu', 'Context Menu'],
 		['dialog', 'Dialog'],
+		['drawer', 'Drawer'],
 		['dropdown-menu', 'Dropdown Menu'],
 		['form', 'Form'],
 		['menubar', 'Menubar'],

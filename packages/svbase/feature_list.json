@@ -194,8 +194,8 @@
 			"name": "Drawer / sheet",
 			"description": "Side-panel modal reusing the dialog focus/scroll-lock controller with directional placement (left/right/top/bottom).",
 			"dependencies": ["feat-007"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/drawer/, docs/src/routes/drawer/+page.svx"
 		},
 		{
 			"id": "feat-023",

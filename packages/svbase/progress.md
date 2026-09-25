@@ -52,6 +52,12 @@
 - [x] **Fixes found by tests**: fixture missing Root wrapper; `$effect` registration loops — use run-once `onMount` (bind:this resolves before mount callbacks); synthetic keydown never triggers native button activation (explicit + preventDefault); menubar needs directly-owned `menuitem`s for axe (native buttons violate required-owned).
 - [x] **Verification**: 10 browser tests + axe ×2; suite 157/157; check/lint/format/build/prepack green; `./context-menu` + `./menubar` exports + docs pages + sidebar entries.
 
+### 2026-09-25: Drawer / sheet (feat-022)
+
+- [x] **Drawer root/content** (`src/lib/primitives/drawer/`): `side` prop with edge-anchoring structural classes + `data-side` hook; dialog controller reused verbatim (focus trap, scroll lock, Escape, overlay dismiss); remaining parts re-exported from dialog.
+- [x] **Fixes found by tests**: wrapper must redeclare `open` as `$bindable` for two-way control — instead follow the AlertDialog precedent (one-way passthrough, consumer syncs via `onOpenChange`).
+- [x] **Verification**: 3 browser tests + axe; suite 160/160; check/lint/format/build/prepack green; `./drawer` export + docs page + sidebar entry. Swipe-to-dismiss deferred.
+
 ---
 
 ## Session History
