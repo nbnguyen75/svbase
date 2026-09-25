@@ -184,10 +184,10 @@
 		{
 			"id": "feat-021",
 			"name": "Context menu + menubar",
-			"description": "Right-click context menu and menu bar with cross-menu keyboard navigation; reuses the dropdown-menu item registry, typeahead, and submenu machinery.",
+			"description": "Right-click context menu with cursor anchoring and touch long-press plus coordinated menu bar with cross-menu traversal, reusing the dropdown-menu item engine.",
 			"dependencies": ["feat-009"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/context-menu/, src/lib/primitives/menubar/, docs/src/routes/context-menu/+page.svx, docs/src/routes/menubar/+page.svx"
 		},
 		{
 			"id": "feat-022",

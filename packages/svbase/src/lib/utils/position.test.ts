@@ -22,4 +22,14 @@ describe('FloatingPosition', () => {
 			position.update({ offset: 4, shiftPadding: 2 });
 		}).not.toThrow();
 	});
+
+	test('virtual anchor without floating stays unpositioned', () => {
+		const position = new FloatingPosition();
+		expect(() => {
+			position.setVirtualAnchor(100, 200);
+		}).not.toThrow();
+		expect(position.positioned).toBe(false);
+		position.clearVirtualAnchor();
+		expect(position.positioned).toBe(false);
+	});
 });

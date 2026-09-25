@@ -46,9 +46,20 @@
 	const defaultContentId = createId('menu-content');
 
 	let contentId = $state<string | undefined>(undefined);
+	let anchorPoint = $state<{ x: number; y: number } | null>(null);
 
 	$effect(() => {
 		position.update({ placement, offset: sideOffset });
+	});
+
+	// Cursor anchoring (context menus) overrides the trigger element anchor.
+	// Clearing on close returns subsequent opens to trigger anchoring.
+	$effect(() => {
+		if (anchorPoint) {
+			position.setVirtualAnchor(anchorPoint.x, anchorPoint.y);
+			return () => position.clearVirtualAnchor();
+		}
+		if (!open && anchorPoint !== null) anchorPoint = null;
 	});
 
 	$effect(() => {
@@ -121,6 +132,9 @@
 		},
 		registerContentId(id: string | undefined) {
 			contentId = id;
+		},
+		setAnchor(point: { x: number; y: number } | null) {
+			anchorPoint = point;
 		}
 	});
 </script>

@@ -44,6 +44,14 @@
 - [x] **Fixes found by tests**: input must attach `position.reference` (popup never positioned without it); option/trigger `mousedown` preventDefault keeps focus in the textbox so blur-revert can't swallow item clicks; `$state` rune collides with a `state` variable (rename); synchronous test dispatches batch — poll once to flush before sync DOM reads.
 - [x] **Verification**: 7 browser tests + axe; suite 146/146; check/lint/format/build/prepack green; `./combobox` export + docs page + sidebar entry.
 
+### 2026-09-25: Context menu + menubar (feat-021)
+
+- [x] **Virtual cursor anchoring** in `FloatingPosition` (`setVirtualAnchor`/`clearVirtualAnchor`, Node-safe plain rect; stale-flight guard compares the effective reference) + unit tests; menu root `setAnchor` state with auto-clear on close.
+- [x] **Context menu** (`src/lib/primitives/context-menu/`): area trigger with right-click anchoring, touch long-press (500ms, suppresses the follow-up contextmenu), left-press dismiss; root + parts re-export the dropdown-menu engine.
+- [x] **Menubar** (`src/lib/primitives/menubar/`): `role="menubar"` root with orientation-gated roving, menu units bridging controlled open (single open at a time), triggers as `menuitem` drivers with explicit activation (no native-button double-toggle), hover/focus switching while open.
+- [x] **Fixes found by tests**: fixture missing Root wrapper; `$effect` registration loops — use run-once `onMount` (bind:this resolves before mount callbacks); synthetic keydown never triggers native button activation (explicit + preventDefault); menubar needs directly-owned `menuitem`s for axe (native buttons violate required-owned).
+- [x] **Verification**: 10 browser tests + axe ×2; suite 157/157; check/lint/format/build/prepack green; `./context-menu` + `./menubar` exports + docs pages + sidebar entries.
+
 ---
 
 ## Session History

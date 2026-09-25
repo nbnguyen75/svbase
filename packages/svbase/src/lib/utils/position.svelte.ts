@@ -4,13 +4,14 @@ import {
 	type Middleware,
 	type Placement,
 	type Strategy,
+	type VirtualElement,
 	autoUpdate,
 	offset,
 	shift,
 	flip
 } from '@floating-ui/dom';
 
-export type { Middleware, Placement, Strategy };
+export type { Middleware, Placement, Strategy, VirtualElement };
 
 export interface FloatingPositionOptions {
 	/** Preferred placement; floating-ui may flip it on collision. @default 'bottom' */
@@ -52,6 +53,7 @@ export class FloatingPosition {
 	arrowY = $state<number | undefined>(undefined);
 
 	#reference: HTMLElement | undefined = undefined;
+	#virtual: VirtualElement | undefined = undefined;
 	#floating: HTMLElement | undefined = undefined;
 	#arrow: HTMLElement | undefined = undefined;
 	#stopAutoUpdate: (() => void) | undefined = undefined;
@@ -90,7 +92,6 @@ export class FloatingPosition {
 			}
 		};
 	};
-
 	/** Attach to the floating element. */
 	floating = (node: HTMLElement): (() => void) => {
 		this.#floating = node;
@@ -102,6 +103,32 @@ export class FloatingPosition {
 			}
 		};
 	};
+
+	/**
+	 * Anchor to a viewport point (e.g. a right-click) instead of the
+	 * reference element. Takes precedence until `clearVirtualAnchor()`.
+	 * Uses a plain rect object (no DOM globals) so it stays Node-safe.
+	 */
+	setVirtualAnchor(x: number, y: number): void {
+		const rect = {
+			x,
+			y,
+			width: 0,
+			height: 0,
+			top: y,
+			left: x,
+			right: x,
+			bottom: y,
+			toJSON: () => ({ x, y, width: 0, height: 0 })
+		};
+		this.#virtual = { getBoundingClientRect: () => rect as unknown as DOMRect };
+		this.#sync();
+	}
+
+	clearVirtualAnchor(): void {
+		this.#virtual = undefined;
+		this.#sync();
+	}
 
 	/** Attach to the arrow element. */
 	arrow = (node: HTMLElement): (() => void) => {
@@ -118,7 +145,7 @@ export class FloatingPosition {
 	#sync(): void {
 		this.#stopAutoUpdate?.();
 		this.#stopAutoUpdate = undefined;
-		const reference = this.#reference;
+		const reference = this.#virtual ?? this.#reference;
 		const floating = this.#floating;
 		if (!reference || !floating) {
 			this.positioned = false;
@@ -128,7 +155,7 @@ export class FloatingPosition {
 	}
 
 	async #compute(): Promise<void> {
-		const reference = this.#reference;
+		const reference = this.#virtual ?? this.#reference;
 		const floating = this.#floating;
 		const arrowElement = this.#arrow;
 		if (!reference || !floating) return;
@@ -142,7 +169,8 @@ export class FloatingPosition {
 			middleware
 		});
 		// Stale flight: nodes changed while awaiting.
-		if (this.#reference !== reference || this.#floating !== floating) return;
+		const current = this.#virtual ?? this.#reference;
+		if (current !== reference || this.#floating !== floating) return;
 		floating.style.position = this.#strategy;
 		floating.style.left = `${x}px`;
 		floating.style.top = `${y}px`;

@@ -1,0 +1,100 @@
+<script lang="ts">
+	import { ContextMenu } from 'svbase';
+
+	import ApiTable, { type ApiProp } from '../ApiTable.svelte';
+	import CodeBlock from '../CodeBlock.svelte';
+	import Kbd from '../Kbd.svelte';
+
+	let picked: string | null = $state(null);
+
+	const anatomy = `<script>
+  import { ContextMenu } from 'svbase';
+<\/script>
+
+<ContextMenu.Root>
+  <ContextMenu.Trigger>
+    Right-click here
+    <ContextMenu.Portal>
+      <ContextMenu.Content>
+        <ContextMenu.Item>Cut</ContextMenu.Item>
+      </ContextMenu.Content>
+    </ContextMenu.Portal>
+  </ContextMenu.Trigger>
+</ContextMenu.Root>`;
+
+	const triggerProps: Array<ApiProp> = [
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction; the native menu appears instead.'
+		}
+	];
+</script>
+
+<p class="mb-2 text-xs tracking-[0.08em] text-muted-foreground uppercase">Svbase · Primitives</p>
+
+# Context Menu
+
+Right-click (or long-press) menu anchored at the cursor. A dropdown menu with cursor anchoring — all menu parts work unchanged.
+
+<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
+	<ContextMenu.Root>
+		<ContextMenu.Trigger>
+			<div class="rounded-lg border border-dashed p-8 text-center text-sm text-muted-foreground">
+				Right-click here (or long-press on touch)
+			</div>
+			<ContextMenu.Portal>
+				<ContextMenu.Content class="min-w-48 rounded-lg border bg-popover p-1 shadow-md">
+					<ContextMenu.Item
+						class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
+						onSelect={() => (picked = 'cut')}
+					>
+						Cut
+					</ContextMenu.Item>
+					<ContextMenu.Item
+						class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
+						onSelect={() => (picked = 'copy')}
+					>
+						Copy
+					</ContextMenu.Item>
+					<ContextMenu.Separator class="my-1 border-t" />
+					<ContextMenu.SubRoot>
+						<ContextMenu.SubTrigger class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
+							Share
+						</ContextMenu.SubTrigger>
+						<ContextMenu.Portal>
+							<ContextMenu.Content class="min-w-40 rounded-lg border bg-popover p-1 shadow-md">
+								<ContextMenu.Item
+									class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
+									onSelect={() => (picked = 'email')}
+								>
+									Email
+								</ContextMenu.Item>
+							</ContextMenu.Content>
+						</ContextMenu.Portal>
+					</ContextMenu.SubRoot>
+				</ContextMenu.Content>
+			</ContextMenu.Portal>
+		</ContextMenu.Trigger>
+	</ContextMenu.Root>
+	<p class="mt-3 text-sm text-muted-foreground">Picked: {picked ?? '—'}</p>
+</div>
+
+## Anatomy
+
+<CodeBlock code={anatomy} filename="App.svelte" />
+
+## API reference
+
+### ContextMenu.Trigger
+
+<ApiTable props={triggerProps} />
+
+`ContextMenu.Root` is the dropdown-menu root carrying cursor-anchor state; `Content`, `Item`, `Separator`, `CheckboxItem`, `RadioGroup`, submenus, and `Portal` are the menu engine re-exported unchanged. See [Dropdown Menu](/dropdown-menu) for their props.
+
+## Keyboard interactions
+
+- <Kbd>↑</Kbd><Kbd>↓</Kbd> move focus and highlight once open; <Kbd>Home</Kbd> / <Kbd>End</Kbd> jump; type to search.
+- <Kbd>Enter</Kbd> / <Kbd>Space</Kbd> selects; <Kbd>Esc</Kbd> closes; <Kbd>Tab</Kbd> dismisses.
+- A left press inside the trigger area dismisses an open menu.

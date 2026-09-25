@@ -36,6 +36,12 @@ export interface MenuRootState {
 	registerTrigger(element: HTMLElement | undefined): void;
 	registerContent(element: HTMLElement | undefined): void;
 	registerContentId(id: string | undefined): void;
+	/**
+	 * Anchor the menu to a viewport point (context-menu style) instead of
+	 * the trigger element. Pass `null` to return to trigger anchoring.
+	 * Unused by plain dropdown menus.
+	 */
+	setAnchor(point: { x: number; y: number } | null): void;
 }
 
 export interface MenuContentState {

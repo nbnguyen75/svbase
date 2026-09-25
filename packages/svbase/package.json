@@ -48,6 +48,11 @@
 			"svelte": "./dist/primitives/combobox/index.js",
 			"default": "./dist/primitives/combobox/index.js"
 		},
+		"./context-menu": {
+			"types": "./dist/primitives/context-menu/index.d.ts",
+			"svelte": "./dist/primitives/context-menu/index.js",
+			"default": "./dist/primitives/context-menu/index.js"
+		},
 		"./dialog": {
 			"types": "./dist/primitives/dialog/index.d.ts",
 			"svelte": "./dist/primitives/dialog/index.js",
@@ -82,6 +87,11 @@
 			"types": "./dist/primitives/input/index.d.ts",
 			"svelte": "./dist/primitives/input/index.js",
 			"default": "./dist/primitives/input/index.js"
+		},
+		"./menubar": {
+			"types": "./dist/primitives/menubar/index.d.ts",
+			"svelte": "./dist/primitives/menubar/index.js",
+			"default": "./dist/primitives/menubar/index.js"
 		},
 		"./popover": {
 			"types": "./dist/primitives/popover/index.d.ts",

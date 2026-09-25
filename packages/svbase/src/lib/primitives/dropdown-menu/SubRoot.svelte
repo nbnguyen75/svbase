@@ -135,6 +135,10 @@
 		},
 		registerContentId(id: string | undefined) {
 			contentId = id;
+		},
+		setAnchor() {
+			// Submenus anchor to their trigger by definition — cursor
+			// anchoring is a root-menu capability only.
 		}
 	});
 </script>
