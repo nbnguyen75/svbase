@@ -210,8 +210,8 @@
 			"name": "Avatar",
 			"description": "Image avatar with loading states and text fallback (initials), plus configurable display delay.",
 			"dependencies": ["feat-002"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/avatar/, docs/src/routes/avatar/+page.svx"
 		},
 		{
 			"id": "feat-025",

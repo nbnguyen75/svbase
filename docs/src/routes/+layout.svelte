@@ -17,6 +17,7 @@
 	const primitives = [
 		['accordion', 'Accordion'],
 		['alert-dialog', 'Alert Dialog'],
+		['avatar', 'Avatar'],
 		['button', 'Button'],
 		['checkbox', 'Checkbox'],
 		['collapsible', 'Collapsible'],

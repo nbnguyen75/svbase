@@ -2,6 +2,7 @@
 export { clickOutside, escapeKey } from './actions/index.js';
 export * as Accordion from './primitives/accordion/index.js';
 export * as AlertDialog from './primitives/alert-dialog/index.js';
+export * as Avatar from './primitives/avatar/index.js';
 export { Button, type ButtonProps } from './primitives/button/index.js';
 export * as Checkbox from './primitives/checkbox/index.js';
 export * as Collapsible from './primitives/collapsible/index.js';

@@ -64,6 +64,12 @@
 - [x] **Fixes found by tests**: stray control character broke one fixture line's parse (rewrote the line; watch for invisible bytes); menubar switch test is timing-sensitive under load (settled validation state before clicks).
 - [x] **Verification**: 5 browser tests + axe; suite 165/165; check/lint/format/build/prepack green; `./navigation-menu` export + docs page + sidebar entry.
 
+### 2026-09-25: Avatar (feat-024)
+
+- [x] **Avatar root/image/fallback** (`src/lib/primitives/avatar/`): shared loading status (`idle/loading/loaded/error`) with `data-status`, cached-image settle read at mount, fallback with load delay (errors always immediate, sticky once shown).
+- [x] **Fixes found by tests**: `HTMLImgAttributes` (not `HTMLInputAttributes`); hidden images leave the a11y tree (query by DOM, not role).
+- [x] **Verification**: 3 browser tests + axe; suite 168/168; check/lint/format/build/prepack green; `./avatar` export + docs page + sidebar entry.
+
 ---
 
 ## Session History
