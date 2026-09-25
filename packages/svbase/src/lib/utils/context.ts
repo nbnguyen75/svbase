@@ -19,3 +19,15 @@ export function createPrimitiveContext<T>(name: string): readonly [() => T, (val
 
 	return [getOrThrow, set] as const;
 }
+
+/**
+ * Reads an optional ancestor context (e.g. Form or Fieldset from a nested
+ * Field). Returns `null` instead of throwing when no provider is mounted.
+ */
+export function optionalContext<T>(get: () => T): T | null {
+	try {
+		return get();
+	} catch {
+		return null;
+	}
+}

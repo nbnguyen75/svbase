@@ -53,10 +53,30 @@
 			"svelte": "./dist/primitives/dropdown-menu/index.js",
 			"default": "./dist/primitives/dropdown-menu/index.js"
 		},
+		"./field": {
+			"types": "./dist/primitives/field/index.d.ts",
+			"svelte": "./dist/primitives/field/index.js",
+			"default": "./dist/primitives/field/index.js"
+		},
+		"./fieldset": {
+			"types": "./dist/primitives/fieldset/index.d.ts",
+			"svelte": "./dist/primitives/fieldset/index.js",
+			"default": "./dist/primitives/fieldset/index.js"
+		},
+		"./form": {
+			"types": "./dist/primitives/form/index.d.ts",
+			"svelte": "./dist/primitives/form/index.js",
+			"default": "./dist/primitives/form/index.js"
+		},
 		"./hidden-input": {
 			"types": "./dist/primitives/hidden-input/index.d.ts",
 			"svelte": "./dist/primitives/hidden-input/index.js",
 			"default": "./dist/primitives/hidden-input/index.js"
+		},
+		"./input": {
+			"types": "./dist/primitives/input/index.d.ts",
+			"svelte": "./dist/primitives/input/index.js",
+			"default": "./dist/primitives/input/index.js"
 		},
 		"./popover": {
 			"types": "./dist/primitives/popover/index.d.ts",

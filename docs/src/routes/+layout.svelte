@@ -22,6 +22,7 @@
 		['collapsible', 'Collapsible'],
 		['dialog', 'Dialog'],
 		['dropdown-menu', 'Dropdown Menu'],
+		['form', 'Form'],
 		['popover', 'Popover'],
 		['progress', 'Progress'],
 		['radio-group', 'Radio Group'],

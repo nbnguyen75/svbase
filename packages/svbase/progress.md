@@ -29,6 +29,15 @@
 - [x] **Build fix**: pinned Vercel `runtime: 'nodejs22.x'` in `docs/vite.config.ts` — adapter 6.3.4 rejects local Node 26 at build time; pinning also fixes the deploy runtime.
 - [x] **Gates**: check 0/0, test 127/127, lint 0, format clean, build OK, prepack + publint pass; dev smoke `:5173` (slug ids, sidebar active state, demo SSR verified in HTML).
 
+### 2026-09-25: Form story (feat-019)
+
+- [x] **Field root/label/control/description/error** (`src/lib/primitives/field/`): validity/dirty/touched/filled/focused state, `data-*` attrs, generated id linkage with presence-tracked `aria-describedby`, external `invalid` override, `validate` (sync) + `onBlur/onChange/onSubmit` modes, owned-message `setCustomValidity` tracking (never reads its own message back as native).
+- [x] **Input** (`src/lib/primitives/input/`): controlled/uncontrolled headless text input, auto-registers with enclosing Field (id/name/disabled/aria inherited), standalone-safe.
+- [x] **Form** (`src/lib/primitives/form/`): validates all fields on submit (preventDefault always), `onFormSubmit({values, errors})` via native FormData, focuses first invalid, reset clears field state. `reset` listener attached directly (non-bubbling; Svelte delegation misses it).
+- [x] **Fieldset** (`src/lib/primitives/fieldset/`): disabled-grouping root + legend.
+- [x] **Semantics**: `valueMissing` suppressed until dirty on change/blur, always counts on submit; 12 browser tests (field 8, form 4) + axe; suite 139/139.
+- [x] **Test-env lessons**: programmatic `el.value=` never sets Chromium's dirty flag, so `minlength`/`tooShort` can't be tested that way (use `required`/`type`/`custom` violations); blur-induced error unmounts shift layout and swallow in-flight clicks — settle validation state before clicking in tests; stale `node_modules/.vite` cache serves old transforms (delete it when behavior contradicts source).
+
 ---
 
 ## Session History

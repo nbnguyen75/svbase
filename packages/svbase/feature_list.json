@@ -164,6 +164,14 @@
 			"dependencies": ["feat-017"],
 			"status": "done",
 			"evidence": "docs/src/assets/app.css, docs/vite.config.ts, docs/src/routes/Kbd.svelte"
+		},
+		{
+			"id": "feat-019",
+			"name": "Form story: field, input, form, fieldset",
+			"description": "Field root/label/control/description/error with native constraint + custom sync validation (dirty-suppressed valueMissing, submit bypasses it), headless Input auto-registering in fields, Form validating all fields on submit with values/errors and focus-first-invalid plus reset clearing, Fieldset disabled grouping.",
+			"dependencies": ["phase-001"],
+			"status": "done",
+			"evidence": "src/lib/primitives/field/, src/lib/primitives/input/, src/lib/primitives/form/, src/lib/primitives/fieldset/, docs/src/routes/form/+page.svx"
 		}
 	]
 }
