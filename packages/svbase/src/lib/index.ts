@@ -5,6 +5,7 @@ export * as AlertDialog from './primitives/alert-dialog/index.js';
 export { Button, type ButtonProps } from './primitives/button/index.js';
 export * as Checkbox from './primitives/checkbox/index.js';
 export * as Collapsible from './primitives/collapsible/index.js';
+export * as Combobox from './primitives/combobox/index.js';
 export * as Dialog from './primitives/dialog/index.js';
 export * as DropdownMenu from './primitives/dropdown-menu/index.js';
 export * as Field from './primitives/field/index.js';

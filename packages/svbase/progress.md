@@ -38,6 +38,12 @@
 - [x] **Semantics**: `valueMissing` suppressed until dirty on change/blur, always counts on submit; 12 browser tests (field 8, form 4) + axe; suite 139/139.
 - [x] **Test-env lessons**: programmatic `el.value=` never sets Chromium's dirty flag, so `minlength`/`tooShort` can't be tested that way (use `required`/`type`/`custom` violations); blur-induced error unmounts shift layout and swallow in-flight clicks — settle validation state before clicking in tests; stale `node_modules/.vite` cache serves old transforms (delete it when behavior contradicts source).
 
+### 2026-09-25: Combobox + autocomplete (feat-020)
+
+- [x] **Combobox root/input/trigger/portal/content/item/group/empty** (`src/lib/primitives/combobox/`): string-valued single select, bindable filter with default substring matcher (overridable), auto-highlight, `freeInput` autocomplete mode, hidden-input form sync, Field auto-registration, focus-in-textbox + `aria-activedescendant` pattern.
+- [x] **Fixes found by tests**: input must attach `position.reference` (popup never positioned without it); option/trigger `mousedown` preventDefault keeps focus in the textbox so blur-revert can't swallow item clicks; `$state` rune collides with a `state` variable (rename); synchronous test dispatches batch — poll once to flush before sync DOM reads.
+- [x] **Verification**: 7 browser tests + axe; suite 146/146; check/lint/format/build/prepack green; `./combobox` export + docs page + sidebar entry.
+
 ---
 
 ## Session History

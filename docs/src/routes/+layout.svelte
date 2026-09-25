@@ -20,6 +20,7 @@
 		['button', 'Button'],
 		['checkbox', 'Checkbox'],
 		['collapsible', 'Collapsible'],
+		['combobox', 'Combobox'],
 		['dialog', 'Dialog'],
 		['dropdown-menu', 'Dropdown Menu'],
 		['form', 'Form'],

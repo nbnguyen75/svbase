@@ -178,8 +178,8 @@
 			"name": "Combobox + autocomplete",
 			"description": "Filterable single-select with text input and listbox popup (command-palette pattern) plus free-text autocomplete with suggestions; reuses popover positioning and field input integration.",
 			"dependencies": ["feat-019", "feat-008"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/combobox/, docs/src/routes/combobox/+page.svx"
 		},
 		{
 			"id": "feat-021",
