@@ -172,6 +172,102 @@
 			"dependencies": ["phase-001"],
 			"status": "done",
 			"evidence": "src/lib/primitives/field/, src/lib/primitives/input/, src/lib/primitives/form/, src/lib/primitives/fieldset/, docs/src/routes/form/+page.svx"
+		},
+		{
+			"id": "feat-020",
+			"name": "Combobox + autocomplete",
+			"description": "Filterable single-select with text input and listbox popup (command-palette pattern) plus free-text autocomplete with suggestions; reuses popover positioning and field input integration.",
+			"dependencies": ["feat-019", "feat-008"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-021",
+			"name": "Context menu + menubar",
+			"description": "Right-click context menu and menu bar with cross-menu keyboard navigation; reuses the dropdown-menu item registry, typeahead, and submenu machinery.",
+			"dependencies": ["feat-009"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-022",
+			"name": "Drawer / sheet",
+			"description": "Side-panel modal reusing the dialog focus/scroll-lock controller with directional placement (left/right/top/bottom).",
+			"dependencies": ["feat-007"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-023",
+			"name": "Navigation menu",
+			"description": "Hover-intent site navigation menus with viewport-positioned content panels and keyboard traversal across triggers.",
+			"dependencies": ["feat-009"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-024",
+			"name": "Avatar",
+			"description": "Image avatar with loading states and text fallback (initials), plus configurable display delay.",
+			"dependencies": ["feat-002"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-025",
+			"name": "Number field",
+			"description": "Spinbutton with increment/decrement controls, keyboard stepping, min/max/step/clamp validation integrated with Field.",
+			"dependencies": ["feat-019"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-026",
+			"name": "OTP field",
+			"description": "Segmented one-time-code input with auto-advance, backspace navigation, and paste-to-distribute support.",
+			"dependencies": ["feat-019"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-027",
+			"name": "Toggle group + checkbox group",
+			"description": "Grouped selection: single/multiple toggle group with roving focus, and checkbox group with mixed select-all state.",
+			"dependencies": ["feat-003", "feat-004"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-028",
+			"name": "Toolbar",
+			"description": "Roving-tabindex toolbar grouping controls with orientation, disabled-item skipping, and group/link subparts.",
+			"dependencies": ["feat-002"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-029",
+			"name": "Preview card",
+			"description": "Hover preview panel (hover-card pattern) with open/close delays reusing tooltip timing and popover positioning.",
+			"dependencies": ["feat-008"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-030",
+			"name": "Meter",
+			"description": "Scalar gauge (role=meter) with min/max/value, low/high/optimum bands, sibling to progress.",
+			"dependencies": ["feat-011"],
+			"status": "planned",
+			"evidence": ""
+		},
+		{
+			"id": "feat-031",
+			"name": "Direction provider",
+			"description": "RTL direction context consumed by roving navigation and floating positioning, replacing per-component direction props.",
+			"dependencies": ["feat-002"],
+			"status": "planned",
+			"evidence": ""
 		}
 	]
 }
