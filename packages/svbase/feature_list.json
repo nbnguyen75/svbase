@@ -226,8 +226,8 @@
 			"name": "OTP field",
 			"description": "Segmented one-time-code input with auto-advance, backspace navigation, and paste-to-distribute support.",
 			"dependencies": ["feat-019"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/otp-field/, docs/src/routes/otp-field/+page.svx"
 		},
 		{
 			"id": "feat-027",

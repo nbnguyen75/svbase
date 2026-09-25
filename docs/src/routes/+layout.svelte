@@ -30,6 +30,7 @@
 		['menubar', 'Menubar'],
 		['navigation-menu', 'Navigation Menu'],
 		['number-field', 'Number Field'],
+		['otp-field', 'OTP Field'],
 		['popover', 'Popover'],
 		['progress', 'Progress'],
 		['radio-group', 'Radio Group'],
@@ -106,7 +107,7 @@
 			<p class="px-3 pt-6 pb-2 text-lg font-semibold text-zinc-100">Primitives</p>
 			{#each filtered as [href, label] (href)}
 				<a
-					href={resolve(`/${href}`)}
+					href={`/${href}`}
 					aria-current={isActive(href) ? 'page' : undefined}
 					class="block rounded-md px-3 py-1.5 text-[15px] {isActive(href)
 						? 'text-primary'

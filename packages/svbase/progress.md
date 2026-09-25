@@ -76,6 +76,12 @@
 - [x] **Fixes found by tests**: duplicate export entries break JSON validity (deduped); wrapper + `bind:` needs care under `exactOptionalPropertyTypes`; Svelte uses HTML-cased `readonly`.
 - [x] **Verification**: 5 browser tests + axe; suite 173/173; check/lint/format/build/prepack green; `./number-field` export + docs page + sidebar entry. Hold-to-repeat and scrub area deferred.
 
+### 2026-09-25: OTP field (feat-026)
+
+- [x] **OTP root/input** (`src/lib/primitives/otp-field/`): string value with length, per-char pattern filter, auto-advance, Backspace backup/Delete in-place, arrows, paste distribution, first-segment `one-time-code` autocomplete, hidden-input form sync.
+- [x] **Fixes found by tests**: `resolve()` with computed route unions breaks svelte-check (plain hrefs, consistent with the active check); sync DOM reads after dispatch race Svelte's flush — poll first via `vi.waitFor`.
+- [x] **Verification**: 5 browser tests + axe; suite 178/178; check/lint/format/build/prepack green; `./otp-field` export + docs page + sidebar entry.
+
 ---
 
 ## Session History
