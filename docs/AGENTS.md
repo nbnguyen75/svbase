@@ -6,14 +6,14 @@ in `packages/svbase` before `build`/`dev` picks up library changes).
 
 ## Commands (run from `docs/`)
 
-| Command            | Action                                              |
-| ------------------ | --------------------------------------------------- |
-| `bun run dev`      | Dev server on `:4321`                               |
-| `bun run build`    | Static build (prerenders all pages — the SSR gate)  |
-| `bun run preview`  | Serve the last build                                |
-| `bun run check`    | `astro sync` (content + types; `@astrojs/check` intentionally skipped) |
-| `bun run lint`     | `oxlint && eslint` (Svelte rules via `eslint-plugin-svelte`) |
-| `bun run format`   | `oxfmt --check` (`:fix` variants exist for both)    |
+| Command           | Action                                                                 |
+| ----------------- | ---------------------------------------------------------------------- |
+| `bun run dev`     | Dev server on `:4321`                                                  |
+| `bun run build`   | Static build (prerenders all pages — the SSR gate)                     |
+| `bun run preview` | Serve the last build                                                   |
+| `bun run check`   | `astro sync` (content + types; `@astrojs/check` intentionally skipped) |
+| `bun run lint`    | `oxlint && eslint` (Svelte rules via `eslint-plugin-svelte`)           |
+| `bun run format`  | `oxfmt --check` (`:fix` variants exist for both)                       |
 
 Root orchestrates both packages (`bun run dev/check/test/lint/format/prepack/build`).
 bun is primary for dev; pnpm handles CI/CD lockfiles. Dependencies live in
