@@ -21,6 +21,9 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Install Chromium for browser tests
+        run: pnpm --dir packages/svbase exec playwright install chromium --with-deps
+
       - name: Library gates
         run: |
           pnpm --dir packages/svbase check

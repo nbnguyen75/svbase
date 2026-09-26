@@ -1,18 +1,20 @@
 name: Release
 
+# Tag-gated publishing: pushing svbase-vX.Y.Z is the only thing that publishes.
+# Versioning stays local (`changeset version`), so pushes, branches, and PRs are silent.
 on:
   push:
-    branches: [main]
+    tags:
+      - svbase-v*
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
   id-token: write
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,15 +27,33 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
+      - name: Verify tag matches package version
+        run: |
+          pkg_version=$(node -p "require('./packages/svbase/package.json').version")
+          tag_version="${GITHUB_REF_NAME#svbase-v}"
+          if [ "$pkg_version" != "$tag_version" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match packages/svbase version $pkg_version"
+            exit 1
+          fi
+          echo "Publishing svbase@$pkg_version"
+
       - run: pnpm install --frozen-lockfile
 
-      - name: Create release PR or publish to npm
-        uses: changesets/action@v1
-        with:
-          cwd: packages/svbase
-          version: pnpm --dir packages/svbase exec changeset version
-          publish: pnpm --dir packages/svbase exec changeset publish
+      - name: Install Chromium for browser tests
+        run: pnpm --dir packages/svbase exec playwright install chromium --with-deps
+
+      - name: Library gates
+        run: |
+          pnpm --dir packages/svbase check
+          pnpm --dir packages/svbase format
+          pnpm --dir packages/svbase lint
+          pnpm --dir packages/svbase test
+          pnpm --dir packages/svbase prepack
+
+      - name: Publish to npm
+        run: pnpm --dir packages/svbase exec changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true

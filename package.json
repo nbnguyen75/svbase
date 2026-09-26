@@ -20,6 +20,7 @@
 		"format:fix": "bun run --cwd packages/svbase format:fix && bun run --cwd docs format:fix",
 		"test": "bun run --cwd packages/svbase test",
 		"changeset": "bun run --cwd packages/svbase changeset",
+		"version": "bun run --cwd packages/svbase changeset version",
 		"release": "bun run --cwd packages/svbase release",
 		"sync:lockfiles": "pnpm install --lockfile-only && npm install --package-lock-only --ignore-scripts"
 	},

@@ -15,6 +15,14 @@
 - [x] **Agents docs**: root + `packages/svbase` stale SvelteKit refs fixed; `docs/AGENTS.md` rewritten (Starlight conventions, page template, SSR rule). `docs/CLAUDE.md` is a symlink to `AGENTS.md` — single source of truth.
 - [ ] **Deferred**: `bun.lock` refresh after dep additions (`bun install` hangs; pnpm used), dev-server visual smoke (`:4321`), shadcn-docs visual polish, dark mode, `llms.txt`.
 
+### 2026-09-26: Tag-gated publishing (changesets for versions, tag for publish)
+
+- [x] **`release.yml` rewritten**: triggers only on `svbase-v*` tags (pushes/branches/PRs silent). Plain steps — checkout, pnpm install, tag-vs-`package.json` guard (fails fast on mismatch), full lib gates (incl. Chromium install for browser tests), `changeset publish` with provenance. `contents: read` only; no Version-PR automation.
+- [x] **`ci.yml` fixed**: added Chromium install step (browser tests would fail on a bare runner). Release job gets the same step.
+- [x] **Root `version` script** added (`changeset version` in `packages/svbase`); ritual is `changeset` → `version` → commit → `tag svbase-vX.Y.Z` → push tag.
+- [x] **Verification**: guard snippet dry-run under git-bash (match publishes `0.0.1`, mismatch exits 1), both workflows YAML-parse with correct triggers.
+- [ ] **Deferred**: set `NPM_TOKEN` repo secret before first publish; first publish consumes `.changeset/initial-release.md` → `svbase@0.1.0`.
+
 ### 2026-09-24: Monorepo Phase 0 — pnpm-ready workspace defs (bun primary kept)
 
 - [x] **PM policy**: bun primary for daily dev (scripts, AGENTS.md unchanged); pnpm for CI/CD via `packageManager: pnpm@12.5.1` pin. `bun.lock` kept; `pnpm-lock.yaml` regenerated via `pnpm install --lockfile-only`.
