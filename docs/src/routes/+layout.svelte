@@ -29,6 +29,7 @@
 		['dropdown-menu', 'Dropdown Menu'],
 		['form', 'Form'],
 		['menubar', 'Menubar'],
+		['meter', 'Meter'],
 		['navigation-menu', 'Navigation Menu'],
 		['number-field', 'Number Field'],
 		['otp-field', 'OTP Field'],

@@ -258,8 +258,8 @@
 			"name": "Meter",
 			"description": "Scalar gauge (role=meter) with min/max/value, low/high/optimum bands, sibling to progress.",
 			"dependencies": ["feat-011"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/meter/, docs/src/routes/meter/+page.svx"
 		},
 		{
 			"id": "feat-031",

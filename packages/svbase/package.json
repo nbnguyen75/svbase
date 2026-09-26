@@ -108,6 +108,11 @@
 			"svelte": "./dist/primitives/menubar/index.js",
 			"default": "./dist/primitives/menubar/index.js"
 		},
+		"./meter": {
+			"types": "./dist/primitives/meter/index.d.ts",
+			"svelte": "./dist/primitives/meter/index.js",
+			"default": "./dist/primitives/meter/index.js"
+		},
 		"./navigation-menu": {
 			"types": "./dist/primitives/navigation-menu/index.d.ts",
 			"svelte": "./dist/primitives/navigation-menu/index.js",
