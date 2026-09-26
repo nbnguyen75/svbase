@@ -14,19 +14,19 @@ Modal confirmation that ignores overlay clicks (Escape still closes).
 
 ```svelte title="App.svelte"
 <script>
-  import { AlertDialog } from 'svbase';
+	import { AlertDialog } from 'svbase';
 </script>
 
 <AlertDialog.Root>
-  <AlertDialog.Trigger>Delete item</AlertDialog.Trigger>
-  <AlertDialog.Portal>
-    <AlertDialog.Overlay />
-    <AlertDialog.Content>
-      <AlertDialog.Title>Delete item?</AlertDialog.Title>
-      <AlertDialog.Description>This action cannot be undone.</AlertDialog.Description>
-      <AlertDialog.Close>Cancel</AlertDialog.Close>
-    </AlertDialog.Content>
-  </AlertDialog.Portal>
+	<AlertDialog.Trigger>Delete item</AlertDialog.Trigger>
+	<AlertDialog.Portal>
+		<AlertDialog.Overlay />
+		<AlertDialog.Content>
+			<AlertDialog.Title>Delete item?</AlertDialog.Title>
+			<AlertDialog.Description>This action cannot be undone.</AlertDialog.Description>
+			<AlertDialog.Close>Cancel</AlertDialog.Close>
+		</AlertDialog.Content>
+	</AlertDialog.Portal>
 </AlertDialog.Root>
 ```
 

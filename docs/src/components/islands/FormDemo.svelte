@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Field, Fieldset, Form, Input } from 'svbase';
+	import { Fieldset, Field, Input, Form } from 'svbase';
 
 	let result = $state('—');
 	let errorReport = $state('—');

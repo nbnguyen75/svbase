@@ -14,18 +14,18 @@ Filterable single-select with a text input and listbox popup. With `freeInput` i
 
 ```svelte title="App.svelte"
 <script>
-  import { Combobox } from 'svbase';
+	import { Combobox } from 'svbase';
 </script>
 
 <Combobox.Root name="fruit">
-  <Combobox.Input aria-label="Fruit" />
-  <Combobox.Portal>
-    <Combobox.Content>
-      <Combobox.Item value="apple">Apple</Combobox.Item>
-      <Combobox.Item value="banana">Banana</Combobox.Item>
-      <Combobox.Empty>No matches</Combobox.Empty>
-    </Combobox.Content>
-  </Combobox.Portal>
+	<Combobox.Input aria-label="Fruit" />
+	<Combobox.Portal>
+		<Combobox.Content>
+			<Combobox.Item value="apple">Apple</Combobox.Item>
+			<Combobox.Item value="banana">Banana</Combobox.Item>
+			<Combobox.Empty>No matches</Combobox.Empty>
+		</Combobox.Content>
+	</Combobox.Portal>
 </Combobox.Root>
 ```
 

@@ -43,7 +43,6 @@
 		Hover a toast to pause its timer; swipe it sideways past 40px to dismiss.
 	</p>
 	<p class="mt-3 text-sm text-muted-foreground">
-		Each toast is <code>role="status"</code> — screen readers announce it, no live region wiring
-		needed.
+		Each toast is <code>role="status"</code> — screen readers announce it, no live region wiring needed.
 	</p>
 </div>

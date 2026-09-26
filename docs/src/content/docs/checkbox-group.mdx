@@ -14,13 +14,13 @@ Grouped checkboxes with a mixed-state select-all parent.
 
 ```svelte title="App.svelte"
 <script>
-  import { CheckboxGroup } from 'svbase';
+	import { CheckboxGroup } from 'svbase';
 </script>
 
 <CheckboxGroup.Root bind:value={toppings} name="topping" allValues={['cheese', 'pepperoni']}>
-  <CheckboxGroup.Parent>All toppings</CheckboxGroup.Parent>
-  <CheckboxGroup.Item value="cheese">Cheese</CheckboxGroup.Item>
-  <CheckboxGroup.Item value="pepperoni">Pepperoni</CheckboxGroup.Item>
+	<CheckboxGroup.Parent>All toppings</CheckboxGroup.Parent>
+	<CheckboxGroup.Item value="cheese">Cheese</CheckboxGroup.Item>
+	<CheckboxGroup.Item value="pepperoni">Pepperoni</CheckboxGroup.Item>
 </CheckboxGroup.Root>
 ```
 

@@ -14,12 +14,10 @@ Unstyled button with disabled handling and element delegation.
 
 ```svelte title="App.svelte"
 <script>
-  import { Button } from 'svbase';
+	import { Button } from 'svbase';
 </script>
 
-<Button onclick={() => console.log('clicked')}>
-  Save changes
-</Button>
+<Button onclick={() => console.log('clicked')}>Save changes</Button>
 ```
 
 ## API reference
@@ -44,7 +42,8 @@ Unstyled button with disabled handling and element delegation.
 			name: 'element',
 			type: 'string',
 			defaultValue: "'button'",
-			description: 'Underlying element tag. Non-button tags get role="button" plus Enter/Space handling.'
+			description:
+				'Underlying element tag. Non-button tags get role="button" plus Enter/Space handling.'
 		},
 		{
 			name: 'type',

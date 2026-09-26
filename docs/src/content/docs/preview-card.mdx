@@ -14,16 +14,14 @@ Hover preview panel with open/close intent delays. A popover with hover timing �
 
 ```svelte title="App.svelte"
 <script>
-  import { PreviewCard } from 'svbase';
+	import { PreviewCard } from 'svbase';
 </script>
 
 <PreviewCard.Root>
-  <PreviewCard.Trigger>@ada</PreviewCard.Trigger>
-  <PreviewCard.Portal>
-    <PreviewCard.Content>
-      Ada Lovelace — first programmer.
-    </PreviewCard.Content>
-  </PreviewCard.Portal>
+	<PreviewCard.Trigger>@ada</PreviewCard.Trigger>
+	<PreviewCard.Portal>
+		<PreviewCard.Content>Ada Lovelace — first programmer.</PreviewCard.Content>
+	</PreviewCard.Portal>
 </PreviewCard.Root>
 ```
 

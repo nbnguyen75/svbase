@@ -32,5 +32,7 @@
 			<Tabs.Content value="c"><p>Panel C</p></Tabs.Content>
 		</Tabs.Root>
 	</Direction.Root>
-	<p class="mt-3 text-sm text-muted-foreground">Selected: {value} (Tab in, then left arrow moves forward here)</p>
+	<p class="mt-3 text-sm text-muted-foreground">
+		Selected: {value} (Tab in, then left arrow moves forward here)
+	</p>
 </div>

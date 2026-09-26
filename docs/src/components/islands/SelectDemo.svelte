@@ -15,7 +15,10 @@
 					<Select.Item value="apple" class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
 						Apple
 					</Select.Item>
-					<Select.Item value="banana" class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
+					<Select.Item
+						value="banana"
+						class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
+					>
 						Banana
 					</Select.Item>
 					<Select.Item
@@ -29,10 +32,16 @@
 						<Select.Label class="px-2 py-1.5 text-xs font-medium text-muted-foreground">
 							Citrus
 						</Select.Label>
-						<Select.Item value="orange" class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
+						<Select.Item
+							value="orange"
+							class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
+						>
 							Orange
 						</Select.Item>
-						<Select.Item value="lemon" class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
+						<Select.Item
+							value="lemon"
+							class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
+						>
 							Lemon
 						</Select.Item>
 					</Select.Group>

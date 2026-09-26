@@ -6,14 +6,10 @@ export const FORMAT_IGNORE_PATTERNS = [
 	'bun.lock',
 	'bun.lockb',
 
-	// Static assets
-	'/static/',
-
 	// Build output & generated files (mirrors LINT_IGNORE_PATTERNS)
-	'.svelte-kit',
+	'.astro',
 	'dist',
 	'build',
-	'.vitest',
 	'coverage',
 
 	// Agent & AI tooling
@@ -30,7 +26,7 @@ export const LINT_IGNORE_PATTERNS = [
 	'**/.vercel',
 	'**/.netlify',
 	'**/.wrangler',
-	'.svelte-kit',
+	'.astro',
 	'build',
 	'dist',
 

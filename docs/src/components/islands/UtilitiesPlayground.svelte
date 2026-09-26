@@ -152,4 +152,6 @@
 	</ul>
 </div>
 
-<p class="mt-3 text-sm text-muted-foreground">Demo id: <code>{demoId}</code> / <code>{generated}</code></p>
+<p class="mt-3 text-sm text-muted-foreground">
+	Demo id: <code>{demoId}</code> / <code>{generated}</code>
+</p>

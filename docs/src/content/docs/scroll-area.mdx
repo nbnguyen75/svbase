@@ -14,16 +14,14 @@ Native scrolling with a custom thumb and track. Style the parts with CSS.
 
 ```svelte title="App.svelte"
 <script>
-  import { ScrollArea } from 'svbase';
+	import { ScrollArea } from 'svbase';
 </script>
 
 <ScrollArea.Root>
-  <ScrollArea.Viewport style="height: 200px;">
-    Long content…
-  </ScrollArea.Viewport>
-  <ScrollArea.Scrollbar>
-    <ScrollArea.Thumb />
-  </ScrollArea.Scrollbar>
+	<ScrollArea.Viewport style="height: 200px;">Long content…</ScrollArea.Viewport>
+	<ScrollArea.Scrollbar>
+		<ScrollArea.Thumb />
+	</ScrollArea.Scrollbar>
 </ScrollArea.Root>
 ```
 

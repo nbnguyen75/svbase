@@ -14,15 +14,15 @@ Spinbutton with increment/decrement controls, keyboard stepping, and clamped com
 
 ```svelte title="App.svelte"
 <script>
-  import { NumberField } from 'svbase';
+	import { NumberField } from 'svbase';
 </script>
 
 <NumberField.Root bind:value={volume} min={0} max={100}>
-  <NumberField.Group>
-    <NumberField.Decrement>-</NumberField.Decrement>
-    <NumberField.Input aria-label="Volume" />
-    <NumberField.Increment>+</NumberField.Increment>
-  </NumberField.Group>
+	<NumberField.Group>
+		<NumberField.Decrement>-</NumberField.Decrement>
+		<NumberField.Input aria-label="Volume" />
+		<NumberField.Increment>+</NumberField.Increment>
+	</NumberField.Group>
 </NumberField.Root>
 ```
 

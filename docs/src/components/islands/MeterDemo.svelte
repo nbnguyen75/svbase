@@ -5,7 +5,15 @@
 </script>
 
 <div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
-	<Meter.Root bind:value={storage} min={0} max={100} low={20} high={80} optimum={50} ariaLabel="Storage used">
+	<Meter.Root
+		bind:value={storage}
+		min={0}
+		max={100}
+		low={20}
+		high={80}
+		optimum={50}
+		ariaLabel="Storage used"
+	>
 		<Meter.Label>Storage</Meter.Label>
 		<Meter.Track class="h-2 overflow-hidden rounded-full bg-muted">
 			<Meter.Indicator class="h-full rounded-full bg-primary" />

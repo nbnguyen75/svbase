@@ -14,12 +14,12 @@ Segmented one-time-code input with auto-advance and paste distribution.
 
 ```svelte title="App.svelte"
 <script>
-  import { OtpField } from 'svbase';
+	import { OtpField } from 'svbase';
 </script>
 
 <OtpField.Root name="code" length={6}>
-  <OtpField.Input index={0} aria-label="Digit 1" />
-  <OtpField.Input index={1} aria-label="Digit 2" />
+	<OtpField.Input index={0} aria-label="Digit 1" />
+	<OtpField.Input index={1} aria-label="Digit 2" />
 </OtpField.Root>
 ```
 

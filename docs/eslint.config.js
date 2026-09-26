@@ -40,34 +40,16 @@ export default defineConfig(
 				{
 					customGroups: [
 						{
-							/* Svelte core */
-							elementNamePattern: ['^svelte$', '^svelte/.*$', '^@sveltejs/.*$'],
+							/* Framework — Svelte, Astro */
+							elementNamePattern: [
+								'^svelte$',
+								'^svelte/.*$',
+								'^astro$',
+								'^astro/.*$',
+								'^@astrojs/.*$'
+							],
 							groupName: 'framework',
 							modifiers: ['value']
-						},
-						{
-							/* Actions — focus-trap, click-outside, portal... */
-							elementNamePattern: '^\\$lib/actions/.*$',
-							modifiers: ['value'],
-							groupName: 'actions'
-						},
-						{
-							/* Utils — clamp, debounce, merge-props... */
-							elementNamePattern: '^\\$lib/utils/.*$',
-							modifiers: ['value'],
-							groupName: 'utils'
-						},
-						{
-							/* Primitives — dialog, select state + parts */
-							elementNamePattern: '^\\$lib/primitives/.*$',
-							modifiers: ['value'],
-							groupName: 'primitives'
-						},
-						{
-							/* Positioning engine dependency */
-							elementNamePattern: '^@floating-ui/.*$',
-							modifiers: ['value'],
-							groupName: 'positioning'
 						},
 						{
 							/* CSS */
@@ -81,10 +63,6 @@ export default defineConfig(
 						'builtin',
 						'framework',
 						'external',
-						'positioning',
-						'primitives',
-						'actions',
-						'utils',
 						'parent',
 						'sibling',
 						'index',

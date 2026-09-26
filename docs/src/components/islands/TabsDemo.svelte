@@ -46,7 +46,9 @@
 		<Tabs.Content value="one"><p>Panel One</p></Tabs.Content>
 		<Tabs.Content value="two"><p>Panel Two</p></Tabs.Content>
 	</Tabs.Root>
-	<p class="mt-3 text-sm text-muted-foreground">Arrows move focus only; Enter/Space/click selects.</p>
+	<p class="mt-3 text-sm text-muted-foreground">
+		Arrows move focus only; Enter/Space/click selects.
+	</p>
 </div>
 
 <div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">

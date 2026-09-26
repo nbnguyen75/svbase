@@ -35,5 +35,7 @@
 			</Menubar.Content>
 		</Menubar.Menu>
 	</Menubar.Root>
-	<p class="mt-3 text-sm text-muted-foreground">Picked: {picked ?? '—'} (Tab in, arrows travel, Enter opens)</p>
+	<p class="mt-3 text-sm text-muted-foreground">
+		Picked: {picked ?? '—'} (Tab in, arrows travel, Enter opens)
+	</p>
 </div>

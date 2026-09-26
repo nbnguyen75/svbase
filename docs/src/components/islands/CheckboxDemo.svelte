@@ -28,7 +28,9 @@
 			Read-only
 		</Checkbox.Root>
 	</div>
-	<p class="mt-3 text-sm text-muted-foreground">Last change: {checkboxChecked ? 'checked' : 'unchecked'}</p>
+	<p class="mt-3 text-sm text-muted-foreground">
+		Last change: {checkboxChecked ? 'checked' : 'unchecked'}
+	</p>
 	<form
 		class="flex flex-wrap items-center gap-3"
 		onsubmit={(event) => {

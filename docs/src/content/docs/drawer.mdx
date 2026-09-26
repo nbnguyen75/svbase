@@ -14,18 +14,18 @@ Edge-anchored sheet reusing the dialog focus controller. Swipe gestures are a pl
 
 ```svelte title="App.svelte"
 <script>
-  import { Drawer } from 'svbase';
+	import { Drawer } from 'svbase';
 </script>
 
 <Drawer.Root side="right">
-  <Drawer.Trigger>Open</Drawer.Trigger>
-  <Drawer.Portal>
-    <Drawer.Overlay />
-    <Drawer.Content>
-      <Drawer.Title>Panel</Drawer.Title>
-      <Drawer.Close>Close</Drawer.Close>
-    </Drawer.Content>
-  </Drawer.Portal>
+	<Drawer.Trigger>Open</Drawer.Trigger>
+	<Drawer.Portal>
+		<Drawer.Overlay />
+		<Drawer.Content>
+			<Drawer.Title>Panel</Drawer.Title>
+			<Drawer.Close>Close</Drawer.Close>
+		</Drawer.Content>
+	</Drawer.Portal>
 </Drawer.Root>
 ```
 

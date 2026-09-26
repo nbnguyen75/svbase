@@ -14,18 +14,16 @@ Stacked collapsibles with arrow-key focus navigation.
 
 ```svelte title="App.svelte"
 <script>
-  import { Accordion } from 'svbase';
+	import { Accordion } from 'svbase';
 </script>
 
 <Accordion.Root>
-  <Accordion.Item value="a">
-    <Accordion.Header>
-      <Accordion.Trigger>First</Accordion.Trigger>
-    </Accordion.Header>
-    <Accordion.Panel>
-      First panel content.
-    </Accordion.Panel>
-  </Accordion.Item>
+	<Accordion.Item value="a">
+		<Accordion.Header>
+			<Accordion.Trigger>First</Accordion.Trigger>
+		</Accordion.Header>
+		<Accordion.Panel>First panel content.</Accordion.Panel>
+	</Accordion.Item>
 </Accordion.Root>
 ```
 

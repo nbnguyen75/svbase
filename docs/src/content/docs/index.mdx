@@ -17,158 +17,260 @@ bun add svbase
 
 ```svelte title="App.svelte"
 <script>
-  import { Dialog } from 'svbase';
+	import { Dialog } from 'svbase';
 </script>
 
 <Dialog.Root>
-  <Dialog.Trigger>Open</Dialog.Trigger>
-  <Dialog.Portal>
-    <Dialog.Content>
-      <Dialog.Title>Hello</Dialog.Title>
-    </Dialog.Content>
-  </Dialog.Portal>
+	<Dialog.Trigger>Open</Dialog.Trigger>
+	<Dialog.Portal>
+		<Dialog.Content>
+			<Dialog.Title>Hello</Dialog.Title>
+		</Dialog.Content>
+	</Dialog.Portal>
 </Dialog.Root>
 ```
 
 ## Primitives
 
 <div class="mt-4 grid gap-3 sm:grid-cols-2 not-content">
-  <a href="/accordion" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Accordion</div>
-    <div class="mt-1 text-sm text-muted-foreground">Single/multiple expansion.</div>
-  </a>
-  <a href="/alert-dialog" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Alert Dialog</div>
-    <div class="mt-1 text-sm text-muted-foreground">Confirmation without overlay dismiss.</div>
-  </a>
-  <a href="/avatar" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Avatar</div>
-    <div class="mt-1 text-sm text-muted-foreground">Image with fallback states.</div>
-  </a>
-  <a href="/button" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Button</div>
-    <div class="mt-1 text-sm text-muted-foreground">Unstyled button with disabled handling.</div>
-  </a>
-  <a href="/checkbox" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Checkbox</div>
-    <div class="mt-1 text-sm text-muted-foreground">Indeterminate state, hidden form input.</div>
-  </a>
-  <a href="/checkbox-group" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Checkbox Group</div>
-    <div class="mt-1 text-sm text-muted-foreground">Mixed select-all grouping.</div>
-  </a>
-  <a href="/collapsible" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Collapsible</div>
-    <div class="mt-1 text-sm text-muted-foreground">Expand/collapse panel.</div>
-  </a>
-  <a href="/combobox" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Combobox</div>
-    <div class="mt-1 text-sm text-muted-foreground">Filterable select with autocomplete.</div>
-  </a>
-  <a href="/context-menu" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Context Menu</div>
-    <div class="mt-1 text-sm text-muted-foreground">Right-click cursor-anchored menu.</div>
-  </a>
-  <a href="/dialog" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Dialog</div>
-    <div class="mt-1 text-sm text-muted-foreground">Modal with focus trap + scroll lock.</div>
-  </a>
-  <a href="/direction" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Direction</div>
-    <div class="mt-1 text-sm text-muted-foreground">RTL base-direction provider.</div>
-  </a>
-  <a href="/drawer" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Drawer</div>
-    <div class="mt-1 text-sm text-muted-foreground">Edge-anchored sheet dialog.</div>
-  </a>
-  <a href="/dropdown-menu" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Dropdown Menu</div>
-    <div class="mt-1 text-sm text-muted-foreground">Roving focus, typeahead, submenus.</div>
-  </a>
-  <a href="/form" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Form</div>
-    <div class="mt-1 text-sm text-muted-foreground">Labelled fields with validation.</div>
-  </a>
-  <a href="/menubar" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Menubar</div>
-    <div class="mt-1 text-sm text-muted-foreground">Coordinated menu bar.</div>
-  </a>
-  <a href="/meter" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Meter</div>
-    <div class="mt-1 text-sm text-muted-foreground">Scalar gauge with bands.</div>
-  </a>
-  <a href="/navigation-menu" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Navigation Menu</div>
-    <div class="mt-1 text-sm text-muted-foreground">Hover-intent site navigation.</div>
-  </a>
-  <a href="/number-field" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Number Field</div>
-    <div class="mt-1 text-sm text-muted-foreground">Spinbutton with stepping.</div>
-  </a>
-  <a href="/otp-field" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">OTP Field</div>
-    <div class="mt-1 text-sm text-muted-foreground">Segmented code input.</div>
-  </a>
-  <a href="/popover" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Popover</div>
-    <div class="mt-1 text-sm text-muted-foreground">Anchored floating panel.</div>
-  </a>
-  <a href="/preview-card" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Preview Card</div>
-    <div class="mt-1 text-sm text-muted-foreground">Hover preview panel.</div>
-  </a>
-  <a href="/progress" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Progress</div>
-    <div class="mt-1 text-sm text-muted-foreground">Determinate + indeterminate bars.</div>
-  </a>
-  <a href="/radio-group" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Radio Group</div>
-    <div class="mt-1 text-sm text-muted-foreground">Roving tabindex, arrow navigation.</div>
-  </a>
-  <a href="/scroll-area" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Scroll Area</div>
-    <div class="mt-1 text-sm text-muted-foreground">Custom thumb over native scroll.</div>
-  </a>
-  <a href="/select" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Select</div>
-    <div class="mt-1 text-sm text-muted-foreground">Typeahead dropdown with form sync.</div>
-  </a>
-  <a href="/separator" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Separator</div>
-    <div class="mt-1 text-sm text-muted-foreground">Accessible divider.</div>
-  </a>
-  <a href="/slider" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Slider</div>
-    <div class="mt-1 text-sm text-muted-foreground">Single + range with drag.</div>
-  </a>
-  <a href="/switch" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Switch</div>
-    <div class="mt-1 text-sm text-muted-foreground">Toggle switch with thumb.</div>
-  </a>
-  <a href="/tabs" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Tabs</div>
-    <div class="mt-1 text-sm text-muted-foreground">Automatic/manual activation.</div>
-  </a>
-  <a href="/toast" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Toast</div>
-    <div class="mt-1 text-sm text-muted-foreground">Auto-dismiss with swipe + live regions.</div>
-  </a>
-  <a href="/toggle" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Toggle</div>
-    <div class="mt-1 text-sm text-muted-foreground">Two-state button with aria-pressed.</div>
-  </a>
-  <a href="/toggle-group" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Toggle Group</div>
-    <div class="mt-1 text-sm text-muted-foreground">Single/multi toggle buttons.</div>
-  </a>
-  <a href="/toolbar" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Toolbar</div>
-    <div class="mt-1 text-sm text-muted-foreground">Roving control groups.</div>
-  </a>
-  <a href="/tooltip" class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent">
-    <div class="text-sm font-semibold">Tooltip</div>
-    <div class="mt-1 text-sm text-muted-foreground">Hover hint with skip-delay.</div>
-  </a>
+	<a
+		href="/accordion"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Accordion</div>
+		<div class="mt-1 text-sm text-muted-foreground">Single/multiple expansion.</div>
+	</a>
+	<a
+		href="/alert-dialog"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Alert Dialog</div>
+		<div class="mt-1 text-sm text-muted-foreground">Confirmation without overlay dismiss.</div>
+	</a>
+	<a
+		href="/avatar"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Avatar</div>
+		<div class="mt-1 text-sm text-muted-foreground">Image with fallback states.</div>
+	</a>
+	<a
+		href="/button"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Button</div>
+		<div class="mt-1 text-sm text-muted-foreground">Unstyled button with disabled handling.</div>
+	</a>
+	<a
+		href="/checkbox"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Checkbox</div>
+		<div class="mt-1 text-sm text-muted-foreground">Indeterminate state, hidden form input.</div>
+	</a>
+	<a
+		href="/checkbox-group"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Checkbox Group</div>
+		<div class="mt-1 text-sm text-muted-foreground">Mixed select-all grouping.</div>
+	</a>
+	<a
+		href="/collapsible"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Collapsible</div>
+		<div class="mt-1 text-sm text-muted-foreground">Expand/collapse panel.</div>
+	</a>
+	<a
+		href="/combobox"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Combobox</div>
+		<div class="mt-1 text-sm text-muted-foreground">Filterable select with autocomplete.</div>
+	</a>
+	<a
+		href="/context-menu"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Context Menu</div>
+		<div class="mt-1 text-sm text-muted-foreground">Right-click cursor-anchored menu.</div>
+	</a>
+	<a
+		href="/dialog"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Dialog</div>
+		<div class="mt-1 text-sm text-muted-foreground">Modal with focus trap + scroll lock.</div>
+	</a>
+	<a
+		href="/direction"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Direction</div>
+		<div class="mt-1 text-sm text-muted-foreground">RTL base-direction provider.</div>
+	</a>
+	<a
+		href="/drawer"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Drawer</div>
+		<div class="mt-1 text-sm text-muted-foreground">Edge-anchored sheet dialog.</div>
+	</a>
+	<a
+		href="/dropdown-menu"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Dropdown Menu</div>
+		<div class="mt-1 text-sm text-muted-foreground">Roving focus, typeahead, submenus.</div>
+	</a>
+	<a
+		href="/form"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Form</div>
+		<div class="mt-1 text-sm text-muted-foreground">Labelled fields with validation.</div>
+	</a>
+	<a
+		href="/menubar"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Menubar</div>
+		<div class="mt-1 text-sm text-muted-foreground">Coordinated menu bar.</div>
+	</a>
+	<a
+		href="/meter"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Meter</div>
+		<div class="mt-1 text-sm text-muted-foreground">Scalar gauge with bands.</div>
+	</a>
+	<a
+		href="/navigation-menu"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Navigation Menu</div>
+		<div class="mt-1 text-sm text-muted-foreground">Hover-intent site navigation.</div>
+	</a>
+	<a
+		href="/number-field"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Number Field</div>
+		<div class="mt-1 text-sm text-muted-foreground">Spinbutton with stepping.</div>
+	</a>
+	<a
+		href="/otp-field"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">OTP Field</div>
+		<div class="mt-1 text-sm text-muted-foreground">Segmented code input.</div>
+	</a>
+	<a
+		href="/popover"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Popover</div>
+		<div class="mt-1 text-sm text-muted-foreground">Anchored floating panel.</div>
+	</a>
+	<a
+		href="/preview-card"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Preview Card</div>
+		<div class="mt-1 text-sm text-muted-foreground">Hover preview panel.</div>
+	</a>
+	<a
+		href="/progress"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Progress</div>
+		<div class="mt-1 text-sm text-muted-foreground">Determinate + indeterminate bars.</div>
+	</a>
+	<a
+		href="/radio-group"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Radio Group</div>
+		<div class="mt-1 text-sm text-muted-foreground">Roving tabindex, arrow navigation.</div>
+	</a>
+	<a
+		href="/scroll-area"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Scroll Area</div>
+		<div class="mt-1 text-sm text-muted-foreground">Custom thumb over native scroll.</div>
+	</a>
+	<a
+		href="/select"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Select</div>
+		<div class="mt-1 text-sm text-muted-foreground">Typeahead dropdown with form sync.</div>
+	</a>
+	<a
+		href="/separator"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Separator</div>
+		<div class="mt-1 text-sm text-muted-foreground">Accessible divider.</div>
+	</a>
+	<a
+		href="/slider"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Slider</div>
+		<div class="mt-1 text-sm text-muted-foreground">Single + range with drag.</div>
+	</a>
+	<a
+		href="/switch"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Switch</div>
+		<div class="mt-1 text-sm text-muted-foreground">Toggle switch with thumb.</div>
+	</a>
+	<a
+		href="/tabs"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Tabs</div>
+		<div class="mt-1 text-sm text-muted-foreground">Automatic/manual activation.</div>
+	</a>
+	<a
+		href="/toast"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Toast</div>
+		<div class="mt-1 text-sm text-muted-foreground">Auto-dismiss with swipe + live regions.</div>
+	</a>
+	<a
+		href="/toggle"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Toggle</div>
+		<div class="mt-1 text-sm text-muted-foreground">Two-state button with aria-pressed.</div>
+	</a>
+	<a
+		href="/toggle-group"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Toggle Group</div>
+		<div class="mt-1 text-sm text-muted-foreground">Single/multi toggle buttons.</div>
+	</a>
+	<a
+		href="/toolbar"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Toolbar</div>
+		<div class="mt-1 text-sm text-muted-foreground">Roving control groups.</div>
+	</a>
+	<a
+		href="/tooltip"
+		class="rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:bg-accent"
+	>
+		<div class="text-sm font-semibold">Tooltip</div>
+		<div class="mt-1 text-sm text-muted-foreground">Hover hint with skip-delay.</div>
+	</a>
 </div>
 
 ## Utilities playground

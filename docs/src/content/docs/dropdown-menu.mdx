@@ -14,18 +14,18 @@ Menu with roving focus, typeahead, checks, radios, and a submenu.
 
 ```svelte title="App.svelte"
 <script>
-  import { DropdownMenu as Menu } from 'svbase';
+	import { DropdownMenu as Menu } from 'svbase';
 </script>
 
 <Menu.Root>
-  <Menu.Trigger>File</Menu.Trigger>
-  <Menu.Portal>
-    <Menu.Content>
-      <Menu.Item>New</Menu.Item>
-      <Menu.Separator />
-      <Menu.CheckboxItem>Show sidebar</Menu.CheckboxItem>
-    </Menu.Content>
-  </Menu.Portal>
+	<Menu.Trigger>File</Menu.Trigger>
+	<Menu.Portal>
+		<Menu.Content>
+			<Menu.Item>New</Menu.Item>
+			<Menu.Separator />
+			<Menu.CheckboxItem>Show sidebar</Menu.CheckboxItem>
+		</Menu.Content>
+	</Menu.Portal>
 </Menu.Root>
 ```
 

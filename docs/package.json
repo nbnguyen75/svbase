@@ -1,26 +1,39 @@
 {
-  "name": "docs",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/mdx": "^8.0.2",
-    "@astrojs/starlight": "^0.42.4",
-    "@astrojs/svelte": "^9.0.1",
-    "@astrojs/vercel": "^11.0.11",
-    "@tailwindcss/vite": "^4.3.0",
-    "astro": "^7.2.10",
-    "cn": "^0.4.0",
-    "sharp": "^0.35.3",
-    "svbase": "workspace:*",
-    "svelte": "^5.57.1",
-    "tailwindcss": "^4.3.0",
-    "typescript": "^6.0.3"
-  }
+	"name": "docs",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"check": "astro sync",
+		"lint": "oxlint && eslint . --ext .svelte --cache",
+		"lint:fix": "oxlint --fix && eslint . --fix --cache",
+		"format": "oxfmt --check",
+		"format:fix": "oxfmt"
+	},
+	"dependencies": {
+		"@astrojs/mdx": "^8.0.2",
+		"@astrojs/starlight": "^0.42.4",
+		"@astrojs/svelte": "^9.0.1",
+		"@astrojs/vercel": "^11.0.11",
+		"@tailwindcss/vite": "^4.3.0",
+		"astro": "^7.2.10",
+		"cn": "^0.4.0",
+		"sharp": "^0.35.3",
+		"svbase": "workspace:*",
+		"svelte": "^5.57.1",
+		"tailwindcss": "^4.3.0",
+		"typescript": "^6.0.3"
+	},
+	"devDependencies": {
+		"eslint": "^10.11.0",
+		"eslint-plugin-perfectionist": "^5.12.0",
+		"eslint-plugin-svelte": "^3.23.0",
+		"oxfmt": "^0.70.0",
+		"oxlint": "^1.85.0",
+		"typescript-eslint": "^8.70.1"
+	}
 }

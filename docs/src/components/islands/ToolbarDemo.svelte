@@ -17,7 +17,10 @@
 				Cut
 			</Toolbar.Button>
 			<Toolbar.Separator class="mx-1 h-5 border-l" />
-			<Toolbar.Link href="https://example.com" class="rounded-md px-3 py-1.5 text-sm hover:bg-accent">
+			<Toolbar.Link
+				href="https://example.com"
+				class="rounded-md px-3 py-1.5 text-sm hover:bg-accent"
+			>
 				Help
 			</Toolbar.Link>
 			<Toolbar.Input

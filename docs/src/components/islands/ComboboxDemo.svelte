@@ -13,21 +13,32 @@
 				<Combobox.Item value="apple" class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
 					Apple
 				</Combobox.Item>
-				<Combobox.Item value="banana" class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
+				<Combobox.Item
+					value="banana"
+					class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
+				>
 					Banana
 				</Combobox.Item>
-				<Combobox.Item value="cherry" disabled class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
+				<Combobox.Item
+					value="cherry"
+					disabled
+					class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
+				>
 					Cherry
 				</Combobox.Item>
 				<Combobox.Group>
 					<Combobox.GroupLabel class="px-2 py-1.5 text-xs font-medium text-muted-foreground">
 						Citrus
 					</Combobox.GroupLabel>
-					<Combobox.Item value="orange" class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
+					<Combobox.Item
+						value="orange"
+						class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
+					>
 						Orange
 					</Combobox.Item>
 				</Combobox.Group>
-				<Combobox.Empty class="px-2 py-1.5 text-sm text-muted-foreground">No matches</Combobox.Empty>
+				<Combobox.Empty class="px-2 py-1.5 text-sm text-muted-foreground">No matches</Combobox.Empty
+				>
 			</Combobox.Content>
 		</Combobox.Portal>
 	</Combobox.Root>

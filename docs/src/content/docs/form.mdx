@@ -14,21 +14,21 @@ Labelled fields with native constraint validation, custom validators, and a subm
 
 ```svelte title="App.svelte"
 <script>
-  import { Field, Form } from 'svbase';
+	import { Field, Form } from 'svbase';
 </script>
 
 <Form.Form
-  onFormSubmit={(values, errors) => {
-    if (Object.keys(errors).length === 0) save(values);
-  }}
+	onFormSubmit={(values, errors) => {
+		if (Object.keys(errors).length === 0) save(values);
+	}}
 >
-  <Field.Root name="email">
-    <Field.Label>Email</Field.Label>
-    <Field.Control type="email" required />
-    <Field.Description>We never share it.</Field.Description>
-    <Field.Error />
-  </Field.Root>
-  <button type="submit">Save</button>
+	<Field.Root name="email">
+		<Field.Label>Email</Field.Label>
+		<Field.Control type="email" required />
+		<Field.Description>We never share it.</Field.Description>
+		<Field.Error />
+	</Field.Root>
+	<button type="submit">Save</button>
 </Form.Form>
 ```
 
@@ -112,7 +112,8 @@ Labelled fields with native constraint validation, custom validators, and a subm
 			name: 'onFormSubmit',
 			type: '(values: Record<string, string>, errors: Record<string, Array<string>>) => void',
 			defaultValue: '—',
-			description: 'Called on every submit with native values and per-field errors. Native submission is always prevented.'
+			description:
+				'Called on every submit with native values and per-field errors. Native submission is always prevented.'
 		},
 		{
 			name: 'validationMode',

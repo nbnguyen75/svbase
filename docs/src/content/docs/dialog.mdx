@@ -14,19 +14,19 @@ Modal dialog with focus trap, scroll lock, and Escape dismissal.
 
 ```svelte title="App.svelte"
 <script>
-  import { Dialog } from 'svbase';
+	import { Dialog } from 'svbase';
 </script>
 
 <Dialog.Root>
-  <Dialog.Trigger>Open dialog</Dialog.Trigger>
-  <Dialog.Portal>
-    <Dialog.Overlay />
-    <Dialog.Content>
-      <Dialog.Title>Confirm action</Dialog.Title>
-      <Dialog.Description>This cannot be undone.</Dialog.Description>
-      <Dialog.Close>Close</Dialog.Close>
-    </Dialog.Content>
-  </Dialog.Portal>
+	<Dialog.Trigger>Open dialog</Dialog.Trigger>
+	<Dialog.Portal>
+		<Dialog.Overlay />
+		<Dialog.Content>
+			<Dialog.Title>Confirm action</Dialog.Title>
+			<Dialog.Description>This cannot be undone.</Dialog.Description>
+			<Dialog.Close>Close</Dialog.Close>
+		</Dialog.Content>
+	</Dialog.Portal>
 </Dialog.Root>
 ```
 

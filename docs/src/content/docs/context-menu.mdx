@@ -14,18 +14,18 @@ Right-click (or long-press) menu anchored at the cursor. A dropdown menu with cu
 
 ```svelte title="App.svelte"
 <script>
-  import { ContextMenu } from 'svbase';
+	import { ContextMenu } from 'svbase';
 </script>
 
 <ContextMenu.Root>
-  <ContextMenu.Trigger>
-    Right-click here
-    <ContextMenu.Portal>
-      <ContextMenu.Content>
-        <ContextMenu.Item>Cut</ContextMenu.Item>
-      </ContextMenu.Content>
-    </ContextMenu.Portal>
-  </ContextMenu.Trigger>
+	<ContextMenu.Trigger>
+		Right-click here
+		<ContextMenu.Portal>
+			<ContextMenu.Content>
+				<ContextMenu.Item>Cut</ContextMenu.Item>
+			</ContextMenu.Content>
+		</ContextMenu.Portal>
+	</ContextMenu.Trigger>
 </ContextMenu.Root>
 ```
 

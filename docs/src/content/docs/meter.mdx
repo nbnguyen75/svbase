@@ -14,14 +14,14 @@ Scalar gauge with low/high bands. The steady sibling to progress bars — no ani
 
 ```svelte title="App.svelte"
 <script>
-  import { Meter } from 'svbase';
+	import { Meter } from 'svbase';
 </script>
 
 <Meter.Root value={72} min={0} max={100} ariaLabel="Storage used">
-  <Meter.Track>
-    <Meter.Indicator />
-  </Meter.Track>
-  <Meter.Value />
+	<Meter.Track>
+		<Meter.Indicator />
+	</Meter.Track>
+	<Meter.Value />
 </Meter.Root>
 ```
 

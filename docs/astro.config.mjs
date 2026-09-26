@@ -1,9 +1,10 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
 import mdx from '@astrojs/mdx';
+import starlight from '@astrojs/starlight';
 import svelte from '@astrojs/svelte';
 import vercel from '@astrojs/vercel';
+// @ts-check
+import { defineConfig } from 'astro/config';
+
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config

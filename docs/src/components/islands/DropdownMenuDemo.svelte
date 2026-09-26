@@ -29,17 +29,11 @@
 					Show sidebar
 				</Menu.CheckboxItem>
 				<Menu.RadioGroup defaultValue="a">
-					<Menu.RadioItem
-						value="a"
-						class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
-					>
+					<Menu.RadioItem value="a" class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
 						<Menu.RadioIndicator>●</Menu.RadioIndicator>
 						Option A
 					</Menu.RadioItem>
-					<Menu.RadioItem
-						value="b"
-						class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent"
-					>
+					<Menu.RadioItem value="b" class="rounded px-2 py-1.5 text-sm data-highlighted:bg-accent">
 						<Menu.RadioIndicator>●</Menu.RadioIndicator>
 						Option B
 					</Menu.RadioItem>

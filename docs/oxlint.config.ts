@@ -137,11 +137,6 @@ export default defineConfig({
 		'svelte/require-event-dispatcher-types': 'error',
 		'svelte/system': 'error',
 
-		// SvelteKit Routing & Page Conventions
-		'svelte/no-export-load-in-svelte-module-in-kit-pages': 'error',
-		'svelte/no-navigation-without-resolve': 'error',
-		'svelte/valid-prop-names-in-kit-pages': 'error',
-
 		// Inspection & Debugging
 		'svelte/no-at-debug-tags': 'warn',
 		'svelte/no-inner-declarations': 'error',

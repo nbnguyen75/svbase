@@ -14,18 +14,18 @@ Single-select dropdown with typeahead and form sync.
 
 ```svelte title="App.svelte"
 <script>
-  import { Select } from 'svbase';
+	import { Select } from 'svbase';
 </script>
 
 <Select.Root name="fruit">
-  <Select.Trigger aria-label="Fruit">
-    <Select.Value placeholder="Pick a fruit" />
-  </Select.Trigger>
-  <Select.Portal>
-    <Select.Content>
-      <Select.Item value="apple">Apple</Select.Item>
-    </Select.Content>
-  </Select.Portal>
+	<Select.Trigger aria-label="Fruit">
+		<Select.Value placeholder="Pick a fruit" />
+	</Select.Trigger>
+	<Select.Portal>
+		<Select.Content>
+			<Select.Item value="apple">Apple</Select.Item>
+		</Select.Content>
+	</Select.Portal>
 </Select.Root>
 ```
 

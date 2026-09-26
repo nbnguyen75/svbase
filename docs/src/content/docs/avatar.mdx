@@ -14,12 +14,12 @@ Image avatar with loading states and text fallback.
 
 ```svelte title="App.svelte"
 <script>
-  import { Avatar } from 'svbase';
+	import { Avatar } from 'svbase';
 </script>
 
 <Avatar.Root>
-  <Avatar.Image src="/me.png" alt="Me" />
-  <Avatar.Fallback>ME</Avatar.Fallback>
+	<Avatar.Image src="/me.png" alt="Me" />
+	<Avatar.Fallback>ME</Avatar.Fallback>
 </Avatar.Root>
 ```
 
@@ -58,7 +58,8 @@ Image avatar with loading states and text fallback.
 			name: 'delayMs',
 			type: 'number',
 			defaultValue: '0',
-			description: 'Wait before showing the fallback while loading. Errors always show immediately; once shown it stays visible.'
+			description:
+				'Wait before showing the fallback while loading. Errors always show immediately; once shown it stays visible.'
 		}
 	]}
 />
