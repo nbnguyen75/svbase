@@ -58,6 +58,8 @@
 	let contentId = $state<string | undefined>(undefined);
 
 	onDestroy(() => {
+		// SSR runs destroy callbacks: nothing was ever scheduled server-side.
+		if (typeof window === 'undefined') return;
 		window.clearTimeout(openTimer);
 		window.clearTimeout(closeTimer);
 	});

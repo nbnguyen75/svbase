@@ -1,0 +1,53 @@
+---
+title: Context Menu
+description: Right-click (or long-press) menu anchored at the cursor.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import ContextMenuDemo from '../../components/islands/ContextMenuDemo.svelte';
+
+Right-click (or long-press) menu anchored at the cursor. A dropdown menu with cursor anchoring — all menu parts work unchanged.
+
+<ContextMenuDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { ContextMenu } from 'svbase';
+</script>
+
+<ContextMenu.Root>
+  <ContextMenu.Trigger>
+    Right-click here
+    <ContextMenu.Portal>
+      <ContextMenu.Content>
+        <ContextMenu.Item>Cut</ContextMenu.Item>
+      </ContextMenu.Content>
+    </ContextMenu.Portal>
+  </ContextMenu.Trigger>
+</ContextMenu.Root>
+```
+
+## API reference
+
+### ContextMenu.Trigger
+
+<ApiTable
+	props={[
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction; the native menu appears instead.'
+		}
+	]}
+/>
+
+`ContextMenu.Root` is the dropdown-menu root carrying cursor-anchor state; `Content`, `Item`, `Separator`, `CheckboxItem`, `RadioGroup`, submenus, and `Portal` are the menu engine re-exported unchanged. See [Dropdown Menu](/dropdown-menu) for their props.
+
+## Keyboard interactions
+
+- `↑` `↓` move focus and highlight once open; `Home` / `End` jump; type to search.
+- `Enter` / `Space` selects; `Esc` closes; `Tab` dismisses.
+- A left press inside the trigger area dismisses an open menu.

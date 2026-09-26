@@ -1,0 +1,62 @@
+---
+title: Switch
+description: Toggle switch with aria-checked and thumb.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import SwitchDemo from '../../components/islands/SwitchDemo.svelte';
+
+Toggle switch with aria-checked and thumb.
+
+<SwitchDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Switch } from 'svbase';
+</script>
+
+<Switch.Root>
+  <Switch.Thumb />
+  Airplane mode
+</Switch.Root>
+```
+
+## API reference
+
+### Switch.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'checked',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled on state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'defaultChecked',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Initial state for uncontrolled usage.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction.'
+		},
+		{ name: 'name', type: 'string', defaultValue: '—', description: 'Form field name.' },
+		{
+			name: 'onCheckedChange',
+			type: '(checked: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every flip.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- Enter and Space flip the switch; unlike checkbox, Enter toggles.

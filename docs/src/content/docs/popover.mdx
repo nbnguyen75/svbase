@@ -1,0 +1,66 @@
+---
+title: Popover
+description: Anchored floating panel with flip-on-collision positioning.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import PopoverDemo from '../../components/islands/PopoverDemo.svelte';
+
+Anchored floating panel with flip-on-collision positioning.
+
+<PopoverDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Popover } from 'svbase';
+</script>
+
+<Popover.Root>
+  <Popover.Trigger>Options</Popover.Trigger>
+  <Popover.Content>
+    Popover body.
+  </Popover.Content>
+</Popover.Root>
+```
+
+## API reference
+
+### Popover.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'open',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled open state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'placement',
+			type: 'Placement',
+			defaultValue: "'bottom'",
+			description: 'Preferred placement; flips on viewport collision.'
+		},
+		{
+			name: 'sideOffset',
+			type: 'number',
+			defaultValue: '0',
+			description: 'Gap between trigger and content, in pixels.'
+		},
+		{
+			name: 'onOpenChange',
+			type: '(open: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every open or close.'
+		}
+	]}
+/>
+
+Positioning runs on `@floating-ui/dom` (the sole runtime dependency besides Svelte); actual placement surfaces as `data-placement` for arrow styling.
+
+## Keyboard interactions
+
+- Trigger toggles on `Enter` / `Space`.
+- `Esc` closes; focus stays where it was (modeless).

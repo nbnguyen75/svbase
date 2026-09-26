@@ -1,0 +1,46 @@
+---
+title: Separator
+description: Accessible divider with orientation.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import SeparatorDemo from '../../components/islands/SeparatorDemo.svelte';
+
+Accessible divider with orientation.
+
+<SeparatorDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Separator } from 'svbase';
+</script>
+
+<Separator.Separator />
+```
+
+## API reference
+
+### Separator.Separator
+
+<ApiTable
+	props={[
+		{
+			name: 'orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: "'horizontal'",
+			description: 'Reading direction of the divider.'
+		},
+		{
+			name: 'ref',
+			type: 'HTMLDivElement',
+			defaultValue: '—',
+			description: 'Two-way bound access to the underlying DOM element.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- None — separators are never focusable.

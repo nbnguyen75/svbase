@@ -10,12 +10,17 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^8.0.2",
     "@astrojs/starlight": "^0.42.4",
     "@astrojs/svelte": "^9.0.1",
     "@astrojs/vercel": "^11.0.11",
+    "@tailwindcss/vite": "^4.3.0",
     "astro": "^7.2.10",
+    "cn": "^0.4.0",
     "sharp": "^0.35.3",
+    "svbase": "workspace:*",
     "svelte": "^5.57.1",
+    "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3"
   }
 }

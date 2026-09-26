@@ -1,0 +1,93 @@
+---
+title: Checkbox
+description: Accessible checkbox with indeterminate state and hidden form input.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import CheckboxDemo from '../../components/islands/CheckboxDemo.svelte';
+
+Accessible checkbox with indeterminate state and hidden form input.
+
+<CheckboxDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Checkbox } from 'svbase';
+</script>
+
+<Checkbox.Root>
+  <Checkbox.Indicator>✓</Checkbox.Indicator>
+  Subscribe
+</Checkbox.Root>
+```
+
+## API reference
+
+### Checkbox.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'checked',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled ticked state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'defaultChecked',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Initial state for uncontrolled usage.'
+		},
+		{
+			name: 'indeterminate',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Mixed state: renders aria-checked="mixed". Clicking resolves to checked.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction.'
+		},
+		{
+			name: 'readOnly',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Blocks ticking while staying focusable.'
+		},
+		{
+			name: 'required',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Native form validation via the hidden input.'
+		},
+		{ name: 'name', type: 'string', defaultValue: '—', description: 'Form field name.' },
+		{
+			name: 'value',
+			type: 'string',
+			defaultValue: '"on"',
+			description: 'Submitted value when checked.'
+		},
+		{
+			name: 'uncheckedValue',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Submitted value when unchecked (nothing submits by default).'
+		},
+		{
+			name: 'onCheckedChange',
+			type: '(checked: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every toggle.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- Space toggles when the box is focused; Enter never toggles (it submits the form).
+- Associated `<label>` elements toggle via the hidden input.

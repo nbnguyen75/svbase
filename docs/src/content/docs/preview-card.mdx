@@ -1,0 +1,68 @@
+---
+title: Preview Card
+description: Hover preview panel with open/close intent delays.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import PreviewCardDemo from '../../components/islands/PreviewCardDemo.svelte';
+
+Hover preview panel with open/close intent delays. A popover with hover timing — touch users get click-to-toggle.
+
+<PreviewCardDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { PreviewCard } from 'svbase';
+</script>
+
+<PreviewCard.Root>
+  <PreviewCard.Trigger>@ada</PreviewCard.Trigger>
+  <PreviewCard.Portal>
+    <PreviewCard.Content>
+      Ada Lovelace — first programmer.
+    </PreviewCard.Content>
+  </PreviewCard.Portal>
+</PreviewCard.Root>
+```
+
+## API reference
+
+### PreviewCard.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'delay',
+			type: 'number',
+			defaultValue: '300',
+			description: 'Hover intent before opening, in ms.'
+		},
+		{
+			name: 'closeDelay',
+			type: 'number',
+			defaultValue: '100',
+			description: 'Hover intent before closing, in ms.'
+		},
+		{
+			name: 'placement',
+			type: 'Placement',
+			defaultValue: "'bottom'",
+			description: 'Preferred placement; flips on viewport collision.'
+		},
+		{
+			name: 'onOpenChange',
+			type: '(open: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every open or close.'
+		}
+	]}
+/>
+
+`PreviewCard.Trigger` opens on hover (after `delay`), immediately on focus, and toggles on click. `Content` cancels pending closes on hover and dismisses on hover-away (after `closeDelay`) or `Esc`. `Arrow` centers on the trigger edge like the popover arrow.
+
+## Keyboard interactions
+
+- `Tab` into the trigger opens the card; `Esc` closes it.
+- Focus stays put — the card is modeless and never steals focus.

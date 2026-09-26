@@ -1,0 +1,69 @@
+---
+title: Select
+description: Single-select dropdown with typeahead and form sync.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import SelectDemo from '../../components/islands/SelectDemo.svelte';
+
+Single-select dropdown with typeahead and form sync.
+
+<SelectDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Select } from 'svbase';
+</script>
+
+<Select.Root name="fruit">
+  <Select.Trigger aria-label="Fruit">
+    <Select.Value placeholder="Pick a fruit" />
+  </Select.Trigger>
+  <Select.Portal>
+    <Select.Content>
+      <Select.Item value="apple">Apple</Select.Item>
+    </Select.Content>
+  </Select.Portal>
+</Select.Root>
+```
+
+## API reference
+
+### Select.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'string | null',
+			defaultValue: '—',
+			description: 'Selected value, or null when empty (controlled).'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Form field name (hidden input syncs the value).'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: string | null) => void',
+			defaultValue: '—',
+			description: 'Fired with the next value on every selection.'
+		},
+		{
+			name: 'onOpenChange',
+			type: '(open: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every open or close.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- Closed trigger: `↑` `↓` select directly; `Enter` opens and moves focus in; type to jump.
+- Open list: arrows move highlight, `Enter` commits and closes, `Esc` closes and refocuses, `Tab` dismisses.
+- Combobox triggers need an author-provided name (`aria-label`) — see the demo.

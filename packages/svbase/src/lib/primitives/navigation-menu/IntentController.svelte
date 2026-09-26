@@ -24,6 +24,8 @@
 	let closeTimer: number | undefined = undefined;
 
 	onDestroy(() => {
+		// SSR runs destroy callbacks: nothing was ever scheduled server-side.
+		if (typeof window === 'undefined') return;
 		cancelPending();
 	});
 

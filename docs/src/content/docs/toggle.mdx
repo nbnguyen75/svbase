@@ -1,0 +1,71 @@
+---
+title: Toggle
+description: Two-state button with aria-pressed.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import ToggleDemo from '../../components/islands/ToggleDemo.svelte';
+
+Two-state button with aria-pressed.
+
+<ToggleDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Toggle } from 'svbase';
+</script>
+
+<Toggle aria-label="Mute">M</Toggle>
+```
+
+## API reference
+
+### Toggle
+
+<ApiTable
+	props={[
+		{
+			name: 'pressed',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled pressed state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'defaultPressed',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Initial state for uncontrolled usage.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Whether user interaction is ignored.'
+		},
+		{
+			name: 'element',
+			type: 'string',
+			defaultValue: "'button'",
+			description: 'Underlying element tag, forwarded to Button.'
+		},
+		{
+			name: 'onPressedChange',
+			type: '(pressed: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state whenever the toggle is activated.'
+		},
+		{
+			name: 'ref',
+			type: 'HTMLElement',
+			defaultValue: '—',
+			description: 'Two-way bound access to the underlying DOM element.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- Enter and Space toggle the pressed state.
+- A consumer onclick calling preventDefault vetoes the flip.

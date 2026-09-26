@@ -1,0 +1,65 @@
+---
+title: Dropdown Menu
+description: Menu with roving focus, typeahead, checks, radios, and a submenu.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import DropdownMenuDemo from '../../components/islands/DropdownMenuDemo.svelte';
+
+Menu with roving focus, typeahead, checks, radios, and a submenu.
+
+<DropdownMenuDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { DropdownMenu as Menu } from 'svbase';
+</script>
+
+<Menu.Root>
+  <Menu.Trigger>File</Menu.Trigger>
+  <Menu.Portal>
+    <Menu.Content>
+      <Menu.Item>New</Menu.Item>
+      <Menu.Separator />
+      <Menu.CheckboxItem>Show sidebar</Menu.CheckboxItem>
+    </Menu.Content>
+  </Menu.Portal>
+</Menu.Root>
+```
+
+## API reference
+
+### DropdownMenu.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'open',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled open state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'placement',
+			type: 'Placement',
+			defaultValue: "'bottom-start'",
+			description: 'Preferred placement; flips on viewport collision.'
+		},
+		{
+			name: 'onOpenChange',
+			type: '(open: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every open or close.'
+		}
+	]}
+/>
+
+Item clicks close the menu; `CheckboxItem` and `RadioItem` stay open. Highlighted items carry `data-highlighted` for styling.
+
+## Keyboard interactions
+
+- `↑` `↓` move focus and highlight; `Home` / `End` jump; type to search.
+- `Enter` / `Space` selects; `Esc` closes one level; `Tab` dismisses.
+- Submenu: hover or `→` opens, `←` closes.

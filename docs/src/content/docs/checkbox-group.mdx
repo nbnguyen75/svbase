@@ -1,0 +1,64 @@
+---
+title: Checkbox Group
+description: Grouped checkboxes with a mixed-state select-all parent.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import CheckboxGroupDemo from '../../components/islands/CheckboxGroupDemo.svelte';
+
+Grouped checkboxes with a mixed-state select-all parent.
+
+<CheckboxGroupDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { CheckboxGroup } from 'svbase';
+</script>
+
+<CheckboxGroup.Root bind:value={toppings} name="topping" allValues={['cheese', 'pepperoni']}>
+  <CheckboxGroup.Parent>All toppings</CheckboxGroup.Parent>
+  <CheckboxGroup.Item value="cheese">Cheese</CheckboxGroup.Item>
+  <CheckboxGroup.Item value="pepperoni">Pepperoni</CheckboxGroup.Item>
+</CheckboxGroup.Root>
+```
+
+## API reference
+
+### CheckboxGroup.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'Array<string>',
+			defaultValue: '[]',
+			description: 'Selected values (controlled).'
+		},
+		{
+			name: 'allValues',
+			type: 'Array<string>',
+			defaultValue: '—',
+			description: 'Every selectable value; drives the parent checkbox state.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Form field name (one hidden input per selected value).'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: Array<string>) => void',
+			defaultValue: '—',
+			description: 'Fired with the next value on every toggle.'
+		}
+	]}
+/>
+
+`CheckboxGroup.Parent` checks or clears everything, showing mixed state for partial selection. `CheckboxGroup.Item` takes a unique `value`. Put `name` on the root only — one hidden input per selected value submits the group.
+
+## Keyboard interactions
+
+- `Space` toggles the focused box; `Enter` never toggles (it submits the form).

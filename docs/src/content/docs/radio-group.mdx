@@ -1,0 +1,74 @@
+---
+title: Radio Group
+description: Single-select option group with roving tabindex.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import RadioGroupDemo from '../../components/islands/RadioGroupDemo.svelte';
+
+Single-select option group with roving tabindex.
+
+<RadioGroupDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { RadioGroup } from 'svbase';
+</script>
+
+<RadioGroup.Root name="plan" aria-label="Plan">
+  <label>
+    <RadioGroup.Item value="free">
+      <RadioGroup.Indicator />
+    </RadioGroup.Item>
+    Free
+  </label>
+</RadioGroup.Root>
+```
+
+## API reference
+
+### RadioGroup.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'string | null',
+			defaultValue: '—',
+			description: 'Selected value, or null when empty (controlled).'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Form field name (hidden input syncs the value).'
+		},
+		{
+			name: 'orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: '—',
+			description: 'Arrow-key axis. Omit for automatic (from role/orientation context).'
+		},
+		{
+			name: 'loop',
+			type: 'boolean',
+			defaultValue: 'true',
+			description: 'Whether arrow navigation wraps around.'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: string | null) => void',
+			defaultValue: '—',
+			description: 'Fired with the next value on every selection.'
+		}
+	]}
+/>
+
+Whole-group `disabled` freezes every item. One tab stop per group: checked item first, otherwise the first enabled item. Hidden-input sync honors `required` (blocks submit until checked) but a group-level `disabled` drops the input the way native fieldsets do.
+
+## Keyboard interactions
+
+- `Tab` enters the group at the checked item (or first enabled); arrows move and select.
+- `Space` selects the focused item (already-selected semantics included).

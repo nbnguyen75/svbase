@@ -1,0 +1,67 @@
+---
+title: Slider
+description: Single and range sliders with keyboard stepping and pointer drag.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import SliderDemo from '../../components/islands/SliderDemo.svelte';
+
+Single and range sliders with keyboard stepping and pointer drag.
+
+<SliderDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Slider } from 'svbase';
+</script>
+
+<Slider.Root bind:value={volume}>
+  <Slider.Track>
+    <Slider.Thumb ariaLabel="Volume" />
+  </Slider.Track>
+</Slider.Root>
+```
+
+## API reference
+
+### Slider.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'number | Array<number>',
+			defaultValue: 'min',
+			description: 'Single value or one per thumb, in order (controlled).'
+		},
+		{ name: 'min', type: 'number', defaultValue: '0', description: 'Range minimum.' },
+		{ name: 'max', type: 'number', defaultValue: '100', description: 'Range maximum.' },
+		{ name: 'step', type: 'number', defaultValue: '1', description: 'Value granularity.' },
+		{
+			name: 'orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: "'horizontal'",
+			description: 'Axis and drag geometry.'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: number | Array<number>) => void',
+			defaultValue: '—',
+			description: 'Fired on every change (drag, keys).'
+		},
+		{
+			name: 'onValueCommitted',
+			type: '(value: number | Array<number>) => void',
+			defaultValue: '—',
+			description: 'Fired when a change commits (key press, drag release).'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- `←` `→` `↑` `↓` step by `step`; `PgUp` / `PgDn` jump by `largeStep`.
+- `Home` / `End` jump to min/max.
+- Each thumb is tabbable with full `aria-valuenow` contract.

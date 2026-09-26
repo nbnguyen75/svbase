@@ -1,0 +1,51 @@
+---
+title: Progress
+description: Determinate and indeterminate progress bars.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import ProgressDemo from '../../components/islands/ProgressDemo.svelte';
+
+Determinate and indeterminate progress bars.
+
+<ProgressDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Progress } from 'svbase';
+</script>
+
+<Progress.Root value={30} ariaLabel="Upload progress">
+  <Progress.Indicator />
+</Progress.Root>
+```
+
+## API reference
+
+### Progress.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'number',
+			defaultValue: '—',
+			description: 'Current value. Omit for an indeterminate bar (omits aria-valuenow).'
+		},
+		{ name: 'min', type: 'number', defaultValue: '0', description: 'Range minimum.' },
+		{ name: 'max', type: 'number', defaultValue: '100', description: 'Range maximum.' },
+		{
+			name: 'format',
+			type: '(value: number, max: number) => string',
+			defaultValue: '—',
+			description: 'Human-readable value for aria-valuetext (determinate only).'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- None — progress bars are read-only indicators, never focusable.
+- `data-state` is `indeterminate | progressing | complete`.

@@ -1,0 +1,65 @@
+---
+title: Alert Dialog
+description: Modal confirmation that ignores overlay clicks (Escape still closes).
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import AlertDialogDemo from '../../components/islands/AlertDialogDemo.svelte';
+
+Modal confirmation that ignores overlay clicks (Escape still closes).
+
+<AlertDialogDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { AlertDialog } from 'svbase';
+</script>
+
+<AlertDialog.Root>
+  <AlertDialog.Trigger>Delete item</AlertDialog.Trigger>
+  <AlertDialog.Portal>
+    <AlertDialog.Overlay />
+    <AlertDialog.Content>
+      <AlertDialog.Title>Delete item?</AlertDialog.Title>
+      <AlertDialog.Description>This action cannot be undone.</AlertDialog.Description>
+      <AlertDialog.Close>Cancel</AlertDialog.Close>
+    </AlertDialog.Content>
+  </AlertDialog.Portal>
+</AlertDialog.Root>
+```
+
+## API reference
+
+### AlertDialog.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'open',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled open state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'defaultOpen',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Initially open for uncontrolled usage.'
+		},
+		{
+			name: 'onOpenChange',
+			type: '(open: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every open or close.'
+		}
+	]}
+/>
+
+All other parts are re-exported from Dialog with identical props.
+
+## Keyboard interactions
+
+- Same focus trap as Dialog; `Esc` closes.
+- Overlay clicks are ignored — destructive actions require an explicit choice.

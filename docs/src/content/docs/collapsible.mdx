@@ -1,0 +1,64 @@
+---
+title: Collapsible
+description: Expandable region with trigger, panel, and generated id linkage.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import CollapsibleDemo from '../../components/islands/CollapsibleDemo.svelte';
+
+Expandable region with trigger, panel, and generated id linkage.
+
+<CollapsibleDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Collapsible } from 'svbase';
+</script>
+
+<Collapsible.Root>
+  <Collapsible.Trigger>Show more</Collapsible.Trigger>
+  <Collapsible.Panel>
+    Hidden details live here.
+  </Collapsible.Panel>
+</Collapsible.Root>
+```
+
+## API reference
+
+### Collapsible.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'open',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled open state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'defaultOpen',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Initially open for uncontrolled usage.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction.'
+		},
+		{
+			name: 'onOpenChange',
+			type: '(open: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every toggle.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- The trigger is a button: `Enter` and `Space` toggle the panel.
+- State surfaces as `data-state="open|closed"` on trigger and panel for styling.

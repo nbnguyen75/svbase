@@ -1,0 +1,70 @@
+---
+title: Toggle Group
+description: Single-select or multi-select toggle buttons with roving focus.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import ToggleGroupDemo from '../../components/islands/ToggleGroupDemo.svelte';
+
+Single-select or multi-select toggle buttons with roving focus.
+
+<ToggleGroupDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { ToggleGroup } from 'svbase';
+</script>
+
+<ToggleGroup.Root bind:value={align} name="align">
+  <ToggleGroup.Item value="left">Left</ToggleGroup.Item>
+  <ToggleGroup.Item value="center">Center</ToggleGroup.Item>
+</ToggleGroup.Root>
+```
+
+## API reference
+
+### ToggleGroup.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'string | Array<string> | null',
+			defaultValue: '—',
+			description: 'Selected value(s). Single string, array, or null when empty (controlled).'
+		},
+		{
+			name: 'multiple',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Whether several items may be pressed at once.'
+		},
+		{
+			name: 'orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: "'horizontal'",
+			description: 'Arrow-key axis.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Form field name (one hidden input per selected value).'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: string | Array<string> | null) => void',
+			defaultValue: '—',
+			description: 'Fired with the next value on every toggle.'
+		}
+	]}
+/>
+
+`ToggleGroup.Item` takes a unique `value` and renders a `Toggle` bound to the group — arrows travel with a single tab stop, and `data-pressed` marks the active items for styling.
+
+## Keyboard interactions
+
+- `←` `→` move focus between items (vertical orientation: `↑` `↓`); `Home` / `End` jump.
+- `Enter` and `Space` flip the focused item.

@@ -1,0 +1,96 @@
+---
+title: Combobox
+description: Filterable single-select with a text input and listbox popup.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import ComboboxDemo from '../../components/islands/ComboboxDemo.svelte';
+
+Filterable single-select with a text input and listbox popup. With `freeInput` it becomes a free-text autocomplete.
+
+<ComboboxDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Combobox } from 'svbase';
+</script>
+
+<Combobox.Root name="fruit">
+  <Combobox.Input aria-label="Fruit" />
+  <Combobox.Portal>
+    <Combobox.Content>
+      <Combobox.Item value="apple">Apple</Combobox.Item>
+      <Combobox.Item value="banana">Banana</Combobox.Item>
+      <Combobox.Empty>No matches</Combobox.Empty>
+    </Combobox.Content>
+  </Combobox.Portal>
+</Combobox.Root>
+```
+
+## API reference
+
+### Combobox.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'string | null',
+			defaultValue: '—',
+			description: 'Selected item value, or null when empty (controlled).'
+		},
+		{
+			name: 'filter',
+			type: 'string',
+			defaultValue: "''",
+			description: 'Filter text shown in the input (controlled).'
+		},
+		{
+			name: 'filterItems',
+			type: '(label: string, filter: string) => boolean',
+			defaultValue: 'case-insensitive substring',
+			description: 'Custom matcher deciding which items stay visible.'
+		},
+		{
+			name: 'autoHighlight',
+			type: 'boolean',
+			defaultValue: 'true',
+			description: 'Highlight the first match while filtering.'
+		},
+		{
+			name: 'freeInput',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Autocomplete mode: Enter commits the typed text itself as the value.'
+		},
+		{
+			name: 'open',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled open state. Omit for uncontrolled usage.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Form field name (hidden input syncs the value).'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: string | null) => void',
+			defaultValue: '—',
+			description: 'Fired with the next value on every selection.'
+		}
+	]}
+/>
+
+`Combobox.Input` is a `role="combobox"` textbox tracking `aria-expanded`, `aria-controls`, and `aria-activedescendant`. `Combobox.Item` takes `value`, an optional `label` (defaults to its text), and `disabled`. `Combobox.Group` + `Combobox.GroupLabel` cluster items; `Combobox.Empty` shows when the filter matches nothing. `Combobox.Trigger` toggles the list without stealing input focus.
+
+## Keyboard interactions
+
+- `↓` `↑` open the list (when closed) and move the highlight; `Home` / `End` jump.
+- `Enter` commits the highlighted item — or the typed text in `freeInput` mode.
+- `Esc` closes and reverts to the selected label (strict mode); `Tab` closes the same way.
+- Focus stays in the textbox while navigating; screen readers follow `aria-activedescendant`.

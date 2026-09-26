@@ -1,0 +1,67 @@
+---
+title: Tabs
+description: Roving-tabindex tabs with automatic and manual activation.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import TabsDemo from '../../components/islands/TabsDemo.svelte';
+
+Roving-tabindex tabs with automatic and manual activation.
+
+<TabsDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Tabs } from 'svbase';
+</script>
+
+<Tabs.Root>
+  <Tabs.List activation="automatic">
+    <Tabs.Trigger value="a">Alpha</Tabs.Trigger>
+    <Tabs.Trigger value="b">Beta</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="a">Panel A</Tabs.Content>
+  <Tabs.Content value="b">Panel B</Tabs.Content>
+</Tabs.Root>
+```
+
+## API reference
+
+### Tabs.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Selected tab value (controlled); undefined auto-selects first enabled.'
+		},
+		{
+			name: 'defaultValue',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Initially selected value for uncontrolled usage.'
+		},
+		{
+			name: 'orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: "'horizontal'",
+			description: 'Arrow-key axis (Left/Right vs Up/Down).'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: string) => void',
+			defaultValue: '—',
+			description: 'Fired with the next value on every selection.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- Only the active (or focused) tab sits in the Tab order.
+- Automatic mode selects on arrow move; manual mode selects on Enter/Space/click.
+- `Home` / `End` jump to the ends.

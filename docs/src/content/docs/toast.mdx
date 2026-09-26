@@ -1,0 +1,61 @@
+---
+title: Toast
+description: Auto-dismissing notifications with swipe, pause-on-hover, and live regions.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import ToastDemo from '../../components/islands/ToastDemo.svelte';
+
+Auto-dismissing notifications with swipe, pause-on-hover, and live regions.
+
+<ToastDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Toast } from 'svbase';
+</script>
+
+<Toast.Provider>
+  <Toast.Viewport>
+    <Toast.Root>
+      <Toast.Title>Saved</Toast.Title>
+      <Toast.Description>All changes saved.</Toast.Description>
+      <Toast.Close>Dismiss</Toast.Close>
+    </Toast.Root>
+  </Toast.Viewport>
+</Toast.Provider>
+```
+
+## API reference
+
+### Toast.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'duration',
+			type: 'number',
+			defaultValue: 'provider timeout (5000)',
+			description: 'Auto-dismiss delay in ms. Non-finite values never auto-dismiss.'
+		},
+		{
+			name: 'open / defaultOpen',
+			type: 'boolean',
+			defaultValue: 'true',
+			description: 'Controlled / initial visibility. Rendered toasts show by default.'
+		},
+		{
+			name: 'onOpenChange',
+			type: '(open: boolean) => void',
+			defaultValue: '—',
+			description: 'Fired with the next state on every open or close.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- Toasts never steal focus; inner buttons tab normally.
+- Hover or focus pauses the auto-dismiss timer with remaining time preserved.

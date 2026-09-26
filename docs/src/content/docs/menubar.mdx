@@ -1,0 +1,57 @@
+---
+title: Menubar
+description: Coordinated menu bar with cross-menu traversal.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import MenubarDemo from '../../components/islands/MenubarDemo.svelte';
+
+Coordinated menu bar: arrows travel across triggers, opening one menu closes the rest.
+
+<MenubarDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Menubar } from 'svbase';
+</script>
+
+<Menubar.Root>
+  <Menubar.Menu value="file">
+    <Menubar.Trigger>File</Menubar.Trigger>
+    <Menubar.Content>
+      <Menubar.Item>New</Menubar.Item>
+    </Menubar.Content>
+  </Menubar.Menu>
+</Menubar.Root>
+```
+
+## API reference
+
+### Menubar.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: "'horizontal'",
+			description: 'Arrow-key axis for moving between menus.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction across all menus.'
+		}
+	]}
+/>
+
+`Menubar.Menu` (unique `value`, optional `disabled`) wraps a dropdown-menu root and bridges its open state; `Menubar.Trigger` is a `menuitem` driver with traversal, hover/focus switching, and explicit activation. Menu contents reuse the dropdown-menu parts unchanged — see [Dropdown Menu](/dropdown-menu).
+
+## Keyboard interactions
+
+- `←` `→` move focus between triggers (vertical orientation: `↑` `↓`); `Home` / `End` jump.
+- `Enter` / `Space` / `↓` opens the focused menu; `Esc` closes.
+- Moving focus or hovering across triggers while a menu is open switches menus.

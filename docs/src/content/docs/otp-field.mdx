@@ -1,0 +1,84 @@
+---
+title: OTP Field
+description: Segmented one-time-code input with auto-advance and paste distribution.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import OtpFieldDemo from '../../components/islands/OtpFieldDemo.svelte';
+
+Segmented one-time-code input with auto-advance and paste distribution.
+
+<OtpFieldDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { OtpField } from 'svbase';
+</script>
+
+<OtpField.Root name="code" length={6}>
+  <OtpField.Input index={0} aria-label="Digit 1" />
+  <OtpField.Input index={1} aria-label="Digit 2" />
+</OtpField.Root>
+```
+
+## API reference
+
+### OtpField.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'string',
+			defaultValue: "''",
+			description: 'Current code (controlled).'
+		},
+		{
+			name: 'length',
+			type: 'number',
+			defaultValue: '6',
+			description: 'Segment count. Must be a positive integer.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Form field name (hidden input syncs the value).'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: string) => void',
+			defaultValue: '—',
+			description: 'Fired with the next code on every change.'
+		}
+	]}
+/>
+
+### OtpField.Input
+
+<ApiTable
+	props={[
+		{
+			name: 'index',
+			type: 'number',
+			defaultValue: '—',
+			description: 'Zero-based segment position. Required.'
+		},
+		{
+			name: 'allowedPattern',
+			type: 'string',
+			defaultValue: "'\\d'",
+			description: 'Allowed characters as a regex source, tested per character.'
+		}
+	]}
+/>
+
+The first segment carries `autocomplete="one-time-code"` for mobile SMS autofill. Pair with `Field` and a length-checking `validate` for required codes.
+
+## Keyboard interactions
+
+- Typing a character commits it and advances; `←` `→` move between segments.
+- `Backspace` on an empty segment backs up and clears the previous one; `Delete` clears in place.
+- Pasting distributes filtered characters from the focused segment.

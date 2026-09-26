@@ -1,0 +1,69 @@
+---
+title: Navigation Menu
+description: Hover-intent site navigation with per-item dropdown panels.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import NavigationMenuDemo from '../../components/islands/NavigationMenuDemo.svelte';
+
+Hover-intent site navigation with per-item dropdown panels. Switching between open menus is immediate; opening and closing wait out short delays.
+
+<NavigationMenuDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { NavigationMenu } from 'svbase';
+</script>
+
+<NavigationMenu.Root>
+  <NavigationMenu.Item value="products">
+    <NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
+    <NavigationMenu.Content>
+      <NavigationMenu.MenuItem>Overview</NavigationMenu.MenuItem>
+    </NavigationMenu.Content>
+  </NavigationMenu.Item>
+</NavigationMenu.Root>
+```
+
+## API reference
+
+### NavigationMenu.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'delay',
+			type: 'number',
+			defaultValue: '50',
+			description: 'Hover intent before opening from closed, in ms.'
+		},
+		{
+			name: 'closeDelay',
+			type: 'number',
+			defaultValue: '50',
+			description: 'Hover intent before closing, in ms.'
+		},
+		{
+			name: 'orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: "'horizontal'",
+			description: 'Arrow-key axis for moving between items.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction across all items.'
+		}
+	]}
+/>
+
+`NavigationMenu.Item` (unique `value`, optional `disabled`) wraps one dropdown unit; `Trigger` drives it with hover intent; `Content` positions its panel; `Link` is a plain anchor row. Panel contents reuse the dropdown-menu parts (`MenuItem`, `Separator`, checks, radios, submenus) — see [Dropdown Menu](/dropdown-menu). There is no shared viewport: each item positions its own panel.
+
+## Keyboard interactions
+
+- `←` `→` move focus between triggers (vertical orientation: `↑` `↓`); `Home` / `End` jump.
+- `Enter` / `Space` / `↓` opens the focused item; `Esc` closes.
+- Touch devices get click-to-toggle (no hover intent needed).

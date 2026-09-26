@@ -1,0 +1,56 @@
+---
+title: Scroll Area
+description: Native scrolling with a custom thumb and track.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import ScrollAreaDemo from '../../components/islands/ScrollAreaDemo.svelte';
+
+Native scrolling with a custom thumb and track. Style the parts with CSS.
+
+<ScrollAreaDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { ScrollArea } from 'svbase';
+</script>
+
+<ScrollArea.Root>
+  <ScrollArea.Viewport style="height: 200px;">
+    Long content…
+  </ScrollArea.Viewport>
+  <ScrollArea.Scrollbar>
+    <ScrollArea.Thumb />
+  </ScrollArea.Scrollbar>
+</ScrollArea.Root>
+```
+
+## API reference
+
+### ScrollArea parts
+
+<ApiTable
+	props={[
+		{
+			name: 'Viewport',
+			type: 'component',
+			defaultValue: '—',
+			description: 'Scrollable region. Keyboard-focusable; set height via style.'
+		},
+		{
+			name: 'Scrollbar orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: "'vertical'",
+			description: 'Scroll axis. Hidden automatically without overflow.'
+		}
+	]}
+/>
+
+Thumb geometry (`height/width/top/left` percentages) is set inline as functional positioning — bring your own colors and thickness.
+
+## Keyboard interactions
+
+- The viewport is focusable (`Tab`); arrows/PageUp/PageDown scroll natively.
+- The thumb itself is never in the Tab order.

@@ -1,0 +1,74 @@
+---
+title: Accordion
+description: Stacked collapsibles with arrow-key focus navigation.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import AccordionDemo from '../../components/islands/AccordionDemo.svelte';
+
+Stacked collapsibles with arrow-key focus navigation.
+
+<AccordionDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Accordion } from 'svbase';
+</script>
+
+<Accordion.Root>
+  <Accordion.Item value="a">
+    <Accordion.Header>
+      <Accordion.Trigger>First</Accordion.Trigger>
+    </Accordion.Header>
+    <Accordion.Panel>
+      First panel content.
+    </Accordion.Panel>
+  </Accordion.Item>
+</Accordion.Root>
+```
+
+## API reference
+
+### Accordion.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'Array<string>',
+			defaultValue: '—',
+			description: 'Open item values (controlled).'
+		},
+		{
+			name: 'defaultValue',
+			type: 'Array<string>',
+			defaultValue: '[]',
+			description: 'Initially open values for uncontrolled usage.'
+		},
+		{
+			name: 'multiple',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Whether several items may be open at once.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction.'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: Array<string>) => void',
+			defaultValue: '—',
+			description: 'Fired with the next value on every toggle.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- `↑` `↓` move focus between triggers without opening; `Home` / `End` jump to the ends.
+- `Enter` and `Space` toggle the focused item.

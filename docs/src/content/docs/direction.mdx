@@ -1,0 +1,48 @@
+---
+title: Direction
+description: Base-direction provider for right-to-left locales.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import DirectionDemo from '../../components/islands/DirectionDemo.svelte';
+
+Base-direction provider for right-to-left locales. Roving navigation in every primitive reads it first, so mirrored arrows work with no `dir` attributes on the widgets themselves — including portaled content that escapes the DOM subtree. The provider still renders `dir` for native layout.
+
+<DirectionDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Direction, Tabs } from 'svbase';
+</script>
+
+<Direction.Root direction="rtl">
+  <Tabs.Root>
+    <Tabs.List activation="automatic">
+      <Tabs.Trigger value="a">Alpha</Tabs.Trigger>
+    </Tabs.List>
+  </Tabs.Root>
+</Direction.Root>
+```
+
+## API reference
+
+### Direction.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'direction',
+			type: "'ltr' | 'rtl'",
+			defaultValue: "'ltr'",
+			description: 'Base direction for the subtree. Two-way bindable.'
+		}
+	]}
+/>
+
+Without a provider, widgets fall back to the closest `dir` attribute, then `document.dir`. Physical floating placements do not auto-mirror; choose explicit placements per direction.
+
+## Keyboard interactions
+
+- None of its own — it mirrors every roving widget inside: `←` `→` swap meaning under `rtl`.

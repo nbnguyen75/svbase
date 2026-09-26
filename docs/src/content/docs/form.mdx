@@ -1,0 +1,130 @@
+---
+title: Form
+description: Labelled fields with native constraint validation, custom validators, and a submit-collecting form wrapper.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import FormDemo from '../../components/islands/FormDemo.svelte';
+
+Labelled fields with native constraint validation, custom validators, and a submit-collecting form wrapper.
+
+<FormDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Field, Form } from 'svbase';
+</script>
+
+<Form.Form
+  onFormSubmit={(values, errors) => {
+    if (Object.keys(errors).length === 0) save(values);
+  }}
+>
+  <Field.Root name="email">
+    <Field.Label>Email</Field.Label>
+    <Field.Control type="email" required />
+    <Field.Description>We never share it.</Field.Description>
+    <Field.Error />
+  </Field.Root>
+  <button type="submit">Save</button>
+</Form.Form>
+```
+
+## API reference
+
+### Field.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'name',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Form field name. Falls back to the control’s own name.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction. Inherits fieldset disabled state.'
+		},
+		{
+			name: 'invalid',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'External invalid flag (e.g. server errors). Keeps the field invalid while set.'
+		},
+		{
+			name: 'validate',
+			type: '(value: unknown, formValues: Record<string, string>) => string | null',
+			defaultValue: '—',
+			description: 'Custom validator run after native constraints pass. Sync only.'
+		},
+		{
+			name: 'validationMode',
+			type: "'onBlur' | 'onChange' | 'onSubmit'",
+			defaultValue: "'onBlur'",
+			description: 'When validation runs. Overrides the enclosing Form’s mode.'
+		}
+	]}
+/>
+
+`Field.Label`, `Field.Control`, `Field.Description`, and `Field.Error` link to the control through a generated id (`aria-describedby` includes the description always, the error only while invalid). `Field.Control` renders an `Input` bound to the field; use `Input` directly for standalone or custom-wired inputs. `Fieldset.Root` groups fields and disables them together, with `Fieldset.Legend` as its caption.
+
+### Input
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'string',
+			defaultValue: "''",
+			description: 'Current value (controlled).'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Form field name. Falls back to the enclosing Field’s name.'
+		},
+		{
+			name: 'required',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Native required constraint, validated by the enclosing Field.'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: string) => void',
+			defaultValue: '—',
+			description: 'Fired with the next value on every committed change.'
+		}
+	]}
+/>
+
+### Form.Form
+
+<ApiTable
+	props={[
+		{
+			name: 'onFormSubmit',
+			type: '(values: Record<string, string>, errors: Record<string, Array<string>>) => void',
+			defaultValue: '—',
+			description: 'Called on every submit with native values and per-field errors. Native submission is always prevented.'
+		},
+		{
+			name: 'validationMode',
+			type: "'onSubmit' | 'onBlur' | 'onChange'",
+			defaultValue: "'onSubmit'",
+			description: 'Default validation mode for nested fields. A field’s own mode wins.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- `Tab` moves through labels, controls, and buttons natively; `Enter` submits from any control.
+- A failed submit focuses the first invalid control.
+- `required` empty values stay quiet until the field is changed — submit always flags them.

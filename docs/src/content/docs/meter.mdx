@@ -1,0 +1,83 @@
+---
+title: Meter
+description: Scalar gauge with low/high bands.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import MeterDemo from '../../components/islands/MeterDemo.svelte';
+
+Scalar gauge with low/high bands. The steady sibling to progress bars — no animation, just the measurement.
+
+<MeterDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Meter } from 'svbase';
+</script>
+
+<Meter.Root value={72} min={0} max={100} ariaLabel="Storage used">
+  <Meter.Track>
+    <Meter.Indicator />
+  </Meter.Track>
+  <Meter.Value />
+</Meter.Root>
+```
+
+## API reference
+
+### Meter.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'number',
+			defaultValue: '—',
+			description: 'Current value. Clamped into range; NaN falls back to min.'
+		},
+		{
+			name: 'min',
+			type: 'number',
+			defaultValue: '0',
+			description: 'Range minimum.'
+		},
+		{
+			name: 'max',
+			type: 'number',
+			defaultValue: '100',
+			description: 'Range maximum.'
+		},
+		{
+			name: 'low',
+			type: 'number',
+			defaultValue: '—',
+			description: 'Below this the state reads low.'
+		},
+		{
+			name: 'high',
+			type: 'number',
+			defaultValue: '—',
+			description: 'Above this the state reads high.'
+		},
+		{
+			name: 'optimum',
+			type: 'number',
+			defaultValue: '—',
+			description: 'Optimal value, exposed as data-optimum for consumer styling.'
+		},
+		{
+			name: 'format',
+			type: '(value: number, max: number) => string',
+			defaultValue: '—',
+			description: 'Human-readable value for aria-valuetext and the Value part.'
+		}
+	]}
+/>
+
+`Meter.Track` frames the bar, `Indicator` fills by percent, `Label` names it, and `Value` prints the formatted reading.
+
+## Keyboard interactions
+
+- None — meters are read-only indicators, never focusable.

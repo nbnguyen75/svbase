@@ -1,0 +1,58 @@
+---
+title: Drawer
+description: Edge-anchored sheet reusing the dialog focus controller.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import DrawerDemo from '../../components/islands/DrawerDemo.svelte';
+
+Edge-anchored sheet reusing the dialog focus controller. Swipe gestures are a planned follow-up.
+
+<DrawerDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Drawer } from 'svbase';
+</script>
+
+<Drawer.Root side="right">
+  <Drawer.Trigger>Open</Drawer.Trigger>
+  <Drawer.Portal>
+    <Drawer.Overlay />
+    <Drawer.Content>
+      <Drawer.Title>Panel</Drawer.Title>
+      <Drawer.Close>Close</Drawer.Close>
+    </Drawer.Content>
+  </Drawer.Portal>
+</Drawer.Root>
+```
+
+## API reference
+
+### Drawer.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'side',
+			type: "'left' | 'right' | 'top' | 'bottom'",
+			defaultValue: "'right'",
+			description: 'Edge the drawer anchors to.'
+		},
+		{
+			name: 'open',
+			type: 'boolean',
+			defaultValue: '—',
+			description: 'Controlled open state (one-way). Sync back via onOpenChange.'
+		}
+	]}
+/>
+
+`Drawer.Content` anchors to the `side` edge (`data-side` styling hook) with structural positioning only — all visuals stay consumer-owned. `Trigger`, `Overlay`, `Title`, `Description`, `Close`, and `Portal` are the dialog engine re-exported unchanged — see [Dialog](/dialog).
+
+## Keyboard interactions
+
+- `Tab` cycles focus inside while open (focus trap).
+- `Esc` closes and returns focus to the trigger.

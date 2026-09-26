@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+
+/* Design tokens for svbase demo islands (Tailwind utilities). */
+@theme inline {
+	--color-background: var(--sv-background);
+	--color-foreground: var(--sv-foreground);
+	--color-card: var(--sv-card);
+	--color-card-foreground: var(--sv-card-foreground);
+	--color-popover: var(--sv-popover);
+	--color-popover-foreground: var(--sv-popover-foreground);
+	--color-primary: var(--sv-primary);
+	--color-primary-foreground: var(--sv-primary-foreground);
+	--color-secondary: var(--sv-secondary);
+	--color-secondary-foreground: var(--sv-secondary-foreground);
+	--color-muted: var(--sv-muted);
+	--color-muted-foreground: var(--sv-muted-foreground);
+	--color-accent: var(--sv-accent);
+	--color-accent-foreground: var(--sv-accent-foreground);
+	--color-destructive: var(--sv-destructive);
+	--color-border: var(--sv-border);
+	--color-input: var(--sv-input);
+	--color-ring: var(--sv-ring);
+}
+
+:root,
+::backdrop {
+	--sv-background: oklch(0.205 0.012 285);
+	--sv-foreground: oklch(0.93 0.006 285);
+	--sv-card: oklch(0.245 0.014 285);
+	--sv-card-foreground: oklch(0.93 0.006 285);
+	--sv-popover: oklch(0.245 0.014 285);
+	--sv-popover-foreground: oklch(0.93 0.006 285);
+	--sv-primary: oklch(0.648 0.212 34.5);
+	--sv-primary-foreground: oklch(1 0 0);
+	--sv-secondary: oklch(0.29 0.014 285);
+	--sv-secondary-foreground: oklch(0.93 0.006 285);
+	--sv-muted: oklch(0.27 0.014 285);
+	--sv-muted-foreground: oklch(0.78 0.008 285);
+	--sv-accent: oklch(0.29 0.014 285);
+	--sv-accent-foreground: oklch(0.93 0.006 285);
+	--sv-destructive: oklch(0.577 0.245 27.325);
+	--sv-border: oklch(0.33 0.014 285);
+	--sv-input: oklch(0.33 0.014 285);
+	--sv-ring: oklch(0.648 0.212 34.5);
+
+	/* Starlight brand: svelte orange, readable on dark. */
+	--sl-color-accent-low: #3a1503;
+	--sl-color-accent: #ff5a1f;
+	--sl-color-accent-high: #ffb899;
+}
+
+[data-theme='light'] {
+	--sv-background: oklch(1 0 0);
+	--sv-foreground: oklch(0.25 0.012 110);
+	--sv-card: oklch(0.97 0.005 85);
+	--sv-card-foreground: oklch(0.25 0.012 110);
+	--sv-popover: oklch(1 0 0);
+	--sv-popover-foreground: oklch(0.25 0.012 110);
+	--sv-primary: oklch(0.55 0.19 34.5);
+	--sv-primary-foreground: oklch(1 0 0);
+	--sv-secondary: oklch(0.94 0.008 85);
+	--sv-secondary-foreground: oklch(0.25 0.012 110);
+	--sv-muted: oklch(0.94 0.008 85);
+	--sv-muted-foreground: oklch(0.45 0.012 110);
+	--sv-accent: oklch(0.94 0.008 85);
+	--sv-accent-foreground: oklch(0.25 0.012 110);
+	--sv-destructive: oklch(0.577 0.245 27.325);
+	--sv-border: oklch(0.88 0.006 85);
+	--sv-input: oklch(0.88 0.006 85);
+	--sv-ring: oklch(0.55 0.19 34.5);
+
+	--sl-color-accent-low: #ffd9c7;
+	--sl-color-accent: #c22e00;
+	--sl-color-accent-high: #5b1a05;
+}

@@ -1,0 +1,86 @@
+---
+title: Number Field
+description: Spinbutton with increment/decrement controls, keyboard stepping, and clamped commits.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import NumberFieldDemo from '../../components/islands/NumberFieldDemo.svelte';
+
+Spinbutton with increment/decrement controls, keyboard stepping, and clamped commits.
+
+<NumberFieldDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { NumberField } from 'svbase';
+</script>
+
+<NumberField.Root bind:value={volume} min={0} max={100}>
+  <NumberField.Group>
+    <NumberField.Decrement>-</NumberField.Decrement>
+    <NumberField.Input aria-label="Volume" />
+    <NumberField.Increment>+</NumberField.Increment>
+  </NumberField.Group>
+</NumberField.Root>
+```
+
+## API reference
+
+### NumberField.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'value',
+			type: 'number | null',
+			defaultValue: '—',
+			description: 'Current value, or null when empty (controlled).'
+		},
+		{
+			name: 'min',
+			type: 'number',
+			defaultValue: '—',
+			description: 'Range minimum. Unbounded when omitted.'
+		},
+		{
+			name: 'max',
+			type: 'number',
+			defaultValue: '—',
+			description: 'Range maximum. Unbounded when omitted.'
+		},
+		{
+			name: 'step',
+			type: 'number',
+			defaultValue: '1',
+			description: 'Step for arrows and steppers.'
+		},
+		{
+			name: 'largeStep',
+			type: 'number',
+			defaultValue: '10',
+			description: 'Step for PageUp/PageDown.'
+		},
+		{
+			name: 'name',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Form field name (hidden input syncs the value).'
+		},
+		{
+			name: 'onValueChange',
+			type: '(value: number | null) => void',
+			defaultValue: '—',
+			description: 'Fired with the next value on every commit.'
+		}
+	]}
+/>
+
+`NumberField.Input` is a `role="spinbutton"` textbox with `aria-valuenow/min/max`; it parses on commit (change, blur, Enter) and reverts invalid text. `Increment`/`Decrement` step within bounds and disable themselves at the edges. Pairs with `Field` for label, description, and custom validation.
+
+## Keyboard interactions
+
+- `↑` `↓` step by `step`; `PgUp` / `PgDn` step by `largeStep`.
+- `Home` / `End` jump to min/max (when bounded).
+- `Enter` commits the typed text.

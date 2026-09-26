@@ -1,0 +1,74 @@
+---
+title: Button
+description: Unstyled button with disabled handling and element delegation.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import ButtonDemo from '../../components/islands/ButtonDemo.svelte';
+
+Unstyled button with disabled handling and element delegation.
+
+<ButtonDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Button } from 'svbase';
+</script>
+
+<Button onclick={() => console.log('clicked')}>
+  Save changes
+</Button>
+```
+
+## API reference
+
+### Button
+
+<ApiTable
+	props={[
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Whether user interaction is ignored.'
+		},
+		{
+			name: 'focusableWhenDisabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Keep the button focusable when disabled, exposing aria-disabled instead.'
+		},
+		{
+			name: 'element',
+			type: 'string',
+			defaultValue: "'button'",
+			description: 'Underlying element tag. Non-button tags get role="button" plus Enter/Space handling.'
+		},
+		{
+			name: 'type',
+			type: "'button' | 'submit' | 'reset'",
+			defaultValue: "'button'",
+			description: 'Native button type. Only applied when rendering a native button.'
+		},
+		{
+			name: 'ref',
+			type: 'HTMLElement',
+			defaultValue: '—',
+			description: 'Two-way bound access to the underlying DOM element.'
+		},
+		{
+			name: 'children',
+			type: 'Snippet',
+			defaultValue: '—',
+			description: 'Button content.'
+		}
+	]}
+/>
+
+## Keyboard interactions
+
+- Native buttons activate on Enter and Space natively.
+- Non-native elements (`element` other than button) activate on Enter keydown and Space keyup, matching native timing.
+- Disabled buttons ignore interaction; consumer handlers can veto via preventDefault.

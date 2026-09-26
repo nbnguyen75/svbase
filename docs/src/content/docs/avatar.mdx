@@ -1,0 +1,70 @@
+---
+title: Avatar
+description: Image avatar with loading states and text fallback.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import AvatarDemo from '../../components/islands/AvatarDemo.svelte';
+
+Image avatar with loading states and text fallback.
+
+<AvatarDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Avatar } from 'svbase';
+</script>
+
+<Avatar.Root>
+  <Avatar.Image src="/me.png" alt="Me" />
+  <Avatar.Fallback>ME</Avatar.Fallback>
+</Avatar.Root>
+```
+
+## API reference
+
+### Avatar.Image
+
+<ApiTable
+	props={[
+		{
+			name: 'src',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Image URL.'
+		},
+		{
+			name: 'alt',
+			type: 'string',
+			defaultValue: '—',
+			description: 'Accessible name. Always provide one.'
+		},
+		{
+			name: 'onLoadingStatusChange',
+			type: '(status: AvatarImageStatus) => void',
+			defaultValue: '—',
+			description: 'Fired whenever loading moves between idle, loading, loaded, and error.'
+		}
+	]}
+/>
+
+### Avatar.Fallback
+
+<ApiTable
+	props={[
+		{
+			name: 'delayMs',
+			type: 'number',
+			defaultValue: '0',
+			description: 'Wait before showing the fallback while loading. Errors always show immediately; once shown it stays visible.'
+		}
+	]}
+/>
+
+`Avatar.Root` renders a `span` carrying `data-status` (`idle`, `loading`, `loaded`, `error`) for styling. The image hides itself until loaded; cached images resolve synchronously at mount.
+
+## Keyboard interactions
+
+- None — avatars are never focusable. The image needs an `alt`, the fallback needs readable text.

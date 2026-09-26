@@ -69,6 +69,8 @@
 	const defaultContentId = createId('select-content');
 
 	onDestroy(() => {
+		// SSR runs destroy callbacks: nothing was ever scheduled server-side.
+		if (typeof window === 'undefined') return;
 		window.clearTimeout(searchTimer);
 	});
 

@@ -1,0 +1,54 @@
+---
+title: Toolbar
+description: Grouped controls with roving focus.
+---
+
+import ApiTable from '../../components/ApiTable.svelte';
+import ToolbarDemo from '../../components/islands/ToolbarDemo.svelte';
+
+Grouped controls with roving focus: one tab stop, arrows travel, inputs keep caret keys.
+
+<ToolbarDemo client:visible />
+
+## Anatomy
+
+```svelte title="App.svelte"
+<script>
+  import { Toolbar } from 'svbase';
+</script>
+
+<Toolbar.Root>
+  <Toolbar.Button>Save</Toolbar.Button>
+  <Toolbar.Separator />
+  <Toolbar.Link href="/help">Help</Toolbar.Link>
+  <Toolbar.Input aria-label="Search" />
+</Toolbar.Root>
+```
+
+## API reference
+
+### Toolbar.Root
+
+<ApiTable
+	props={[
+		{
+			name: 'orientation',
+			type: "'horizontal' | 'vertical'",
+			defaultValue: "'horizontal'",
+			description: 'Arrow-key axis.'
+		},
+		{
+			name: 'disabled',
+			type: 'boolean',
+			defaultValue: 'false',
+			description: 'Ignores interaction across all controls.'
+		}
+	]}
+/>
+
+`Toolbar.Button`, `Toolbar.Link`, and `Toolbar.Input` register for roving; `Group` clusters controls; `Separator` divides without ever taking focus. Buttons and links share one tab stop; the input stays tabbable with native caret keys.
+
+## Keyboard interactions
+
+- `←` `→` move focus between controls (vertical orientation: `↑` `↓`); `Home` / `End` jump.
+- Disabled controls are skipped by arrows; inputs keep arrow keys for the caret.
