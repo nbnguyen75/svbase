@@ -1,5 +1,7 @@
 packages:
   - docs
   - packages/*
+allowBuilds:
+  esbuild: set this to true or false
 minimumReleaseAgeExclude:
   - eslint-plugin-perfectionist@5.12.0
