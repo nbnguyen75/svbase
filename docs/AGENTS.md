@@ -15,7 +15,7 @@ in `packages/svbase` before `build`/`dev` picks up library changes).
 | `bun run lint`    | `oxlint && eslint` (Svelte rules via `eslint-plugin-svelte`)           |
 | `bun run format`  | `oxfmt --check` (`:fix` variants exist for both)                       |
 
-Root orchestrates both packages (`bun run dev/check/test/lint/format/prepack/build`).
+Root orchestrates both packages (`bun run dev/check/test/lint/format/prepack/build`, plus `changeset`/`version`/`release` for the npm flow).
 bun is primary for dev; pnpm handles CI/CD lockfiles. Dependencies live in
 `docs/package.json` only — never root, never shared.
 
