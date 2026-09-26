@@ -23,6 +23,7 @@ export * as NumberField from './primitives/number-field/index.js';
 export * as OtpField from './primitives/otp-field/index.js';
 export { Portal, type PortalProps } from './primitives/portal/index.js';
 export * as Popover from './primitives/popover/index.js';
+export * as PreviewCard from './primitives/preview-card/index.js';
 export * as Progress from './primitives/progress/index.js';
 export * as RadioGroup from './primitives/radio-group/index.js';
 export * as ScrollArea from './primitives/scroll-area/index.js';

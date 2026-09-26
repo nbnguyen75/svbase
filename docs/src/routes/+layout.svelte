@@ -33,6 +33,7 @@
 		['number-field', 'Number Field'],
 		['otp-field', 'OTP Field'],
 		['popover', 'Popover'],
+		['preview-card', 'Preview Card'],
 		['progress', 'Progress'],
 		['radio-group', 'Radio Group'],
 		['scroll-area', 'Scroll Area'],

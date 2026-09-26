@@ -95,6 +95,12 @@
 - [x] **Fixes found by tests**: full-suite runs flake on timing-sensitive focus tests under load (select highlight, menubar switch) — green in isolation and usually in suite; unrelated to this feat (no existing files touched).
 - [x] **Verification**: 4 browser tests + axe; suite 191/191; check/lint/format/build/prepack green; `./toolbar` export + docs page + sidebar entry.
 
+### 2026-09-25: Preview card (feat-029)
+
+- [x] **Preview card root/trigger/content/arrow** (`src/lib/primitives/preview-card/`): open delay 300ms / close delay 100ms with shared-timer intent machine, immediate focus open, click-to-toggle for touch, popover positioning + arrow, modeless Escape.
+- [x] **Fixes found by tests**: none in the component (5/5 first full run); suite flakes traced to 61 leaked Chromium processes from prior runs starving the machine (cleared) plus general load from VS Code session.
+- [x] **Verification**: 5 browser tests + axe; suite 196/196; check/lint/format/build/prepack green; `./preview-card` export + docs page + sidebar entry.
+
 ---
 
 ## Session History

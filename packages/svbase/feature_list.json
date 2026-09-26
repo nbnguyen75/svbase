@@ -250,8 +250,8 @@
 			"name": "Preview card",
 			"description": "Hover preview panel (hover-card pattern) with open/close delays reusing tooltip timing and popover positioning.",
 			"dependencies": ["feat-008"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/preview-card/, docs/src/routes/preview-card/+page.svx"
 		},
 		{
 			"id": "feat-030",

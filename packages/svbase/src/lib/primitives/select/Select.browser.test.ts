@@ -15,6 +15,7 @@ function trigger() {
 test('opens with first item highlighted and linked ids', async () => {
 	const screen = await render(SelectFixture);
 	trigger().click();
+	await tick();
 	const listbox = screen.getByRole('listbox');
 	await expect.element(listbox).toBeInTheDocument();
 	const triggerEl = trigger();
@@ -23,8 +24,10 @@ test('opens with first item highlighted and linked ids', async () => {
 		(await listbox.findElement()).getAttribute('id')
 	);
 	const apple = screen.getByRole('option', { name: 'Apple' });
-	await expect.element(apple).toHaveAttribute('tabindex', '0');
+	// Highlight settles first: tabindex derives from the same state, so a
+	// highlight assertion is the deterministic gate for the tabindex one.
 	await expect.element(apple).toHaveAttribute('data-highlighted', '');
+	await expect.element(apple).toHaveAttribute('tabindex', '0');
 });
 
 test('click selects, syncs form value, closes, and refocuses', async () => {

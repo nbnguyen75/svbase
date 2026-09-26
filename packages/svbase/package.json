@@ -128,6 +128,11 @@
 			"svelte": "./dist/primitives/popover/index.js",
 			"default": "./dist/primitives/popover/index.js"
 		},
+		"./preview-card": {
+			"types": "./dist/primitives/preview-card/index.d.ts",
+			"svelte": "./dist/primitives/preview-card/index.js",
+			"default": "./dist/primitives/preview-card/index.js"
+		},
 		"./portal": {
 			"types": "./dist/primitives/portal/index.d.ts",
 			"svelte": "./dist/primitives/portal/index.js",
