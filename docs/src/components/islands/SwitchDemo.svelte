@@ -1,27 +1,32 @@
 <script lang="ts">
 	import { Switch } from 'svbase';
 
+	import { switchThumb, switchTrack, label, card, hint, row } from '../demo.js';
+
 	let switchChecked = $state(false);
 	let switchChanges = $state<string[]>([]);
 </script>
 
-<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
-	<div class="flex flex-wrap items-center gap-3">
-		<Switch.Root
-			bind:checked={switchChecked}
-			onCheckedChange={(checked) => {
-				switchChanges = [...switchChanges, checked ? 'on' : 'off'];
-			}}
-		>
-			<Switch.Thumb />
+<div class={card}>
+	<div class={row}>
+		<label class={label}>
+			<Switch.Root
+				class={switchTrack}
+				bind:checked={switchChecked}
+				onCheckedChange={(checked) => {
+					switchChanges = [...switchChanges, checked ? 'on' : 'off'];
+				}}
+			>
+				<Switch.Thumb class={switchThumb} />
+			</Switch.Root>
 			Airplane mode ({switchChecked ? 'on' : 'off'})
-		</Switch.Root>
-		<Switch.Root disabled>
-			<Switch.Thumb />
+		</label>
+		<label class="{label} opacity-60">
+			<Switch.Root disabled class={switchTrack}>
+				<Switch.Thumb class={switchThumb} />
+			</Switch.Root>
 			Disabled
-		</Switch.Root>
+		</label>
 	</div>
-	<p class="mt-3 text-sm text-muted-foreground">
-		Changes: {switchChanges.length ? switchChanges.join(', ') : '—'}
-	</p>
+	<p class={hint}>Changes: {switchChanges.length ? switchChanges.join(', ') : '—'}</p>
 </div>

@@ -1,27 +1,45 @@
 <script lang="ts">
 	import { Collapsible } from 'svbase';
 
+	import {
+		disclosurePanelInner,
+		disclosureTrigger,
+		disclosurePanel,
+		chevron,
+		card,
+		row
+	} from '../demo.js';
+
 	let controlledOpen = $state(false);
 </script>
 
-<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
-	<div class="flex flex-wrap items-center gap-3">
+<div class={card}>
+	<div class={row}>
 		<Collapsible.Root>
-			<Collapsible.Trigger>Show more</Collapsible.Trigger>
-			<Collapsible.Panel>
-				<p>Hidden details live here.</p>
+			<Collapsible.Trigger class={disclosureTrigger}>
+				Show more
+				<span aria-hidden="true" class={chevron}>▾</span>
+			</Collapsible.Trigger>
+			<Collapsible.Panel class={disclosurePanel}>
+				<p class={disclosurePanelInner}>Hidden details live here.</p>
 			</Collapsible.Panel>
 		</Collapsible.Root>
 		<Collapsible.Root bind:open={controlledOpen}>
-			<Collapsible.Trigger>Controlled ({controlledOpen ? 'open' : 'closed'})</Collapsible.Trigger>
-			<Collapsible.Panel>
-				<p>Controlled panel content.</p>
+			<Collapsible.Trigger class={disclosureTrigger}>
+				Controlled ({controlledOpen ? 'open' : 'closed'})
+				<span aria-hidden="true" class={chevron}>▾</span>
+			</Collapsible.Trigger>
+			<Collapsible.Panel class={disclosurePanel}>
+				<p class={disclosurePanelInner}>Controlled panel content.</p>
 			</Collapsible.Panel>
 		</Collapsible.Root>
 		<Collapsible.Root disabled>
-			<Collapsible.Trigger>Disabled</Collapsible.Trigger>
-			<Collapsible.Panel>
-				<p>Never shown.</p>
+			<Collapsible.Trigger class={disclosureTrigger}>
+				Disabled
+				<span aria-hidden="true" class={chevron}>▾</span>
+			</Collapsible.Trigger>
+			<Collapsible.Panel class={disclosurePanel}>
+				<p class={disclosurePanelInner}>Never shown.</p>
 			</Collapsible.Panel>
 		</Collapsible.Root>
 	</div>

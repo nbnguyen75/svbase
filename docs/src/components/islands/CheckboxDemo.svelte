@@ -1,58 +1,66 @@
 <script lang="ts">
 	import { Checkbox, Button } from 'svbase';
 
+	import { btnPrimary, checkMark, checkBox, label, card, hint, row } from '../demo.js';
+
 	let checkboxChecked = $state(false);
 	let submitted = $state('—');
 </script>
 
-<div class="mt-4 rounded-xl border bg-card p-6 text-card-foreground">
-	<div class="flex flex-wrap items-center gap-3">
-		<Checkbox.Root
-			onCheckedChange={(checked) => {
-				checkboxChecked = checked;
-			}}
-		>
-			<Checkbox.Indicator>✓</Checkbox.Indicator>
+<div class={card}>
+	<div class={row}>
+		<label class={label}>
+			<Checkbox.Root
+				class={checkBox}
+				onCheckedChange={(checked) => {
+					checkboxChecked = checked;
+				}}
+			>
+				<Checkbox.Indicator class={checkMark}>✓</Checkbox.Indicator>
+			</Checkbox.Root>
 			Subscribe (uncontrolled)
-		</Checkbox.Root>
-		<Checkbox.Root indeterminate>
-			<Checkbox.Indicator>✓</Checkbox.Indicator>
+		</label>
+		<label class={label}>
+			<Checkbox.Root indeterminate class={checkBox}>
+				<Checkbox.Indicator class={checkMark}>✓</Checkbox.Indicator>
+			</Checkbox.Root>
 			Indeterminate
-		</Checkbox.Root>
-		<Checkbox.Root disabled>
-			<Checkbox.Indicator>✓</Checkbox.Indicator>
+		</label>
+		<label class="{label} opacity-60">
+			<Checkbox.Root disabled class={checkBox}>
+				<Checkbox.Indicator class={checkMark}>✓</Checkbox.Indicator>
+			</Checkbox.Root>
 			Disabled
-		</Checkbox.Root>
-		<Checkbox.Root readOnly checked>
-			<Checkbox.Indicator>✓</Checkbox.Indicator>
+		</label>
+		<label class={label}>
+			<Checkbox.Root readOnly checked class={checkBox}>
+				<Checkbox.Indicator class={checkMark}>✓</Checkbox.Indicator>
+			</Checkbox.Root>
 			Read-only
-		</Checkbox.Root>
+		</label>
 	</div>
-	<p class="mt-3 text-sm text-muted-foreground">
-		Last change: {checkboxChecked ? 'checked' : 'unchecked'}
-	</p>
+	<p class={hint}>Last change: {checkboxChecked ? 'checked' : 'unchecked'}</p>
 	<form
-		class="flex flex-wrap items-center gap-3"
+		class={row}
 		onsubmit={(event) => {
 			event.preventDefault();
 			const data = new FormData(event.currentTarget);
 			submitted = `agree=${data.get('agree')} newsletter=${data.get('newsletter')}`;
 		}}
 	>
-		<Checkbox.Root name="agree" value="yes">
-			<Checkbox.Indicator>✓</Checkbox.Indicator>
+		<label class={label}>
+			<Checkbox.Root name="agree" value="yes" class={checkBox}>
+				<Checkbox.Indicator class={checkMark}>✓</Checkbox.Indicator>
+			</Checkbox.Root>
 			Agree (required)
-		</Checkbox.Root>
-		<Checkbox.Root name="newsletter" value="yes" uncheckedValue="no">
-			<Checkbox.Indicator>✓</Checkbox.Indicator>
+		</label>
+		<label class={label}>
+			<Checkbox.Root name="newsletter" value="yes" uncheckedValue="no" class={checkBox}>
+				<Checkbox.Indicator class={checkMark}>✓</Checkbox.Indicator>
+			</Checkbox.Root>
 			Newsletter (unchecked submits "no")
-		</Checkbox.Root>
-		<Button
-			class="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:brightness-110"
-			type="submit"
-		>
-			Submit form
-		</Button>
+		</label>
+		<Button class={btnPrimary} type="submit">Submit form</Button>
 	</form>
-	<p class="mt-3 text-sm text-muted-foreground">Submitted: <code>{submitted}</code></p>
+	<p class={hint}>Submitted: <code>{submitted}</code></p>
 </div>

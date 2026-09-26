@@ -31,6 +31,7 @@ bun is primary for dev; pnpm handles CI/CD lockfiles. Dependencies live in
 
 1. Frontmatter `title` + `description`.
 2. One-line intro, then the live island inside the bordered demo card (`mt-4 rounded-xl border bg-card p-6 text-card-foreground`).
+   Dress inner parts with the shared `src/components/demo.ts` vocabulary (state hooks: `data-[state=open]`, `data-checked`, `data-highlighted`, `data-pressed`) — never bare unstyled triggers.
 3. `## Anatomy` — fenced `svelte` block with `title="App.svelte"`, minimal usage.
 4. `## API reference` — `### <Namespace>.<Part>` headings with `<ApiTable props={[...]} />` (`name`, `type`, `defaultValue`, `description`).
 5. `## Keyboard interactions` — plain `` `Key` `` literals (no `Kbd` component in MDX).
