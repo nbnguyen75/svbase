@@ -1,7 +1,7 @@
 # AGENTS.md
 
 Project harness for reliable agent-assisted development on **svbase**
-(TypeScript + Svelte 5 + SvelteKit library package, Bun-managed).
+(TypeScript + Svelte 5 library package, Bun-managed).
 
 svbase is an unstyled, headless UI component primitives library for Svelte 5,
 bringing the design patterns and accessibility of **Base UI** to the Svelte ecosystem.
@@ -11,7 +11,7 @@ bringing the design patterns and accessibility of **Base UI** to the Svelte ecos
 ## Repository Layout
 
 - `packages/svbase/` — the publishable library (`src/lib`, tests, `prepack`/`publint`) and its self-contained harness (this AGENTS.md, `.agents/`, `init.*`, `feature_list.json`, `eslint`/`oxfmt`/`oxlint` configs). Relative imports only.
-- `docs/` — SvelteKit showcase app consuming the library as the `svbase` workspace package, with its own copy of the lint/format configs. Aliases/`$lib`/UI deps allowed there.
+- `docs/` — Astro Starlight docs site consuming the library as the `svbase` workspace package, with its own copy of the lint/format configs. Demos live as Svelte islands under `docs/src/components/islands/` (see `docs/AGENTS.md`).
 - Root — thin orchestrator: `bun run <script>` delegates to each package; zero devDeps.
 
 ---
@@ -123,7 +123,7 @@ A primitive or feature is done only when:
 - [ ] `bun run format` passes with 0 errors
 - [ ] `bun run lint` passes with 0 errors
 - [ ] `bun run prepack` builds dist and passes `publint` with 0 errors
-- [ ] Mounted on a demo page under `docs/src/routes/` for visual & functional verification
+- [ ] Mounted as a Svelte island under `docs/src/components/islands/` and embedded in its `.mdx` page for visual & functional verification
 - [ ] Evidence recorded in `feature_list.json` and `progress.md`
 
 ---

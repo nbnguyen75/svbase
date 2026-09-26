@@ -6,6 +6,15 @@
 - **Workspace**: bun primary (dev), pnpm supported (CI/CD) — see Monorepo note below.
 - **Next Primitive to Implement**: all `feat-*` done; see session-handoff for follow-ups.
 
+### 2026-09-26: Astro docs migration + npm publish shell
+
+- [x] **Docs migrated SvelteKit → Astro Starlight** (`docs/`): 34/34 routes converted to `.mdx` + Svelte islands (`client:visible`), full primitives sidebar, Tailwind/Inter/orange theme, Vercel adapter. `docs-old/` deleted after parity check.
+- [x] **Library SSR fix**: Svelte 5 server renderer executes `onDestroy` during prerender — 10 primitives clearing timers there broke `astro build` (`window is not defined`). Guarded with `typeof window === 'undefined'`. `prepack` + publint clean.
+- [x] **Docs harness self-contained**: `oxlint`/`oxfmt`/`eslint` configs mirrored from the lib (minus SvelteKit-only rules), `check` (`astro sync` — `@astrojs/check` intentionally skipped) / `lint` / `format` scripts wired. All gates green; `build` renders 36 pages.
+- [x] **Publish shell**: MIT `LICENSE` (root + package), package metadata (description/license/author/homepage/repository/keywords), `.changeset/` at root (changelog-github, `access: public`), `changeset status` resolves `svbase → minor`, `pnpm pack --dry-run` ships LICENSE + README + 39 primitive entry points, CI (`ci.yml` gates) + release (`release.yml` via changesets/action, pnpm, npm provenance) workflows. Root `changeset`/`release` scripts added.
+- [x] **Agents docs**: root + `packages/svbase` stale SvelteKit refs fixed; `docs/AGENTS.md` rewritten (Starlight conventions, page template, SSR rule). `docs/CLAUDE.md` is a symlink to `AGENTS.md` — single source of truth.
+- [ ] **Deferred**: `bun.lock` refresh after dep additions (`bun install` hangs; pnpm used), dev-server visual smoke (`:4321`), shadcn-docs visual polish, dark mode, `llms.txt`.
+
 ### 2026-09-24: Monorepo Phase 0 — pnpm-ready workspace defs (bun primary kept)
 
 - [x] **PM policy**: bun primary for daily dev (scripts, AGENTS.md unchanged); pnpm for CI/CD via `packageManager: pnpm@12.5.1` pin. `bun.lock` kept; `pnpm-lock.yaml` regenerated via `pnpm install --lockfile-only`.
