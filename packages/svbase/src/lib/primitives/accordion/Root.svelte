@@ -20,9 +20,14 @@
 </script>
 
 <script lang="ts">
+	import { optionalContext } from '../../utils/context.js';
 	import { nextRovingTarget } from '../../utils/roving.js';
 
 	import { type AccordionTriggerEntry, setAccordionRootState } from './context.js';
+	import { getDirectionState } from '../direction/context.js';
+
+	// Captured at init: component context is unavailable in event handlers.
+	const direction = optionalContext(getDirectionState);
 
 	let {
 		defaultValue = [],
@@ -68,7 +73,10 @@
 	 * panels open on activation, never on focus (current APG guidance).
 	 */
 	function moveFocus(fromValue: string, key: string, source: HTMLElement): void {
-		const rtl = source.closest('[dir="rtl"]') !== null || document.dir === 'rtl';
+		const rtl =
+			direction?.direction === 'rtl' ||
+			source.closest('[dir="rtl"]') !== null ||
+			document.dir === 'rtl';
 		nextRovingTarget(triggers, fromValue, key, rtl)?.element?.focus();
 	}
 

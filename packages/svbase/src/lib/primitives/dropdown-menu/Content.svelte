@@ -16,9 +16,14 @@
 
 	import { escapeKey } from '../../actions/index.js';
 	import { composeHandlers } from '../../utils/compose-handlers.js';
+	import { optionalContext } from '../../utils/context.js';
 	import { nextRovingTarget } from '../../utils/roving.js';
 
 	import { setMenuContentState, type MenuItemEntry, getMenuRootState } from './context.js';
+	import { getDirectionState } from '../direction/context.js';
+
+	// Captured at init: component context is unavailable in event handlers.
+	const direction = optionalContext(getDirectionState);
 
 	type ContentKeyboardEvent = Parameters<NonNullable<ContentProps['onkeydown']>>[0];
 
@@ -88,7 +93,9 @@
 
 	function moveHighlight(key: string): void {
 		const source = document.activeElement;
+
 		const rtl =
+			direction?.direction === 'rtl' ||
 			(source instanceof HTMLElement && source.closest('[dir="rtl"]') !== null) ||
 			document.dir === 'rtl';
 		const next = nextRovingTarget(entries, currentId(), key, rtl);

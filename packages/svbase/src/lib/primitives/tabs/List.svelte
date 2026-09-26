@@ -17,13 +17,19 @@
 
 <script lang="ts">
 	import { composeHandlers } from '../../utils/compose-handlers.js';
+	import { optionalContext } from '../../utils/context.js';
 	import { nextRovingTarget } from '../../utils/roving.js';
 
 	import { type TabsTriggerEntry, getTabsRootState, setTabsListState } from './context.js';
+	import { getDirectionState } from '../direction/context.js';
 
 	type ListKeyboardEvent = Parameters<NonNullable<ListProps['onkeydown']>>[0];
 
 	const root = getTabsRootState();
+
+	// Capture the direction state at init (component context is only
+	// available during initialization); `.direction` stays reactive after.
+	const direction = optionalContext(getDirectionState);
 
 	let {
 		activation = 'manual',
@@ -63,7 +69,10 @@
 				? ['ArrowLeft', 'ArrowRight', 'Home', 'End']
 				: ['ArrowUp', 'ArrowDown', 'Home', 'End'];
 		if (!valid.includes(key)) return;
-		const rtl = source.closest('[dir="rtl"]') !== null || document.dir === 'rtl';
+		const rtl =
+			direction?.direction === 'rtl' ||
+			source.closest('[dir="rtl"]') !== null ||
+			document.dir === 'rtl';
 		const next = nextRovingTarget(entries, fromValue, key, rtl);
 		if (!next) return;
 		setFocusedValue(next.value);

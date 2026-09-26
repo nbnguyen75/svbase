@@ -28,9 +28,14 @@
 </script>
 
 <script lang="ts">
+	import { optionalContext } from '../../utils/context.js';
 	import { nextRovingTarget } from '../../utils/roving.js';
 
 	import { type RadioItemEntry, setRadioGroupState } from './context.js';
+	import { getDirectionState } from '../direction/context.js';
+
+	// Captured at init: component context is unavailable in event handlers.
+	const direction = optionalContext(getDirectionState);
 
 	let {
 		defaultValue = undefined,
@@ -72,7 +77,10 @@
 	 * Target resolution is shared with accordion via `nextRovingTarget`.
 	 */
 	function move(fromValue: string, key: string, source: HTMLElement): void {
-		const rtl = source.closest('[dir="rtl"]') !== null || document.dir === 'rtl';
+		const rtl =
+			direction?.direction === 'rtl' ||
+			source.closest('[dir="rtl"]') !== null ||
+			document.dir === 'rtl';
 		const next = nextRovingTarget(items, fromValue, key, rtl);
 		if (!next) return;
 		next.element?.focus();

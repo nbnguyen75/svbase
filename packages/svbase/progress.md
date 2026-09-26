@@ -106,6 +106,12 @@
 - [x] **Meter root/track/indicator/label/value** (`src/lib/primitives/meter/`): clamped value with NaN fallback, percent fill via shared slider-math, `data-state` low/normal/high bands, `data-optimum` hook, formatted value text.
 - [x] **Verification**: 4 browser tests + axe; suite 200/200; check/lint/format/build/prepack green; `./meter` export + docs page + sidebar entry.
 
+### 2026-09-25: Direction provider (feat-031, roadmap complete)
+
+- [x] **Direction root** (`src/lib/primitives/direction/`): bindable `ltr/rtl` with `dir` + `data-direction` rendered for native layout; roving in select, combobox, toggle-group, menubar, toolbar, accordion, radio-group, slider, tabs, and menu content reads the context first with DOM fallbacks.
+- [x] **Root cause found by tests**: Svelte component context is only available during initialization — reading it in event handlers silently misses. Capture the state object at init, read its fields later (same pattern as field/form registration).
+- [x] **Verification**: 4 browser tests + axe (incl. a dir-stripped isolation test proving context-driven mirroring); suite 204/204; check/lint/format/build/prepack green; `./direction` export + docs page + sidebar entry. All 32 roadmap items done.
+
 ### 2026-09-25: Preview card (feat-029)
 
 - [x] **Preview card root/trigger/content/arrow** (`src/lib/primitives/preview-card/`): open delay 300ms / close delay 100ms with shared-timer intent machine, immediate focus open, click-to-toggle for touch, popover positioning + arrow, modeless Escape.

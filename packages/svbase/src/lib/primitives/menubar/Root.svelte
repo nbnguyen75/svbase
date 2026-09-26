@@ -13,9 +13,14 @@
 </script>
 
 <script lang="ts">
+	import { optionalContext } from '../../utils/context.js';
 	import { nextRovingTarget } from '../../utils/roving.js';
+	import { getDirectionState } from '../direction/context.js';
 
 	import { type MenubarTriggerHandle, type MenubarMenuHandle, setMenubarState } from './context.js';
+
+	// Captured at init: component context is unavailable in event handlers.
+	const direction = optionalContext(getDirectionState);
 
 	let {
 		orientation = 'horizontal',
@@ -88,7 +93,11 @@
 		},
 		moveFocus(fromMenuValue: string, key: string, source: HTMLElement) {
 			if (disabled || !allowedKey(key)) return;
-			const rtl = source.closest('[dir="rtl"]') !== null || document.dir === 'rtl';
+
+			const rtl =
+				direction?.direction === 'rtl' ||
+				source.closest('[dir="rtl"]') !== null ||
+				document.dir === 'rtl';
 			const next = nextRovingTarget(entries(), fromMenuValue, key, rtl);
 			next?.element?.focus();
 			// Moving focus across triggers while a menu is open switches menus.

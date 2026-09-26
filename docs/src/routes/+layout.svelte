@@ -25,6 +25,7 @@
 		['combobox', 'Combobox'],
 		['context-menu', 'Context Menu'],
 		['dialog', 'Dialog'],
+		['direction', 'Direction'],
 		['drawer', 'Drawer'],
 		['dropdown-menu', 'Dropdown Menu'],
 		['form', 'Form'],

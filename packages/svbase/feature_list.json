@@ -266,8 +266,8 @@
 			"name": "Direction provider",
 			"description": "RTL direction context consumed by roving navigation and floating positioning, replacing per-component direction props.",
 			"dependencies": ["feat-002"],
-			"status": "planned",
-			"evidence": ""
+			"status": "done",
+			"evidence": "src/lib/primitives/direction/, docs/src/routes/direction/+page.svx"
 		}
 	]
 }

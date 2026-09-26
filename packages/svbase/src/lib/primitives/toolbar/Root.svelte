@@ -14,9 +14,14 @@
 
 <script lang="ts">
 	import { composeHandlers } from '../../utils/compose-handlers.js';
+	import { optionalContext } from '../../utils/context.js';
 	import { nextRovingTarget } from '../../utils/roving.js';
+	import { getDirectionState } from '../direction/context.js';
 
 	import { type ToolbarItemEntry, setToolbarState } from './context.js';
+
+	// Captured at init: component context is unavailable in event handlers.
+	const direction = optionalContext(getDirectionState);
 
 	let {
 		orientation = 'horizontal',
@@ -69,7 +74,11 @@
 		},
 		moveFocus(fromElement: HTMLElement, key: string) {
 			if (disabled || !allowedKey(key)) return;
-			const rtl = fromElement.closest('[dir="rtl"]') !== null || document.dir === 'rtl';
+
+			const rtl =
+				direction?.direction === 'rtl' ||
+				fromElement.closest('[dir="rtl"]') !== null ||
+				document.dir === 'rtl';
 			// Roving skips disabled items entirely (focusable-when-disabled
 			// buttons still Tab through their own tabindex handling).
 			const pool = focusableEntries().filter((item) => !item.disabled);

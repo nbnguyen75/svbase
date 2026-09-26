@@ -38,8 +38,13 @@
 
 <script lang="ts">
 	import { pushThumbValues, ratioToValue, valuesEqual } from '../../utils/slider-math.js';
+	import { optionalContext } from '../../utils/context.js';
 
 	import { setSliderState } from './context.js';
+	import { getDirectionState } from '../direction/context.js';
+
+	// Captured at init: component context is unavailable in event handlers.
+	const direction = optionalContext(getDirectionState);
 
 	let {
 		defaultValue = undefined,
@@ -86,6 +91,7 @@
 	let grabOffset = 0;
 
 	function isRtl(): boolean {
+		if (direction?.direction === 'rtl') return true;
 		const track = trackEl;
 		if (!track) return false;
 		return track.closest('[dir="rtl"]') !== null || document.dir === 'rtl';

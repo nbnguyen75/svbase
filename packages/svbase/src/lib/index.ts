@@ -10,6 +10,7 @@ export * as Collapsible from './primitives/collapsible/index.js';
 export * as Combobox from './primitives/combobox/index.js';
 export * as ContextMenu from './primitives/context-menu/index.js';
 export * as Dialog from './primitives/dialog/index.js';
+export * as Direction from './primitives/direction/index.js';
 export * as Drawer from './primitives/drawer/index.js';
 export * as DropdownMenu from './primitives/dropdown-menu/index.js';
 export * as Field from './primitives/field/index.js';

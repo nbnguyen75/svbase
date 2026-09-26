@@ -44,12 +44,17 @@
 </script>
 
 <script lang="ts">
+	import { optionalContext } from '../../utils/context.js';
 	import { createId } from '../../utils/id.js';
 	import { trackOutsidePress } from '../../utils/outside.js';
 	import { FloatingPosition } from '../../utils/position.svelte.js';
 	import { nextRovingTarget } from '../../utils/roving.js';
+	import { getDirectionState } from '../direction/context.js';
 
 	import { type ComboboxItemEntry, setComboboxRootState } from './context.js';
+
+	// Captured at init: component context is unavailable in event handlers.
+	const direction = optionalContext(getDirectionState);
 
 	let {
 		defaultValue = null,
@@ -186,7 +191,11 @@
 
 	function moveHighlight(fromValue: string, key: string, source: HTMLElement): void {
 		if (disabled) return;
-		const rtl = source.closest('[dir="rtl"]') !== null || document.dir === 'rtl';
+
+		const rtl =
+			direction?.direction === 'rtl' ||
+			source.closest('[dir="rtl"]') !== null ||
+			document.dir === 'rtl';
 		// Focus stays in the textbox (aria-activedescendant pattern) — only the
 		// highlight moves, so the user can keep typing.
 		const candidates = visibleEntries.filter((item) => !item.disabled);

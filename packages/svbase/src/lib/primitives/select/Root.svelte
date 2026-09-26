@@ -30,12 +30,17 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
 
+	import { optionalContext } from '../../utils/context.js';
 	import { createId } from '../../utils/id.js';
 	import { trackOutsidePress } from '../../utils/outside.js';
 	import { FloatingPosition } from '../../utils/position.svelte.js';
 	import { nextRovingTarget } from '../../utils/roving.js';
+	import { getDirectionState } from '../direction/context.js';
 
 	import { type SelectItemEntry, setSelectRootState } from './context.js';
+
+	// Captured at init: component context is unavailable in event handlers.
+	const direction = optionalContext(getDirectionState);
 
 	let {
 		defaultValue = null,
@@ -151,7 +156,11 @@
 
 	function moveHighlight(fromValue: string, key: string, source: HTMLElement): void {
 		if (disabled) return;
-		const rtl = source.closest('[dir="rtl"]') !== null || document.dir === 'rtl';
+
+		const rtl =
+			direction?.direction === 'rtl' ||
+			source.closest('[dir="rtl"]') !== null ||
+			document.dir === 'rtl';
 		const next = nextRovingTarget(entries, fromValue, key, rtl);
 		if (!next) return;
 		setHighlighted(next.value);

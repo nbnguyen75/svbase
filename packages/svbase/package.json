@@ -68,6 +68,11 @@
 			"svelte": "./dist/primitives/dialog/index.js",
 			"default": "./dist/primitives/dialog/index.js"
 		},
+		"./direction": {
+			"types": "./dist/primitives/direction/index.d.ts",
+			"svelte": "./dist/primitives/direction/index.js",
+			"default": "./dist/primitives/direction/index.js"
+		},
 		"./drawer": {
 			"types": "./dist/primitives/drawer/index.d.ts",
 			"svelte": "./dist/primitives/drawer/index.js",
